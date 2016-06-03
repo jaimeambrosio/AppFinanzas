@@ -24,12 +24,9 @@
                 <div id="contenedor-main" >
                     
                 </div>
-
-
             </div>
-            <div  >
+            <div>
                 <%@include file="../plantillas/modals/mensajes.jsp" %>
-                
             </div>
            
         </div>

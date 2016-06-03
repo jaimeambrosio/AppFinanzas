@@ -118,6 +118,9 @@
                         <li>
                             <a href="#"><span class="glyphicon glyphicon-off" ></span> Cerrar sesion</a>
                         </li>
+                        <li>
+                            <a href="#"  onclick="prueba();"><span class="glyphicon glyphicon-off" ></span> Prueba</a>
+                        </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>

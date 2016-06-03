@@ -17,7 +17,7 @@
                     <div class="caption">
                         <h3>Integra</h3>
                         <p>Somos una Administradora de Fondos de Pensiones (AFP) fundada el 19 de mayo de 1993 con la misión de liderar la industria, establecer el estándar en la administración de pensiones y otorgar el mejor servicio en el mercado. </p>
-                        <p><a target="_blank"  onclick="prueba();" class="btn btn-primary" role="button">Leer más</a> </p>
+                        <p><a target="_blank" href="http://www.integra.com.pe/wps/portal/integra/"  class="btn btn-primary" role="button">Leer más</a> </p>
                     </div>
                 </div>
             </div>

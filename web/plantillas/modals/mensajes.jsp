@@ -12,7 +12,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="modalMensajeTitle"  >
-                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Detalle de libro
+
                     </h4>
                 </div>
                 <div class="modal-body">
@@ -21,13 +21,25 @@
                             <img  id="modalMensajesIconInformation" src="/AppFinanzas/img/information.png" alt=""/>
                             <img  id="modalMensajesIconWarning" src="/AppFinanzas/img/warning.png" alt=""/>
                         </div>
-                        <div class="col-sm-9" id="modalMensajesCuerpo" >
-                           
+                        <div class="col-sm-9"  >
+                            <div id="modalMensajesCuerpo" ></div>
+                            <div  >
+                                <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseModalMensajeDetalle" aria-expanded="false" aria-controls="collapseModalMensajeDetalle">
+                                    Mostrar detalles
+                                </button>
+
+                                <div class="collapse" id="collapseModalMensajeDetalle">
+                                    <br>
+                                    <div class="well" id="modalMensajesDetalle" >
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        
+
                     </div>                    
                     <div class="row" >
-                        
+
                     </div>                    
                 </div>
                 <div class="modal-footer">
