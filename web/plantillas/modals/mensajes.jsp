@@ -23,6 +23,7 @@
                         </div>
                         <div class="col-sm-9"  >
                             <div id="modalMensajesCuerpo" ></div>
+                            <br>
                             <div  >
                                 <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseModalMensajeDetalle" aria-expanded="false" aria-controls="collapseModalMensajeDetalle">
                                     Mostrar detalles
