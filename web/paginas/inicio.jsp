@@ -27,6 +27,10 @@
 
 
             </div>
+            <div  >
+                <%@include file="../plantillas/modals/mensajes.jsp" %>
+                
+            </div>
            
         </div>
         <%@include file="../plantillas/scripts.jsp" %>
