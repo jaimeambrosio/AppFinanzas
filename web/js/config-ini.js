@@ -19,13 +19,13 @@ function mostrarModalMensaje(mensaje, detalle, tipo)
         $("#modalMensajesIconWarning").show();
         $("#modalMensajeTitle").html(titulo);
     } else {
-        
+
     }
     $("#modalMensajesCuerpo").html(mensaje);
-    
-    var i = detalle.search("<body>");
+
+    var i = detalle.indexOf("<body>");
     if (i > -1) {
-        var j = detalle.search("</body>");
+        var j = detalle.indexOf("</body>");
         detalle = detalle.substring(i, j);
     }
     $("#modalMensajesDetalle").html(detalle);
@@ -51,7 +51,7 @@ $().ready(function () {
                                     "ERROR");
                         }
                         NProgress.done();
-                        console.log(xhr);
+                        //console.log(xhr);
                     });
 
                 });
