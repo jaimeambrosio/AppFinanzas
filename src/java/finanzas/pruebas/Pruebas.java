@@ -6,7 +6,6 @@
 package finanzas.pruebas;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -19,22 +18,24 @@ public class Pruebas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Double sueldo = 1000.0;
-        Double aportatacion = 0.1;
-        Double rentabilidad = 0.001651581;
-        rentabilidad=0.02/12;
+        Double sueldo = 3400.0;
+        Double aportatacion = 0.09;
+        Double rentabilidad = 0.005497;
         Double saldo = 0.0;
-        Double saldoInicial = 10.0;
+        Double saldoInicial = 0.0;
         Calendar ini = new GregorianCalendar(2016, Calendar.MAY, 30);
-        Calendar fin = new GregorianCalendar(2016 + 65 - 20, Calendar.MAY, 30);
-        
+        Calendar fin = new GregorianCalendar(2016 + 21, Calendar.MAY, 30);
+        int cont = 0;
         while (ini.getTimeInMillis() < fin.getTimeInMillis()) {
-            saldo = saldoInicial + saldo + saldo * rentabilidad + sueldo * aportatacion;
+            
+            saldo = saldoInicial + saldo + (saldo * rentabilidad) + (sueldo * aportatacion);
             ini.add(Calendar.MONTH, 1);
             System.out.println(ini.getTime().toLocaleString() + "  ==> " + saldo);
             saldoInicial = 0.0;
+            ++cont;
         }
         System.out.println("Saldo final bbb: " + saldo);
+        System.out.println(cont);
 
     }
 

@@ -15,13 +15,21 @@ import java.util.GregorianCalendar;
 public class NewClass {
 
     public static void main(String[] args) {
+        Double sueldo = 3400.0;
+        Double aportatacion = 0.09;
+        Double rentabilidad = 0.005497;
+        Double saldo = 0.0;
+        Double saldoInicial = 0.0;
+
         Integer[] diasDelMes = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         Calendar ini = new GregorianCalendar(2016, Calendar.JUNE, 30);
-        Calendar fin = new GregorianCalendar(2017, Calendar.JUNE, 30);
+        Calendar fin = new GregorianCalendar(2016 + 21, Calendar.JUNE, 30);
         int mes = Calendar.JUNE;
+        int cont = 0;
 
-        while (ini.getTimeInMillis() <= fin.getTimeInMillis()) {
-            System.out.println(ini.getTime().toLocaleString() + "   -  " + ini.getTimeInMillis());
+        while (ini.getTimeInMillis() < fin.getTimeInMillis()) {
+            saldo = saldoInicial + saldo + (saldo * rentabilidad) + (sueldo * aportatacion);
+
             ++mes;
             if (mes >= 12) {
                 mes = 0;
@@ -34,9 +42,12 @@ public class NewClass {
                 }
             }
             ini.add(Calendar.DAY_OF_MONTH, dias);
+            ++cont;
+            System.out.println(ini.getTime().toLocaleString() + "   -  " + ini.getTimeInMillis());
         }
         System.out.println(fin.getTimeInMillis());
-        System.out.println(ini.get(Calendar.YEAR));
+        System.out.println("Saldo final bbb: " + saldo);
+        System.out.println(cont);
     }
 
 }
