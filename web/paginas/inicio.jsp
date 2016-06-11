@@ -31,7 +31,7 @@
            
         </div>
         <%@include file="../plantillas/scripts.jsp" %>
-        
-        <script src="../js/config-ini.js" ></script>
+        <script src="../js/funcionesComunes.js" type="text/javascript"></script>
+        <script src="../js/config-ini.js" type="text/javascript" ></script>
     </body>
 </html>

@@ -7,10 +7,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">Mi perfil</h3>
+        <h3 class="panel-title">Pruebas</h3>
     </div>
     <div class="panel-body">
-        content
-        
+        <input type="text"  id="txtPrueba">
+        <button onclick="prueba2();">sdddd</button>
     </div>
-</div>
+</div> 
+<script src="/AppFinanzas/js/paneles/p-prueba.js" type="text/javascript"></script>

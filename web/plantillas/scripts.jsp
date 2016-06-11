@@ -10,3 +10,4 @@
 <script src="/AppFinanzas/libs/metisMenu/metisMenu.js" type="text/javascript"></script>
 <script src="/AppFinanzas/libs/sb-admin/js/sb-admin.js" type="text/javascript"></script>
 <script src="/AppFinanzas/libs/nprogress/nprogress.js" type="text/javascript"></script>
+<script src="/AppFinanzas/libs/numeral/numeral.min.js" type="text/javascript"></script>
