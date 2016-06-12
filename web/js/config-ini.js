@@ -32,8 +32,8 @@ function configureMenu() {
 $().ready(function () {
 
     NProgress.configure({showSpinner: false});
-    configureMenu();
-    $("#miCuenta").click();
+    configureMenu();  
+ //   $("#miCuenta").click(); $("#miCuenta").click();
     $("#pInicio").click();
 });
 
