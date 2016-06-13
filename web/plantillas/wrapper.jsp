@@ -46,7 +46,7 @@
     </ul>
     <!-- /.navbar-top-links -->
 
-    <div class="navbar-default sidebar" role="navigation">
+    <div class="navbar-default sidebar" id="divMenu" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search" align="center" >
@@ -55,32 +55,33 @@
                 </li>
                 <li>
                     <a href="#" data-content="paneles/p-inicio.jsp" id="pInicio" ><span class="glyphicon glyphicon-home"  ></span>  Inicio</a>
+                    <ul class="nav nav-second-level"></ul>
                 </li>
                 <li>
                     <a href="#"><span class="glyphicon glyphicon-hourglass" id="pSimuladorAfp" ></span> Simulador AFP<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="panels-wells.html">Panels and Wells</a>
+                            <a href="#">Panels and Wells</a>
                         </li>
                         <li>
-                            <a href="buttons.html">Buttons</a>
+                            <a href="#">Buttons</a>
                         </li>
                         <li>
-                            <a href="notifications.html">Notifications</a>
+                            <a href="#">Notifications</a>
                         </li>
                         <li>
-                            <a href="typography.html">Typography</a>
+                            <a href="#">Typography</a>
                         </li>
                         <li>
-                            <a href="icons.html"> Icons</a>
+                            <a href="#"> Icons</a>
                         </li>
                         <li>
-                            <a href="grid.html">Grid</a>
+                            <a href="#">Grid</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><span class="glyphicon glyphicon-refresh"></span> Conversiones<span class="fa arrow"></span></a>
+                    <a href="#"><span class="glyphicon glyphicon-refresh"  id="mConversiones" ></span> Conversiones<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="#">Second Level Item</a>

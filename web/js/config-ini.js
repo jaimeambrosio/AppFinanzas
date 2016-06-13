@@ -1,10 +1,14 @@
 
 function configureMenu() {
-    $("#wrapper a").each(function (i) {
-        var link = $(this).attr("data-content");
-        if (link !== undefined) {
-            var seccion = $(this).html();
-            var nombreFuncion = $(this).attr("data-constructor");
+
+    $("#divMenu ul").removeClass("in");
+    $("#divMenu a").each(function (i) {
+        var enlace = $(this);
+
+        var link = enlace.attr("data-content");
+        if (link !== undefined && link != "") {
+            var seccion = enlace.html();
+            var nombreFuncion = enlace.attr("data-constructor");
             $(this).click(function () {
                 NProgress.start();
                 $("#contenedor-main").hide(function () {
@@ -12,6 +16,8 @@ function configureMenu() {
                         if (status != "error") {
                             if (nombreFuncion !== undefined)
                                 eval(nombreFuncion);
+                            $("#divMenu a").removeClass("active");
+                            enlace.addClass("active");
                             $("#contenedor-main").show(500);
                         } else {
                             mostrarModalMensaje('No se pudo encontrar la seccion "' + seccion + '". Asegurate de tener una conexion activa a internet.',
@@ -32,8 +38,7 @@ function configureMenu() {
 $().ready(function () {
 
     NProgress.configure({showSpinner: false});
-    configureMenu();  
- //   $("#miCuenta").click(); $("#miCuenta").click();
+    configureMenu();
     $("#pInicio").click();
 });
 

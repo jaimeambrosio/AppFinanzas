@@ -7,6 +7,7 @@ function mostrarModalMensaje(mensaje, detalle, tipo)
 
     $("#modalMensajesIconInformation").hide();
     $("#modalMensajesIconWarning").hide();
+    $("#modalMensajesIconError").hide();
     $("#collapseModalMensajeDetalle").collapse("hide");
 
     if (tipo == "INFORMACION") {
@@ -14,11 +15,13 @@ function mostrarModalMensaje(mensaje, detalle, tipo)
         $("#modalMensajesIconInformation").show();
         $("#modalMensajeTitle").html(titulo);
     } else if (tipo == "ERROR") {
-        var titulo = '<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> Ha ocurrido algo inesperado';
+        var titulo = '<span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Ha ocurrido algo inesperado';
+        $("#modalMensajesIconError").show();
+        $("#modalMensajeTitle").html(titulo);
+    } else if (tipo == "ADVERTENCIA") {
+        var titulo = '<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> Ten en cuenta lo siguiente';
         $("#modalMensajesIconWarning").show();
         $("#modalMensajeTitle").html(titulo);
-    } else {
-
     }
     $("#modalMensajesCuerpo").html(mensaje);
 
@@ -32,15 +35,14 @@ function mostrarModalMensaje(mensaje, detalle, tipo)
 }
 
 function prueba() {
-    mostrarModalMensaje('The following example makes a button toggle the expanding and collapsing content of another element', 'The following example makes a button toggle the expanding and collapsing content of another element', "ERROR");
-
+    mostrarModalMensaje('The following example makes a button toggle the expanding and collapsing content of another element', 'The following example makes a button toggle the expanding and collapsing content of another element', "ADVERTENCIA");
 }
 
 function formatoMontoChange(idInput)
 {
     $(idInput).change(function () {
-       var input = $(this);
-       var string = numeral(input.val()).format('0,0.00');
-       input.val(string);
+        var input = $(this);
+        var string = numeral(input.val()).format('0,0.00');
+        input.val(string);
     });
 }
