@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">Fondos de pensiones</h3>
+        <h3 class="panel-title" id="tituloPanel"></h3>
     </div>
     <div class="panel-body">
         <div class="row">

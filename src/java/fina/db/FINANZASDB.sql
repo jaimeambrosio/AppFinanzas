@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS `FINANZASDB`.`USUARIO` (
   `dni` CHAR(8) NULL,
   `eliminado` TINYINT(1) NULL,
   `idTipoUsuario` INT NOT NULL,
+  `nombreFoto` VARCHAR(100) NULL,
   PRIMARY KEY (`idUSUARIO`),
   INDEX `fk_USUARIO_TIPOUSUARIO_idx` (`idTipoUsuario` ASC),
   CONSTRAINT `fk_USUARIO_TIPOUSUARIO`
@@ -230,7 +231,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `FINANZASDB`;
-INSERT INTO `FINANZASDB`.`USUARIO` (`idUSUARIO`, `nombres`, `apellidos`, `username`, `contrasenia`, `fechaNacimiento`, `sexo`, `foto`, `dni`, `eliminado`, `idTipoUsuario`) VALUES (DEFAULT, 'admin', 'superadmin', 'admin', 'admin', '1995-8-07', 1, NULL, '76963852', 0, 1);
+INSERT INTO `FINANZASDB`.`USUARIO` (`idUSUARIO`, `nombres`, `apellidos`, `username`, `contrasenia`, `fechaNacimiento`, `sexo`, `foto`, `dni`, `eliminado`, `idTipoUsuario`, `nombreFoto`) VALUES (DEFAULT, 'admin', 'superadmin', 'admin', 'admin', '1995-8-07', 1, NULL, '76963852', 0, 1, NULL);
 
 COMMIT;
 

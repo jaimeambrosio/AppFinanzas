@@ -46,3 +46,8 @@ function formatoMontoChange(idInput)
         input.val(string);
     });
 }
+
+function cargarCombo(idCombo,url)
+{
+    
+}

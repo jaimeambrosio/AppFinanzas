@@ -11,3 +11,7 @@
 <script src="/AppFinanzas/libs/sb-admin/js/sb-admin.js" type="text/javascript"></script>
 <script src="/AppFinanzas/libs/nprogress/nprogress.js" type="text/javascript"></script>
 <script src="/AppFinanzas/libs/numeral/numeral.min.js" type="text/javascript"></script>
+<script src="/AppFinanzas/libs/datepicker/bootstrap-datepicker.min.js" type="text/javascript"></script>
+<script src="/AppFinanzas/libs/datepicker/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
+<script src="/AppFinanzas/libs/jquery-validation/jquery.validate.min.js" type="text/javascript"></script>
+<script src="/AppFinanzas/libs/jquery-validation/messages_es_PE.min.js" type="text/javascript"></script>

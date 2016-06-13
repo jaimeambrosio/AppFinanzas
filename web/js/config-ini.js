@@ -4,7 +4,6 @@ function configureMenu() {
     $("#divMenu ul").removeClass("in");
     $("#divMenu a").each(function (i) {
         var enlace = $(this);
-
         var link = enlace.attr("data-content");
         if (link !== undefined && link != "") {
             var seccion = enlace.html();
@@ -18,6 +17,7 @@ function configureMenu() {
                                 eval(nombreFuncion);
                             $("#divMenu a").removeClass("active");
                             enlace.addClass("active");
+                            $("#tituloPanel").html(seccion);
                             $("#contenedor-main").show(500);
                         } else {
                             mostrarModalMensaje('No se pudo encontrar la seccion "' + seccion + '". Asegurate de tener una conexion activa a internet.',

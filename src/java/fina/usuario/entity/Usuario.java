@@ -42,6 +42,8 @@ public class Usuario implements Serializable {
     @Lob
     @Column(name = "foto")
     private byte[] foto;
+    @Column(name = "nombreFoto")
+    private String nombreFoto;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUSUARIO")
     private List<Simulacion> simulacionList;
 
@@ -193,13 +195,6 @@ public class Usuario implements Serializable {
         return "fina.usuario.entity.Usuario[ idUSUARIO=" + idUSUARIO + " ]";
     }
 
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
 
     @XmlTransient
     public List<Simulacion> getSimulacionList() {
@@ -208,6 +203,22 @@ public class Usuario implements Serializable {
 
     public void setSimulacionList(List<Simulacion> simulacionList) {
         this.simulacionList = simulacionList;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
+    public String getNombreFoto() {
+        return nombreFoto;
+    }
+
+    public void setNombreFoto(String nombreFoto) {
+        this.nombreFoto = nombreFoto;
     }
     
 }

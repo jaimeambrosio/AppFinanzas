@@ -50,8 +50,9 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search" align="center" >
-                    <img src="../img/user.png" alt="" class="img-thumbnail" />
-                   
+                    <img src="../img/user.png" alt="" class="img-thumbnail" /><br>
+                   <span class="label label-default">Jaime Ambrosio mallqui mallqui mallqui</span>
+                    
                 </li>
                 <li>
                     <a href="#" data-content="paneles/p-inicio.jsp" id="pInicio" ><span class="glyphicon glyphicon-home"  ></span>  Inicio</a>
@@ -114,7 +115,7 @@
                     <a href="#" id="miCuenta"><span class="glyphicon glyphicon-cog"  ></span> Mi cuenta<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#" data-content="paneles/p-miperfil.jsp" id="pMiPerfil" ><span class="glyphicon glyphicon-user" ></span> Mi perfil</a>
+                            <a href="#pMiPerfil" data-content="paneles/p-miperfil.jsp" data-constructor=" p_miperfil();" id="pMiPerfil" ><span class="glyphicon glyphicon-user" ></span> Mi perfil</a>
                         </li>
                         <li>
                             <a href="#"><span class="glyphicon glyphicon-off" ></span> Cerrar sesion</a>
