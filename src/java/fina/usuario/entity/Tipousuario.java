@@ -42,6 +42,7 @@ public class Tipousuario implements Serializable {
     private String titulo;
     @Column(name = "detalle")
     private String detalle;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoUsuario")
     private List<Usuario> usuarioList;
 

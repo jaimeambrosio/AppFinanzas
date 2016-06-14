@@ -1,6 +1,6 @@
 function mostrarModalMensaje(mensaje, detalle, tipo)
 {
-    if (detalle === undefined || detalle === null)
+    if (detalle === undefined || detalle === null )
         detalle = "Sin detalle.";
     if (mensaje === undefined || mensaje === null)
         mensaje = "Sin mensaje.";

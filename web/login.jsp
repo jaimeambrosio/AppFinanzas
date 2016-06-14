@@ -29,23 +29,31 @@
                             <h3 class="panel-title">Ingresar al sistema</h3>
                         </div>
                         <div class="panel-body">
-                            <form action="paginas/inicio.jsp">
+                            <form id="idFormLogin"  method="POST">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Usuario</label>
-                                    <input type="text" class="form-control" placeholder="Usuario">
+                                    <label class="required">Usuario</label>
+                                    <input type="text" minlength="5" class="form-control" name="txtUsuario" id="txtUsuario" placeholder="Usuario" required="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Contraseña</label>
-                                    <input type="password" class="form-control"  placeholder="Contraseña">
+                                    <label class="required">Contraseña</label>
+                                    <input type="password" minlength="5" name="txtContrasenia" id="txtContrasenia" class="form-control"  placeholder="Contraseña" required>
                                 </div>
 
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Recordar contraseña
-                                    </label>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="txtRecordarP" id="txtRecordarP" type="checkbox" value="true"> Recordar contraseña
+                                        </label>
+                                    </div>
                                 </div>
-                                <button type="submit" class="btn btn-default">Ingresar</button><br>
-                                <a href="#">Soy nuevo en el sistema </a>
+                                <div class="form-group" align="center" >
+
+                                    <button type="submit" class="btn btn-primary">Ingresar al sistema</button>
+                                    <br>
+                                    <br>
+                                    <a href="#">Soy nuevo en el sistema </a>
+                                </div>
+
                             </form>    
                         </div>
                     </div>
@@ -53,9 +61,12 @@
                 <div class="col-md-4">
 
                 </div>
-
+                <div>
+                    <%@include  file="plantillas/modals/mensajes.jsp" %>
+                </div>
             </div>
         </div>
         <%@include file="plantillas/scripts.jsp" %>
+        <script src="js/login.js" type="text/javascript"></script>
     </body>
 </html>

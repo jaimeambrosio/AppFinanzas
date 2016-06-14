@@ -30,8 +30,7 @@
             </div>
            
         </div>
-        <%@include file="../plantillas/scripts.jsp" %>
-        <script src="../js/funcionesComunes.js" type="text/javascript"></script>
+        <%@include file="../plantillas/scripts.jsp" %>       
         <script src="../js/config-ini.js" type="text/javascript" ></script>
     </body>
 </html>

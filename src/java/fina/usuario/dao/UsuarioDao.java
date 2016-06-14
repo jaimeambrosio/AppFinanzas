@@ -11,6 +11,7 @@ import fina.usuario.entity.Tipousuario;
 import fina.usuario.entity.Usuario;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -51,6 +52,13 @@ public class UsuarioDao implements BaseDao<Usuario, Integer> {
 
     public List<Tipousuario> listarTipousuario() throws Exception {
         return em.createQuery("FROM Tipousuario t").getResultList();
+    }
+
+    public Usuario validarIngreso(String username, String contrasenia) {
+        Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.username = :username AND u.contrasenia = :contrasenia");
+        query.setParameter("username", username);
+        query.setParameter("contrasenia", contrasenia);
+        return query.getSingleResult() != null ? (Usuario)query.getSingleResult() : null;
     }
 
 }

@@ -3,29 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fina.afp.dao;
+package fina.dao;
 
 import fina.usuario.dao.UsuarioDao;
+import org.json.JSONObject;
 
 /**
  *
  * @author Jaime Ambrosio
  */
 public class test {
-    
+
     public static void main(String[] args) {
-        UsuarioDao dao=new  UsuarioDao();
+        UsuarioDao dao = new UsuarioDao();
         try {
-            UsuarioDao dao2=new  UsuarioDao();
+            UsuarioDao dao2 = new UsuarioDao();
             for (Object o : dao.listarTipousuario()) {
-                System.out.println(o);
+                String[] fil = {"getTitulo", "titulo"};
+                JSONObject j = new JSONObject(o);
+                System.out.println(j);
             }
             for (Object o : dao2.listarTipousuario()) {
                 System.out.println(o);
             }
-            
+
         } catch (Exception e) {
         }
     }
-    
+
 }

@@ -15,3 +15,6 @@
 <script src="/AppFinanzas/libs/datepicker/bootstrap-datepicker.es.min.js" type="text/javascript"></script>
 <script src="/AppFinanzas/libs/jquery-validation/jquery.validate.min.js" type="text/javascript"></script>
 <script src="/AppFinanzas/libs/jquery-validation/messages_es_PE.min.js" type="text/javascript"></script>
+<script src="/AppFinanzas/libs/form-master/jquery.form.js" type="text/javascript"></script>
+
+<script src="/AppFinanzas/js/funcionesComunes.js" type="text/javascript"></script>
