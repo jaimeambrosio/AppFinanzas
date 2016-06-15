@@ -16,8 +16,8 @@ public class Mensaje {
     public static final String INFORMACION = "INFORMACION";
 
     public Mensaje() {
-        hayMensaje = false;
-        tipo = "";
+        hayMensaje = true;
+        tipo = this.INFORMACION;
         mensaje = "Error al procesar la solicitud en el servidor.";
         detalle = "";
     }

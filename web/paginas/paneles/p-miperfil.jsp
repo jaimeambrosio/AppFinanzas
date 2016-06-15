@@ -97,6 +97,7 @@
                             <option value="<%=ti.getIdTipoUsuario()%>" <%=ti.getIdTipoUsuario() == usuarioLogeado.getIdTipoUsuario().getIdTipoUsuario() ? "selected" : ""%> ><%=ti.getTitulo()%></option>
                             <%}%>
                         </select>
+                        <input type="hidden" name="tipoUsuario" value="<%=usuarioLogeado.getIdTipoUsuario().getIdTipoUsuario()%>" >
                     </div>
                 </div>
                 

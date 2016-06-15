@@ -14,7 +14,8 @@ function p_miperfil()
         $("#idFormMiPerfil *").attr("disabled", false);
         $("#idFormMiPerfil #btnGuardarCambios").show('fast');
         $(this).hide('fast');
-        //$("#idFormMiPerfil #tipoUsuario").attr("disabled", true);
+        $("#idFormMiPerfil #tipoUsuario").attr("disabled", true);
+        $("#idFormMiPerfil input[name=tipoUsuario]").attr("disabled", false);
     });
 
     $('#idFormMiPerfil').ajaxForm({

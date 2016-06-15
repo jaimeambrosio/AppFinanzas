@@ -13,5 +13,7 @@
 <link href="/AppFinanzas/libs/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="/AppFinanzas//libs/nprogress/nprogress.css" rel="stylesheet" type="text/css"/>
 <link href="/AppFinanzas/libs/datepicker/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css"/>
+<link href="/AppFinanzas/libs/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+
 <link href="/AppFinanzas/css/ini.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" type="image/png" href="/AppFinanzas/img/icono.png" />

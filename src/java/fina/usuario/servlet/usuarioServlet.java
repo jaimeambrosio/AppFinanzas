@@ -20,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
@@ -57,7 +58,11 @@ public class usuarioServlet extends HttpServlet {
                 break;
             }
             case "MODIFICAR": {
-                modificarUsu(request, response);
+                modificarUsu(request, response, true);
+                break;
+            }
+            case "CERRARSESION": {
+                cerrarSesion(request, response);
                 break;
             }
         }
@@ -178,7 +183,7 @@ public class usuarioServlet extends HttpServlet {
         }
     }
 
-    private void modificarUsu(HttpServletRequest request, HttpServletResponse response) {
+    private void modificarUsu(HttpServletRequest request, HttpServletResponse response, boolean modificarUsuarioSession) {
 
         JSONObject jsonResult = new JSONObject();
         Mensaje mensaje = new Mensaje(true, Mensaje.INFORMACION);
@@ -222,7 +227,9 @@ public class usuarioServlet extends HttpServlet {
                 }
             }
             usuarioDao.Actualizar(usuario);
-             request.getSession().setAttribute("usuarioLogeado", usuario);
+            if (modificarUsuarioSession) {
+                request.getSession().setAttribute("usuarioLogeado", usuario);
+            }
             mensaje.setMensaje("Se actualizo correctamente.");
 
         } catch (Exception ex) {
@@ -235,6 +242,15 @@ public class usuarioServlet extends HttpServlet {
             jsonResult.put("msj", jsonMensaje);
             enviarDatos(response, jsonResult.toString());
         } catch (Exception ex) {
+        }
+    }
+
+    private void cerrarSesion(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession(true);
+        session.invalidate();
+        try {
+            response.sendRedirect("index.jsp");
+        } catch (Exception e) {
         }
     }
 

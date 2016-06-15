@@ -105,7 +105,7 @@
                             <a href="#pMiPerfil" data-link="paneles/p-miperfil.jsp" data-constructor="p_miperfil();" id="pMiPerfil" ><span class="glyphicon glyphicon-user" ></span> Mi perfil</a>
                         </li>
                         <li>
-                            <a href="#"><span class="glyphicon glyphicon-off" ></span> Cerrar sesion</a>
+                            <a href="../usuarioServlet?accion=CERRARSESION"><span class="glyphicon glyphicon-off" ></span> Cerrar sesion</a>
                         </li>
                         <li>
                             <a href="#"  onclick="prueba();"  ><span class="glyphicon glyphicon-off" ></span> Prueba modal</a>
