@@ -42,6 +42,10 @@ public class usuarioServlet extends HttpServlet {
                 validarUsuario(request, response);
                 break;
             }
+            case "VALIDAPASS": {
+                validarPass(request, response);
+                break;
+            }
         }
     }
 
@@ -90,14 +94,12 @@ public class usuarioServlet extends HttpServlet {
         String usuario = request.getParameter("txtUsuario").trim();
         String pass = request.getParameter("txtContrasenia").trim();
         boolean recordar = request.getParameter("txtRecordarP") == null;
-        boolean hayacceso = false;
         try {
             UsuarioDao usuarioDao = new UsuarioDao();
             Usuario usu = usuarioDao.validarIngreso(usuario, pass);
             if (usu != null) {
                 request.getSession().setAttribute("usuarioLogeado", usu);
                 mensaje.setHayMensaje(false);
-                hayacceso = true;
                 //response.sendRedirect("paginas/inicio.jsp");
             } else {
                 mensaje.setHayMensaje(true);
@@ -128,6 +130,39 @@ public class usuarioServlet extends HttpServlet {
         out = response.getWriter();
         out.print(datos);
         out.close();
+    }
+
+    private void validarPass(HttpServletRequest request, HttpServletResponse response) {
+        JSONObject jsonResult = new JSONObject();
+        Mensaje mensaje = new Mensaje(true, Mensaje.INFORMACION, "");
+        String usuario = request.getParameter("txtUsuario").trim();
+        String pass = request.getParameter("txtContrasenia").trim();
+        try {
+            UsuarioDao usuarioDao = new UsuarioDao();
+            Usuario usu = usuarioDao.validarIngreso(usuario, pass);
+            if (usu != null) {
+                mensaje.setHayMensaje(false);
+                //response.sendRedirect("paginas/inicio.jsp");
+            } else {
+                mensaje.setHayMensaje(true);
+                mensaje.setTipo(Mensaje.ADVERTENCIA);
+                mensaje.setMensaje("Contrseña no reconocida.");
+            }
+
+        } catch (Exception e) {
+            mensaje.setHayMensaje(true);
+            mensaje.setTipo(Mensaje.ERROR);
+            mensaje.setMensaje("Error al procesar la solicitud en el servidor.");
+            mensaje.setDetalle(e.toString());
+        }
+
+        JSONObject jsonMensaje = new JSONObject(mensaje);
+        try {
+            jsonResult.put("msj", jsonMensaje);
+            enviarDatos(response, jsonResult.toString());
+
+        } catch (Exception e) {
+        }
     }
 
 }

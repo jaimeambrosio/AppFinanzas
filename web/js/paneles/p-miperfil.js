@@ -1,5 +1,4 @@
 
-
 function p_miperfil()
 {
     $('#txtFechaNacimiento').datepicker({
@@ -13,7 +12,8 @@ function p_miperfil()
     
      $("#idFormMiPerfil #habilitarModificacion").click(function(){
          $("#idFormMiPerfil *").attr("disabled",false);
-         $("#idFormMiPerfil #btnGuardarCambios").show();
+         $("#idFormMiPerfil #btnGuardarCambios").show('fast');
+         $(this).hide('fast');
          $("#idFormMiPerfil #tipoUsuario").attr("disabled",true);
      });
     
@@ -32,7 +32,6 @@ function p_miperfil()
             } else
             {
                 NProgress.done();
-                window.location.href = data.url;
             }
 
         },

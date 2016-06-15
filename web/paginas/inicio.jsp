@@ -27,6 +27,7 @@
             </div>
             <div>
                 <%@include file="../plantillas/modals/mensajes.jsp" %>
+                <%@include file="../plantillas/modals/pedidoPass.jsp" %>
             </div>
            
         </div>
