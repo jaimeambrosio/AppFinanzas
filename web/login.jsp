@@ -32,11 +32,11 @@
                             <form id="idFormLogin"  method="POST">
                                 <div class="form-group">
                                     <label class="required">Usuario</label>
-                                    <input type="text" minlength="5" class="form-control" name="txtUsuario" id="txtUsuario" placeholder="Usuario" required="">
+                                    <input type="text" minlength="5" class="form-control" name="txtUsuario" value="admin" id="txtUsuario" placeholder="Usuario" required="">
                                 </div>
                                 <div class="form-group">
                                     <label class="required">Contraseña</label>
-                                    <input type="password" minlength="5" name="txtContrasenia" id="txtContrasenia" class="form-control"  placeholder="Contraseña" required>
+                                    <input type="password" minlength="5" name="txtContrasenia" id="txtContrasenia" value="admin" class="form-control"  placeholder="Contraseña" required>
                                 </div>
 
                                 <div class="form-group">

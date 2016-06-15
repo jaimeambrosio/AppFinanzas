@@ -4,9 +4,13 @@
     Author     : Jaime Ambrosio
 --%>
 
+<%@page import="fina.usuario.entity.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    Usuario usuarioLogeado = (Usuario) request.getSession().getAttribute("usuarioLogeado");
+%>
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-     
+
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -14,35 +18,18 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        
+
         <a class="navbar-brand" href="inicio.jsp">
             Simulador financiero AFP 
         </a>
-       
+
     </div>
     <!-- /.navbar-header -->
 
     <ul class="nav navbar-top-links navbar-right">
-         
-        <li class="dropdown"></li>
-        <!-- /.dropdown -->
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-alerts">
-                <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                </li>
-                <li class="divider"></li>
-                <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                </li>
-            </ul>
-            <!-- /.dropdown-user -->
-        </li>
 
-        <!-- /.dropdown -->
+        <li class="dropdown"></li>
+        
     </ul>
     <!-- /.navbar-top-links -->
 
@@ -50,12 +37,12 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search" align="center" >
-                    <img src="../img/user.png" alt="" class="img-thumbnail" /><br>
-                   <span class="label label-default">Jaime Ambrosio mallqui mallqui mallqui</span>
-                    
+                    <img src="<%=usuarioLogeado.getFotoBase64()%>" alt="" class="img-thumbnail" /><br>
+                    <span class="label label-default"><%=usuarioLogeado.getNombres() + " " + usuarioLogeado.getApellidos()%></span>
+
                 </li>
                 <li>
-                    <a href="#" data-content="paneles/p-inicio.jsp" id="pInicio" ><span class="glyphicon glyphicon-home"  ></span>  Inicio</a>
+                    <a href="#" data-link="paneles/p-inicio.jsp" id="pInicio"><span class="glyphicon glyphicon-home"  ></span>  Inicio</a>
                     <ul class="nav nav-second-level"></ul>
                 </li>
                 <li>
@@ -115,16 +102,16 @@
                     <a href="#" id="miCuenta"><span class="glyphicon glyphicon-cog"  ></span> Mi cuenta<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#pMiPerfil" data-content="paneles/p-miperfil.jsp" data-constructor=" p_miperfil();" id="pMiPerfil" ><span class="glyphicon glyphicon-user" ></span> Mi perfil</a>
+                            <a href="#pMiPerfil" data-link="paneles/p-miperfil.jsp" data-constructor="p_miperfil();" id="pMiPerfil" ><span class="glyphicon glyphicon-user" ></span> Mi perfil</a>
                         </li>
                         <li>
                             <a href="#"><span class="glyphicon glyphicon-off" ></span> Cerrar sesion</a>
                         </li>
                         <li>
-                            <a href="#"  onclick="prueba();"><span class="glyphicon glyphicon-off" ></span> Prueba modal</a>
+                            <a href="#"  onclick="prueba();"  ><span class="glyphicon glyphicon-off" ></span> Prueba modal</a>
                         </li>
                         <li>
-                            <a href="#" data-content="paneles/p-prueba.jsp" data-constructor="p_prueba();" ><span class="glyphicon glyphicon-off" ></span> Prueba</a>
+                            <a href="#" data-link="paneles/p-prueba.jsp" data-constructor="p_prueba();" data-pass="1" ><span class="glyphicon glyphicon-off" ></span> Prueba</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

@@ -8,5 +8,40 @@ function p_miperfil()
         autoclose: true
     });
     $("#idFormMiPerfil").validate();
-  //  alert("asdas");
+    $("#idFormMiPerfil *").attr("disabled",true);
+    $("#idFormMiPerfil #habilitarModificacion").attr("disabled",false);
+    
+     $("#idFormMiPerfil #habilitarModificacion").click(function(){
+         $("#idFormMiPerfil *").attr("disabled",false);
+         $("#idFormMiPerfil #btnGuardarCambios").show();
+         $("#idFormMiPerfil #tipoUsuario").attr("disabled",true);
+     });
+    
+    $('#idFormMiPerfil').ajaxForm({
+        url: "../usuarioServlet?accion=MODIFICAR",
+        type: "post",
+        beforeSend: function (jqXHR, settings) {
+            NProgress.start();
+        },
+        success: function (data) {
+            console.log(data);
+            data = JSON.parse(data);
+            if (data.msj.hayMensaje == true) {
+                mostrarModalMensaje(data.msj.mensaje, data.msj.detalle, data.msj.tipo);
+                NProgress.done();
+            } else
+            {
+                NProgress.done();
+                window.location.href = data.url;
+            }
+
+        },
+        error: function (e) {
+            mostrarModalMensaje('No se pudo enviar los datos, probablemente tengas un problema con tu conexion a internet.',
+                    e.statusText,
+                    "ERROR");
+            NProgress.done();
+        }
+    });
+    //  alert("asdas");
 }

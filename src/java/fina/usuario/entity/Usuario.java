@@ -6,9 +6,14 @@
 package fina.usuario.entity;
 
 import fina.simulacion.entity.Simulacion;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -145,7 +150,6 @@ public class Usuario implements Serializable {
         this.sexo = sexo;
     }
 
-
     public String getDni() {
         return dni;
     }
@@ -195,7 +199,6 @@ public class Usuario implements Serializable {
         return "fina.usuario.entity.Usuario[ idUSUARIO=" + idUSUARIO + " ]";
     }
 
-
     @XmlTransient
     public List<Simulacion> getSimulacionList() {
         return simulacionList;
@@ -206,7 +209,7 @@ public class Usuario implements Serializable {
     }
 
     public byte[] getFoto() {
-        return foto;
+        return new  byte[1000];
     }
 
     public void setFoto(byte[] foto) {
@@ -220,5 +223,26 @@ public class Usuario implements Serializable {
     public void setNombreFoto(String nombreFoto) {
         this.nombreFoto = nombreFoto;
     }
-    
+
+    public String getFotoBase64() {
+        String base = "data:image/*;base64,";
+        if (foto == null) {
+            byte[] bytes = null;
+            try {
+                InputStream inputStream = null;
+                if (sexo) { //hombre
+                    inputStream = getClass().getResourceAsStream("/fina/img/user-man.png");
+                } else {
+                    inputStream = getClass().getResourceAsStream("/fina/img/user-woman.png");
+                }
+                bytes = new byte[inputStream.available()];
+                inputStream.read(bytes);
+            } catch (IOException ex) {
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return base + Base64.getEncoder().encodeToString(bytes);
+        }
+        return base + Base64.getEncoder().encodeToString(foto);
+    }
+
 }

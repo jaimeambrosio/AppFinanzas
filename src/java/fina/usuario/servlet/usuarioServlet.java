@@ -10,8 +10,6 @@ import fina.usuario.dao.UsuarioDao;
 import fina.usuario.entity.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -87,31 +85,39 @@ public class usuarioServlet extends HttpServlet {
     }// </editor-fold>
 
     private void validarUsuario(HttpServletRequest request, HttpServletResponse response) {
-        JSONObject json = null;
-        Mensaje mensaje = new Mensaje(true, Mensaje.ERROR, "");
+        JSONObject jsonResult = new JSONObject();
+        Mensaje mensaje = new Mensaje(false, Mensaje.INFORMACION, "");
         String usuario = request.getParameter("txtUsuario").trim();
         String pass = request.getParameter("txtContrasenia").trim();
         boolean recordar = request.getParameter("txtRecordarP") == null;
+        boolean hayacceso = false;
         try {
-            
             UsuarioDao usuarioDao = new UsuarioDao();
             Usuario usu = usuarioDao.validarIngreso(usuario, pass);
             if (usu != null) {
-                
+                request.getSession().setAttribute("usuarioLogeado", usu);
                 mensaje.setHayMensaje(false);
+                hayacceso = true;
+                //response.sendRedirect("paginas/inicio.jsp");
             } else {
+                mensaje.setHayMensaje(true);
+                mensaje.setTipo(Mensaje.INFORMACION);
                 mensaje.setMensaje("Usuario o contrseña no reconocidos.");
             }
 
-            json = new JSONObject();
         } catch (Exception e) {
-            json = new JSONObject();
-            mensaje.setMensaje(e.toString());
+            mensaje.setHayMensaje(true);
+            mensaje.setTipo(Mensaje.ERROR);
+            mensaje.setMensaje("Error al procesar la solicitud en el servidor.");
+            mensaje.setDetalle(e.toString());
         }
 
+        JSONObject jsonMensaje = new JSONObject(mensaje);
         try {
-            json.put("msj", mensaje);
-            enviarDatos(response, json.toString());
+            jsonResult.put("msj", jsonMensaje);
+            jsonResult.put("url", "paginas/inicio.jsp");
+            enviarDatos(response, jsonResult.toString());
+
         } catch (Exception e) {
         }
 

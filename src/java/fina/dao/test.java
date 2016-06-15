@@ -5,7 +5,11 @@
  */
 package fina.dao;
 
+import fina.afp.dao.ConexionJPA;
 import fina.usuario.dao.UsuarioDao;
+import fina.usuario.entity.Usuario;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import org.json.JSONObject;
 
 /**
@@ -15,20 +19,11 @@ import org.json.JSONObject;
 public class test {
 
     public static void main(String[] args) {
-        UsuarioDao dao = new UsuarioDao();
-        try {
-            UsuarioDao dao2 = new UsuarioDao();
-            for (Object o : dao.listarTipousuario()) {
-                String[] fil = {"getTitulo", "titulo"};
-                JSONObject j = new JSONObject(o);
-                System.out.println(j);
-            }
-            for (Object o : dao2.listarTipousuario()) {
-                System.out.println(o);
-            }
-
-        } catch (Exception e) {
-        }
+        EntityManager em = ConexionJPA.getEntityManager();
+        Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.username = :username AND u.contrasenia = :contrasenia");
+        query.setParameter("username", "admin");
+        query.setParameter("contrasenia", "admin");
+        System.out.println(!query.getResultList().isEmpty() ? (Usuario)query.getSingleResult() : null);
     }
 
 }

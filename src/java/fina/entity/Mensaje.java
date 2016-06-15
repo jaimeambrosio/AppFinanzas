@@ -16,6 +16,10 @@ public class Mensaje {
     public static final String INFORMACION = "INFORMACION";
 
     public Mensaje() {
+        hayMensaje = false;
+        tipo = "";
+        mensaje = "";
+        detalle = "";
     }
 
     public Mensaje(boolean hayMensaje, String tipo, String mensaje) {
@@ -27,6 +31,7 @@ public class Mensaje {
     private boolean hayMensaje;
     private String tipo;
     private String mensaje;
+    private String detalle;
 
     /**
      * @return the hayMensaje
@@ -68,6 +73,20 @@ public class Mensaje {
      */
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
+    }
+
+    /**
+     * @return the detalle
+     */
+    public String getDetalle() {
+        return detalle;
+    }
+
+    /**
+     * @param detalle the detalle to set
+     */
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
     }
 
 }
