@@ -27,12 +27,16 @@ public class UsuarioDao implements BaseDao<Usuario, Integer> {
 
     @Override
     public void Insertar(Usuario entity) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        em.getTransaction().begin();
+        em.persist(entity);
+        em.getTransaction().commit();
     }
 
     @Override
     public void Actualizar(Usuario entity) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        em.getTransaction().begin();
+        em.merge(entity);
+        em.getTransaction().commit();
     }
 
     @Override
@@ -42,7 +46,7 @@ public class UsuarioDao implements BaseDao<Usuario, Integer> {
 
     @Override
     public Usuario Obtener(Integer id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.find(Usuario.class, id);
     }
 
     @Override
@@ -58,7 +62,11 @@ public class UsuarioDao implements BaseDao<Usuario, Integer> {
         Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.username = :username AND u.contrasenia = :contrasenia");
         query.setParameter("username", username);
         query.setParameter("contrasenia", contrasenia);
-        return !query.getResultList().isEmpty() ? (Usuario)query.getSingleResult() : null;
+        return !query.getResultList().isEmpty() ? (Usuario) query.getSingleResult() : null;
+    }
+
+    public Tipousuario getTipousuarioById(String id) {
+        return em.find(Tipousuario.class, Integer.valueOf(id));
     }
 
 }

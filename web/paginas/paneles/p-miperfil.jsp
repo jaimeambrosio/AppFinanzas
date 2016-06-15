@@ -18,7 +18,8 @@
         <h3 class="panel-title" id="tituloPanel"></h3>
     </div>
     <div class="panel-body">
-        <form id="idFormMiPerfil" >
+        <form id="idFormMiPerfil" enctype="multipart/form-data" >
+            <input  type="hidden" id="txtIdUsuario" name="txtIdUsuario" value="<%=usuarioLogeado.getIdUSUARIO()%>"  >
             <div class="row" >
                 <div class="col-sm-4" >
                     <div class="form-group">
@@ -70,7 +71,7 @@
                 <div class="col-sm-8" >
                     <div class="form-group">
                             <label >Foto (Actualmente <%=usuarioLogeado.getNombreFoto() == null
-                                ? "sin foto" : usuarioLogeado.getNombreFoto()%>)</label>
+                                    ? "sin foto" : usuarioLogeado.getNombreFoto()%>)</label>
                         <input  accept="image/*"  class="form-control" type="file" id="txtFoto" name="txtFoto"   >
                     </div>
                 </div>
@@ -86,7 +87,7 @@
                 <div class="col-sm-4" >
                     <div class="form-group">
                         <label class="required" >Tipo de usuario</label>
-                        <select class="form-control" required="" id="tipoUsuario" name="tipoUsuario"  >  
+                        <select readonly=""  class="form-control" required="" id="tipoUsuario" name="tipoUsuario"  >  
                             <%
                                 UsuarioDao usuarioDao = new UsuarioDao();
                                 List<Tipousuario> listtipo = usuarioDao.listarTipousuario();
@@ -98,12 +99,13 @@
                         </select>
                     </div>
                 </div>
+                
                 <div class="col-sm-4" >
                     <div class="form-group">
                         <div class="form-group">
-                        <label ></label>
-                        <input type="button" id="habilitarModificacion"  class="form-control btn btn-default" value="Habilitar modificacion">
-                    </div>
+                            <label ></label>
+                            <input  type="button" id="habilitarModificacion"  class="form-control btn btn-default" value="Habilitar modificacion">
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-4" >

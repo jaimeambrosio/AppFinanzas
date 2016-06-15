@@ -33,16 +33,18 @@ function configureMenu() {
                 } else
                 {
                     $("#modalPedidoPass").modal('show');
+
+                    $("#txtContrasenia").val("");
                     $("#data-link").val(link);
                     $("#data-constructor").val(nombreFuncion);
                     $("#seccion-titulo").val(seccion);
+
                     NProgress.done();
                 }
-                
             });
         }
     });
-
+    $("#idFormContrasenia").validate();
     $("#idFormContrasenia").ajaxForm({
         url: "../usuarioServlet?accion=VALIDAPASS",
         type: "post",
@@ -54,7 +56,7 @@ function configureMenu() {
             $("#modalPedidoPass").modal('hide');
             if (data.msj.hayMensaje == true) {
                 mostrarModalMensaje(data.msj.mensaje, data.msj.detalle, data.msj.tipo);
-                 NProgress.done();
+                NProgress.done();
             } else
             {
                 var nombreFuncion = $("#data-constructor").val();

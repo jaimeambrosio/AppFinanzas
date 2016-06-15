@@ -7,14 +7,24 @@ package fina.usuario.servlet;
 
 import fina.entity.Mensaje;
 import fina.usuario.dao.UsuarioDao;
+import fina.usuario.entity.Tipousuario;
 import fina.usuario.entity.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.json.JSONObject;
 
 /**
@@ -44,6 +54,10 @@ public class usuarioServlet extends HttpServlet {
             }
             case "VALIDAPASS": {
                 validarPass(request, response);
+                break;
+            }
+            case "MODIFICAR": {
+                modificarUsu(request, response);
                 break;
             }
         }
@@ -90,7 +104,7 @@ public class usuarioServlet extends HttpServlet {
 
     private void validarUsuario(HttpServletRequest request, HttpServletResponse response) {
         JSONObject jsonResult = new JSONObject();
-        Mensaje mensaje = new Mensaje(false, Mensaje.INFORMACION, "");
+        Mensaje mensaje = new Mensaje(false, Mensaje.INFORMACION);
         String usuario = request.getParameter("txtUsuario").trim();
         String pass = request.getParameter("txtContrasenia").trim();
         boolean recordar = request.getParameter("txtRecordarP") == null;
@@ -134,7 +148,7 @@ public class usuarioServlet extends HttpServlet {
 
     private void validarPass(HttpServletRequest request, HttpServletResponse response) {
         JSONObject jsonResult = new JSONObject();
-        Mensaje mensaje = new Mensaje(true, Mensaje.INFORMACION, "");
+        Mensaje mensaje = new Mensaje(true, Mensaje.INFORMACION);
         String usuario = request.getParameter("txtUsuario").trim();
         String pass = request.getParameter("txtContrasenia").trim();
         try {
@@ -152,16 +166,75 @@ public class usuarioServlet extends HttpServlet {
         } catch (Exception e) {
             mensaje.setHayMensaje(true);
             mensaje.setTipo(Mensaje.ERROR);
-            mensaje.setMensaje("Error al procesar la solicitud en el servidor.");
             mensaje.setDetalle(e.toString());
         }
 
-        JSONObject jsonMensaje = new JSONObject(mensaje);
         try {
+            JSONObject jsonMensaje = new JSONObject(mensaje);
             jsonResult.put("msj", jsonMensaje);
             enviarDatos(response, jsonResult.toString());
 
         } catch (Exception e) {
+        }
+    }
+
+    private void modificarUsu(HttpServletRequest request, HttpServletResponse response) {
+
+        JSONObject jsonResult = new JSONObject();
+        Mensaje mensaje = new Mensaje(true, Mensaje.INFORMACION);
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            FileItemFactory factory = new DiskFileItemFactory();
+            ServletFileUpload upload = new ServletFileUpload(factory);
+            List<FileItem> listField = upload.parseRequest(request);
+            Usuario usuario = new Usuario();
+            UsuarioDao usuarioDao = new UsuarioDao();
+            for (FileItem file : listField) {
+                if (file.getFieldName().equals("txtNombres")) {
+                    usuario.setNombres(file.getString().trim());
+                } else if (file.getFieldName().equals("txtApellidos")) {
+                    usuario.setApellidos(file.getString().trim());
+                } else if (file.getFieldName().equals("txtFechaNacimiento")) {
+                    usuario.setFechaNacimiento(format.parse(file.getString().trim()));
+                } else if (file.getFieldName().equals("txtUsuario")) {
+                    usuario.setUsername(file.getString().trim());
+                } else if (file.getFieldName().equals("txtContrasenia")) {
+                    usuario.setContrasenia(file.getString());
+                } else if (file.getFieldName().equals("rbSexo")) {
+                    usuario.setSexo("M".equals(file.getString()));
+                } else if (file.getFieldName().equals("txtFoto")) {
+                    byte[] imagen = file.get();
+                    if (imagen != null && imagen.length > 0) {
+                        usuario.setFoto(imagen);
+                        usuario.setNombreFoto(file.getName());
+                    } else {
+                        Usuario actual = usuarioDao.Obtener(usuario.getIdUSUARIO());
+                        usuario.setFoto(actual.getFoto());
+                        usuario.setNombreFoto(actual.getNombreFoto());
+                    }
+                } else if (file.getFieldName().equals("txtDNI")) {
+                    usuario.setDni(file.getString().trim());
+                } else if (file.getFieldName().equals("tipoUsuario")) {
+                    Tipousuario tipou = usuarioDao.getTipousuarioById(file.getString().trim());
+                    usuario.setIdTipoUsuario(tipou);
+                } else if (file.getFieldName().equals("txtIdUsuario")) {
+                    usuario.setIdUSUARIO(Integer.valueOf(file.getString()));
+                }
+            }
+            usuarioDao.Actualizar(usuario);
+             request.getSession().setAttribute("usuarioLogeado", usuario);
+            mensaje.setMensaje("Se actualizo correctamente.");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            mensaje.setTipo(Mensaje.ERROR);
+            mensaje.setDetalle(ex.toString());
+        }
+        try {
+            JSONObject jsonMensaje = new JSONObject(mensaje);
+            jsonResult.put("msj", jsonMensaje);
+            enviarDatos(response, jsonResult.toString());
+        } catch (Exception ex) {
         }
     }
 

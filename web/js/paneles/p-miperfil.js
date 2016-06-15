@@ -7,16 +7,16 @@ function p_miperfil()
         autoclose: true
     });
     $("#idFormMiPerfil").validate();
-    $("#idFormMiPerfil *").attr("disabled",true);
-    $("#idFormMiPerfil #habilitarModificacion").attr("disabled",false);
-    
-     $("#idFormMiPerfil #habilitarModificacion").click(function(){
-         $("#idFormMiPerfil *").attr("disabled",false);
-         $("#idFormMiPerfil #btnGuardarCambios").show('fast');
-         $(this).hide('fast');
-         $("#idFormMiPerfil #tipoUsuario").attr("disabled",true);
-     });
-    
+    $("#idFormMiPerfil *").attr("disabled", true);
+    $("#idFormMiPerfil #habilitarModificacion").attr("disabled", false);
+
+    $("#idFormMiPerfil #habilitarModificacion").click(function () {
+        $("#idFormMiPerfil *").attr("disabled", false);
+        $("#idFormMiPerfil #btnGuardarCambios").show('fast');
+        $(this).hide('fast');
+        //$("#idFormMiPerfil #tipoUsuario").attr("disabled", true);
+    });
+
     $('#idFormMiPerfil').ajaxForm({
         url: "../usuarioServlet?accion=MODIFICAR",
         type: "post",
@@ -24,16 +24,12 @@ function p_miperfil()
             NProgress.start();
         },
         success: function (data) {
-            console.log(data);
             data = JSON.parse(data);
             if (data.msj.hayMensaje == true) {
                 mostrarModalMensaje(data.msj.mensaje, data.msj.detalle, data.msj.tipo);
-                NProgress.done();
-            } else
-            {
-                NProgress.done();
+                $("#pMiPerfil").click();
             }
-
+            NProgress.done();
         },
         error: function (e) {
             mostrarModalMensaje('No se pudo enviar los datos, probablemente tengas un problema con tu conexion a internet.',

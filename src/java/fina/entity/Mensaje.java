@@ -18,14 +18,13 @@ public class Mensaje {
     public Mensaje() {
         hayMensaje = false;
         tipo = "";
-        mensaje = "";
+        mensaje = "Error al procesar la solicitud en el servidor.";
         detalle = "";
     }
 
-    public Mensaje(boolean hayMensaje, String tipo, String mensaje) {
+    public Mensaje(boolean hayMensaje, String tipo) {
         this.hayMensaje = hayMensaje;
         this.tipo = tipo;
-        this.mensaje = mensaje;
     }
 
     private boolean hayMensaje;
