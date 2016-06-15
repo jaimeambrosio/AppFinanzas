@@ -20,6 +20,7 @@
     <div class="panel-body">
         <form id="idFormMiPerfil" enctype="multipart/form-data" >
             <input  type="hidden" id="txtIdUsuario" name="txtIdUsuario" value="<%=usuarioLogeado.getIdUSUARIO()%>"  >
+            <input  type="hidden" id="txtEstado" name="txtEstado" value="false"  >
             <div class="row" >
                 <div class="col-sm-4" >
                     <div class="form-group">

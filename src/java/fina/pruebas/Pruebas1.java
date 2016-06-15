@@ -22,12 +22,7 @@ public class Pruebas1 {
     public static void main(String[] args) {
 
         try {
-            ClasePrueba clasePrueba = new ClasePrueba();
-            InputStream inputStream = clasePrueba.eee();
-            byte[] bytes = new byte[inputStream.available()];
-            inputStream.read(bytes);
-            String s = Base64.getEncoder().encodeToString(bytes);
-            System.out.println(s);
+            System.out.println(Boolean.valueOf("true"));
 
             
         } catch (Exception ex) {

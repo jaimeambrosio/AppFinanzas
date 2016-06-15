@@ -13,8 +13,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileItemFactory;
-import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.json.JSONObject;
@@ -63,6 +60,10 @@ public class usuarioServlet extends HttpServlet {
             }
             case "CERRARSESION": {
                 cerrarSesion(request, response);
+                break;
+            }
+            case "LISTARTB": {
+                listarParaTabla(request, response);
                 break;
             }
         }
@@ -224,6 +225,8 @@ public class usuarioServlet extends HttpServlet {
                     usuario.setIdTipoUsuario(tipou);
                 } else if (file.getFieldName().equals("txtIdUsuario")) {
                     usuario.setIdUSUARIO(Integer.valueOf(file.getString()));
+                } else if (file.getFieldName().equals("txtEstado")) {
+                    usuario.setEliminado(Boolean.valueOf(file.getString()));
                 }
             }
             usuarioDao.Actualizar(usuario);
@@ -251,6 +254,43 @@ public class usuarioServlet extends HttpServlet {
         try {
             response.sendRedirect("index.jsp");
         } catch (Exception e) {
+        }
+    }
+
+    private void listarParaTabla(HttpServletRequest request, HttpServletResponse response) {
+        JSONObject jsonResult = new JSONObject();
+        Mensaje mensaje = new Mensaje(true, Mensaje.INFORMACION);
+        StringBuilder sb = new StringBuilder();
+        try {
+            UsuarioDao usuarioDao = new UsuarioDao();
+            List<Usuario> list = usuarioDao.listar();
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            for (Usuario u : list) {
+                sb.append("<tr>");
+                sb.append("<td>").append(u.getNombres()).append("</td>");
+                sb.append("<td>").append(u.getApellidos()).append("</td>");
+                sb.append("<td>").append(u.getUsername()).append("</td>");
+                sb.append("<td>").append(format.format(u.getFechaNacimiento())).append("</td>");
+                sb.append("<td>").append(u.getSexo() ? "M" : "F").append("</td>");
+                sb.append("<td>").append(u.getDni()).append("</td>");
+                sb.append("<td>").append(u.getEliminado() ? "ELIMINADO" : "NO ELIMINADO").append("</td>");
+                sb.append("</tr>");
+
+            }
+            mensaje.setHayMensaje(false);
+
+        } catch (Exception ex) {
+            mensaje.setTipo(Mensaje.ERROR);
+            mensaje.setDetalle(ex.toString());
+        }
+
+        try {
+            JSONObject jsonMensaje = new JSONObject(mensaje);
+            jsonResult.put("msj", jsonMensaje);
+            jsonResult.put("tbody", sb.toString());
+            enviarDatos(response, jsonResult.toString());
+        } catch (Exception ex) {
+
         }
     }
 

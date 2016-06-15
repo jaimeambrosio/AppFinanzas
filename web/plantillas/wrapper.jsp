@@ -102,7 +102,10 @@
                     <a href="#" id="miCuenta"><span class="glyphicon glyphicon-cog"  ></span> Mi cuenta<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#pMiPerfil" data-link="paneles/p-miperfil.jsp" data-constructor="p_miperfil();" id="pMiPerfil" ><span class="glyphicon glyphicon-user" ></span> Mi perfil</a>
+                            <a href="#" data-link="paneles/p-miperfil.jsp" data-constructor="p_miperfil();" id="pMiPerfil" ><span class="glyphicon glyphicon-user" ></span> Mi perfil</a>
+                        </li>
+                        <li>
+                            <a href="#" data-link="paneles/p-usuarios.jsp" data-constructor="p_usuarios();" id="pUsuarios" ><span class="glyphicon glyphicon-list" ></span> Administración Usuarios</a>
                         </li>
                         <li>
                             <a href="../usuarioServlet?accion=CERRARSESION"><span class="glyphicon glyphicon-off" ></span> Cerrar sesion</a>

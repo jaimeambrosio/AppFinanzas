@@ -209,7 +209,7 @@ public class Usuario implements Serializable {
     }
 
     public byte[] getFoto() {
-        return new  byte[1000];
+        return foto;
     }
 
     public void setFoto(byte[] foto) {

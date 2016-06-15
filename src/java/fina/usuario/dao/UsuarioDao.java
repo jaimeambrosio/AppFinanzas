@@ -51,7 +51,7 @@ public class UsuarioDao implements BaseDao<Usuario, Integer> {
 
     @Override
     public List<Usuario> listar() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.createQuery("FROM Usuario U ORDER BY U.apellidos").getResultList();
     }
 
     public List<Tipousuario> listarTipousuario() throws Exception {
