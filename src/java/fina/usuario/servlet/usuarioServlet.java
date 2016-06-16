@@ -274,7 +274,11 @@ public class usuarioServlet extends HttpServlet {
                 sb.append("<td>").append(u.getSexo() ? "M" : "F").append("</td>");
                 sb.append("<td>").append(u.getDni()).append("</td>");
                 sb.append("<td>").append(u.getEliminado() ? "ELIMINADO" : "NO ELIMINADO").append("</td>");
-                sb.append("<td>").append("...").append("</td>");
+                sb.append("<td>")
+                        .append("<a href='#' onclick='editarUsuarioById(")
+                        .append(u.getIdUSUARIO())
+                        .append(");' title=\"Editar\"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a>")
+                        .append("</td>");
                 sb.append("</tr>");
 
             }

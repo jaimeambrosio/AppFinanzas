@@ -25,18 +25,147 @@
                             </div>
                         </div>
                         <div class="col-sm-6" >
-                            
+                            <div class="form-group">
+                                <label class="required">Apellidos </label>
+                                <input  class="form-control" id="txtApellidos" name="txtApellidos" required="" value="">
+                            </div>
                         </div>
                     </div>
                     <div class="row" >
                         <div class="col-sm-6" >
                             <div class="form-group">
-                                <label class="required" >Nombres </label>
-                                <input  class="form-control" id="txtNombres" name="txtNombres" required="" value="" >
+                                <label class="required" >Fecha de nacimiento </label>
+                                <input  class="form-control" id="txtFechaNacimiento" name="txtFechaNacimiento" required="" value="" >
                             </div>
                         </div>
                         <div class="col-sm-6" >
-                            
+                            <div class="form-group">
+                                <label class="required" >Usuario</label>
+                                <input  class="form-control" id="txtUsuario" name="txtUsuario" required="" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-sm-6" >
+                            <div class="form-group">
+                                <label class="required" >Contraseña</label>
+                                <input  class="form-control" type="password" id="txtContrasenia" name="txtContrasenia" required="" >
+                            </div>
+                        </div>
+                        <div class="col-sm-6" >
+                            <div class="form-group">
+                                <label class="required" >Sexo</label>
+                                <div class="input-group btn-group" data-toggle="buttons"  >
+                                    <label class="btn btn-default ">
+                                        <input type="radio" name="rbSexo" value="M"  autocomplete="off"   > Masculino
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="rbSexo" value="F"  autocomplete="off" required=""   > Femenino
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-sm-12" >
+                            <div class="form-group">
+                                <label >Foto </label>
+                                <input  accept="image/*"  class="form-control" type="file" id="txtFoto" name="txtFoto"   >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-sm-6" >
+                            <div class="form-group">
+                                <label >DNI </label>
+                                <input  class="form-control" type="text" id="txtDNI" name="txtDNI"   >
+                            </div>
+                        </div>
+                        <div class="col-sm-6" >
+                            <div class="form-group">
+                                <label class="required" >Tipo de usuario</label>
+                                <select  class="form-control" required="" id="tipoUsuario" name="tipoUsuario"  >  
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-sm-6" >
+                            <div class="form-group">
+                                <label class="required" >Estado </label>
+                                <select  class="form-control" required="" id="txtEstado" name="txtEstado"  >  
+                                    <option value="false" >No eliminado</option>
+                                    <option value="true" >Eliminado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" >
+
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-sm-6" >
+
+                        </div>
+                        <div class="col-sm-6" >
+
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-sm-6" >
+
+                        </div>
+                        <div class="col-sm-6" >
+
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-sm-6" >
+
+                        </div>
+                        <div class="col-sm-6" >
+
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-sm-6" >
+
+                        </div>
+                        <div class="col-sm-6" >
+
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-sm-6" >
+
+                        </div>
+                        <div class="col-sm-6" >
+
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-sm-6" >
+
+                        </div>
+                        <div class="col-sm-6" >
+
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-sm-6" >
+
+                        </div>
+                        <div class="col-sm-6" >
+
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col-sm-6" >
+
+                        </div>
+                        <div class="col-sm-6" >
+
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,7 @@ var tblPanelUsuarios;
 function p_usuarios()
 {
     tblPanelUsuarios = $('#tblPanelUsuarios').dataTable({});
+    
 }
 
 function buscarUsuarios()
@@ -40,4 +41,9 @@ function buscarUsuarios()
 function nuevoUsuario()
 {
     $("#modalEdicionUsuario").modal('show');
+}
+
+function editarUsuarioById(id)
+{
+      $("#modalEdicionUsuario").modal('show');
 }
