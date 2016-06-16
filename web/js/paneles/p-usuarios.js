@@ -21,16 +21,23 @@ function buscarUsuarios()
                 tblPanelUsuarios.fnClearTable();
                 tblPanelUsuarios.fnDestroy();
                 $("#tblPanelUsuarios tbody").html(data.tbody);
-                 tblPanelUsuarios = $('#tblPanelUsuarios').dataTable({});
+                tblPanelUsuarios = $('#tblPanelUsuarios').dataTable({});
+            } else
+            {
+                mostrarModalMensaje(data.msj.mensaje, data.msj.detalle, data.msj.tipo);
             }
             NProgress.done();
         },
         error: function (jqXHR, textStatus, errorThrown) {
-
             mostrarModalMensaje('No se pudo invocar al servidor, probablemente tengas un problema con tu conexion a internet.',
                     jqXHR.responseText,
                     "ERROR");
             NProgress.done();
         }
     });
+}
+
+function nuevoUsuario()
+{
+    $("#modalEdicionUsuario").modal('show');
 }

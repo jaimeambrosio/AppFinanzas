@@ -9,7 +9,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
         <%@include file="../plantillas/styles.jsp" %>
         <title>Sistema financiero - AFP - Inicio</title>
     </head>
@@ -22,14 +21,14 @@
             <div id="page-wrapper">
                 <br>
                 <div id="contenedor-main" >
-                    
+
                 </div>
             </div>
             <div>
                 <%@include file="../plantillas/modals/mensajes.jsp" %>
                 <%@include file="../plantillas/modals/pedidoPass.jsp" %>
             </div>
-           
+
         </div>
         <%@include file="../plantillas/scripts.jsp" %>       
         <script src="../js/config-ini.js" type="text/javascript" ></script>

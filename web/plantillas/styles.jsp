@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link href="/AppFinanzas/libs/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
 <link href="/AppFinanzas/libs/metisMenu/metisMenu.css" rel="stylesheet" type="text/css"/>

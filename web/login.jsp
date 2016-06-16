@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       
         <%@include file="plantillas/styles.jsp" %>
         <title>Sistema financiero - AFP - Ingreso al sistema</title>
     </head>

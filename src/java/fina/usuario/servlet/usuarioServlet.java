@@ -274,6 +274,7 @@ public class usuarioServlet extends HttpServlet {
                 sb.append("<td>").append(u.getSexo() ? "M" : "F").append("</td>");
                 sb.append("<td>").append(u.getDni()).append("</td>");
                 sb.append("<td>").append(u.getEliminado() ? "ELIMINADO" : "NO ELIMINADO").append("</td>");
+                sb.append("<td>").append("...").append("</td>");
                 sb.append("</tr>");
 
             }
