@@ -66,6 +66,10 @@ public class usuarioServlet extends HttpServlet {
                 listarParaTabla(request, response);
                 break;
             }
+            case "OBTENER": {
+                obtenerUsuario(request, response);
+                break;
+            }
         }
     }
 
@@ -293,6 +297,42 @@ public class usuarioServlet extends HttpServlet {
             JSONObject jsonMensaje = new JSONObject(mensaje);
             jsonResult.put("msj", jsonMensaje);
             jsonResult.put("tbody", sb.toString());
+            enviarDatos(response, jsonResult.toString());
+        } catch (Exception ex) {
+
+        }
+    }
+
+    private void obtenerUsuario(HttpServletRequest request, HttpServletResponse response) {
+        JSONObject jsonResult = new JSONObject();
+        JSONObject jsonUsu = new JSONObject();
+        Mensaje mensaje = new Mensaje(true, Mensaje.INFORMACION);
+        Usuario u = new Usuario();
+        try {
+            String idUsu = request.getParameter("idUsuario");
+             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            UsuarioDao usuarioDao = new UsuarioDao();
+            u = usuarioDao.Obtener(new Integer(idUsu));
+            
+            jsonUsu.put("nombres", u.getNombres());
+            jsonUsu.put("apellidos", u.getApellidos());
+            jsonUsu.put("fechaNacimineto", format.format(u.getFechaNacimiento()));
+            jsonUsu.put("username", u.getUsername());
+            jsonUsu.put("contrasenia", u.getContrasenia());
+            jsonUsu.put("sexo", u.getSexo());
+
+            mensaje.setHayMensaje(false);
+        } catch (Exception ex) {
+            mensaje.setTipo(Mensaje.ERROR);
+            mensaje.setDetalle(ex.toString());
+        }
+        try {
+            JSONObject jsonMensaje = new JSONObject(mensaje);
+            
+            
+
+            jsonResult.put("msj", jsonMensaje);
+            jsonResult.put("usu", jsonUsu);
             enviarDatos(response, jsonResult.toString());
         } catch (Exception ex) {
 

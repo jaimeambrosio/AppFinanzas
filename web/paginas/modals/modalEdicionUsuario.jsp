@@ -4,6 +4,10 @@
     Author     : Jaime Ambrosio
 --%>
 
+<%@page import="fina.usuario.entity.Tipousuario"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
+<%@page import="fina.usuario.dao.UsuarioDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="modal fade" data-backdrop="false" id="modalEdicionUsuario" tabindex="-1" role="dialog" >
     <div class="modal-dialog">
@@ -84,8 +88,15 @@
                         <div class="col-sm-6" >
                             <div class="form-group">
                                 <label class="required" >Tipo de usuario</label>
-                                <select  class="form-control" required="" id="tipoUsuario" name="tipoUsuario"  >  
+                                <select   class="form-control" required="" id="tipoUsuario" name="tipoUsuario"  >  
+                                    <%
+                                        UsuarioDao usuarioDao = new UsuarioDao();
+                                        List<Tipousuario> listtipo = usuarioDao.listarTipousuario();
+                                    %>
+                                    <%  for (Tipousuario ti : listtipo) {%>
 
+                                    <option value="<%=ti.getIdTipoUsuario()%>"  ><%=ti.getTitulo()%></option>
+                                    <%}%>
                                 </select>
                             </div>
                         </div>
@@ -112,65 +123,10 @@
 
                         </div>
                     </div>
-                    <div class="row" >
-                        <div class="col-sm-6" >
 
-                        </div>
-                        <div class="col-sm-6" >
-
-                        </div>
-                    </div>
-                    <div class="row" >
-                        <div class="col-sm-6" >
-
-                        </div>
-                        <div class="col-sm-6" >
-
-                        </div>
-                    </div>
-                    <div class="row" >
-                        <div class="col-sm-6" >
-
-                        </div>
-                        <div class="col-sm-6" >
-
-                        </div>
-                    </div>
-                    <div class="row" >
-                        <div class="col-sm-6" >
-
-                        </div>
-                        <div class="col-sm-6" >
-
-                        </div>
-                    </div>
-                    <div class="row" >
-                        <div class="col-sm-6" >
-
-                        </div>
-                        <div class="col-sm-6" >
-
-                        </div>
-                    </div>
-                    <div class="row" >
-                        <div class="col-sm-6" >
-
-                        </div>
-                        <div class="col-sm-6" >
-
-                        </div>
-                    </div>
-                    <div class="row" >
-                        <div class="col-sm-6" >
-
-                        </div>
-                        <div class="col-sm-6" >
-
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" >Ingresar</button>
+                    <button type="submit" class="btn btn-primary" >Registrar</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </form>
