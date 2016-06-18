@@ -58,6 +58,10 @@ public class usuarioServlet extends HttpServlet {
                 modificarUsu(request, response, true);
                 break;
             }
+            case "MODIFICARTHIS": {
+                modificarUsu(request, response, false);
+                break;
+            }
             case "CERRARSESION": {
                 cerrarSesion(request, response);
                 break;
@@ -320,6 +324,11 @@ public class usuarioServlet extends HttpServlet {
             jsonUsu.put("username", u.getUsername());
             jsonUsu.put("contrasenia", u.getContrasenia());
             jsonUsu.put("sexo", u.getSexo());
+            jsonUsu.put("nombreFoto", u.getNombreFoto());
+            jsonUsu.put("dni", u.getDni());
+            jsonUsu.put("idTipoUsuario", u.getIdTipoUsuario().getIdTipoUsuario());
+            jsonUsu.put("eliminado", u.getEliminado());
+            jsonUsu.put("idUsuario", u.getIdUSUARIO());
 
             mensaje.setHayMensaje(false);
         } catch (Exception ex) {
@@ -328,9 +337,6 @@ public class usuarioServlet extends HttpServlet {
         }
         try {
             JSONObject jsonMensaje = new JSONObject(mensaje);
-            
-            
-
             jsonResult.put("msj", jsonMensaje);
             jsonResult.put("usu", jsonUsu);
             enviarDatos(response, jsonResult.toString());

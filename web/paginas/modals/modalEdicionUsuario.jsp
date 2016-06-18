@@ -12,7 +12,8 @@
 <div class="modal fade" data-backdrop="false" id="modalEdicionUsuario" tabindex="-1" role="dialog" >
     <div class="modal-dialog">
         <div class="modal-content">
-            <form  id="idFormModalEdicionUsuario" >
+            <form  id="idFormModalEdicionUsuario" enctype="multipart/form-data" >
+                 <input  type="hidden" id="txtIdUsuario" name="txtIdUsuario" value=""  >
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title"   >
@@ -60,10 +61,10 @@
                             <div class="form-group">
                                 <label class="required" >Sexo</label>
                                 <div class="input-group btn-group" data-toggle="buttons"  >
-                                    <label class="btn btn-default ">
+                                    <label id="lblMasculino" class="btn btn-default ">
                                         <input type="radio" name="rbSexo" value="M"  autocomplete="off"   > Masculino
                                     </label>
-                                    <label class="btn btn-default">
+                                    <label id="lblFemenino" class="btn btn-default">
                                         <input type="radio" name="rbSexo" value="F"  autocomplete="off" required=""   > Femenino
                                     </label>
                                 </div>
@@ -73,7 +74,7 @@
                     <div class="row" >
                         <div class="col-sm-12" >
                             <div class="form-group">
-                                <label >Foto </label>
+                                <label id="lblTextNombreFoto" >Foto </label>
                                 <input  accept="image/*"  class="form-control" type="file" id="txtFoto" name="txtFoto"   >
                             </div>
                         </div>

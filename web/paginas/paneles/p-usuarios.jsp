@@ -11,7 +11,7 @@
     </div>
     <div class="panel-body">
         <div class="row" >
-            <div class="col-sm-6" ><button onclick="buscarUsuarios();" class="btn btn-primary" >Buscar</button></div>
+            <div class="col-sm-6" ><button id="btnBuscarUsuariosEdicion" onclick="buscarUsuarios();" class="btn btn-primary" >Buscar</button></div>
             <div class="col-sm-6" ><button class="btn btn-primary" onclick="nuevoUsuario();"  >Nuevo Usuario</button></div>
         </div>
     </div>
