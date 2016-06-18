@@ -7,30 +7,32 @@ function p_usuarios()
         language: "es",
         endDate: "hoy",
         autoclose: true
+
     });
-    
+
     $('#idFormModalEdicionUsuario').ajaxForm({
-    url: "../usuarioServlet?accion=MODIFICARTHIS",
-    type: "post",
-    beforeSend: function (jqXHR, settings) {
-        NProgress.start();
-    },
-    success: function (data) {
-        data = JSON.parse(data);
-        if (data.msj.hayMensaje == true) {
-            mostrarModalMensaje(data.msj.mensaje, data.msj.detalle, data.msj.tipo);
-            $("#btnBuscarUsuariosEdicion").click();
-            $("#modalEdicionUsuario").modal('hide');
+        url: "../usuarioServlet?accion=MODIFICARTHIS",
+        type: "post",
+        beforeSend: function (jqXHR, settings) {
+            NProgress.start();
+        },
+        success: function (data) {
+            data = JSON.parse(data);
+            if (data.msj.hayMensaje == true) {
+                mostrarModalMensaje(data.msj.mensaje, data.msj.detalle, data.msj.tipo);
+                $("#btnBuscarUsuariosEdicion").click();
+                $("#modalEdicionUsuario").modal('hide');
+            }
+            NProgress.done();
+        },
+        error: function (e) {
+            mostrarModalMensaje('No se pudo enviar los datos, probablemente tengas un problema con tu conexion a internet.',
+                    e.statusText,
+                    "ERROR");
+            NProgress.done();
         }
-        NProgress.done();
-    },
-    error: function (e) {
-        mostrarModalMensaje('No se pudo enviar los datos, probablemente tengas un problema con tu conexion a internet.',
-                e.statusText,
-                "ERROR");
-        NProgress.done();
-    }
-});
+    });
+
 }
 
 function buscarUsuarios()
@@ -71,6 +73,16 @@ function nuevoUsuario()
     $("#modalEdicionUsuario").modal('show');
     $("#idFormModalEdicionUsuario").trigger('reset');
     $("#idFormModalEdicionUsuario .active").removeClass("active");
+    $("#txtGuardarUsuario").val("true");
+    $("#lblTextNombreFoto").text("Foto ");
+    $('#txtFechaNacimiento').datepicker('destroy');
+    $('#txtFechaNacimiento').datepicker({
+        language: "es",
+        endDate: "hoy",
+        autoclose: true
+
+    });
+
 }
 
 function editarUsuarioById(id)
@@ -78,7 +90,7 @@ function editarUsuarioById(id)
     $("#modalEdicionUsuario").modal('show');
     $("#idFormModalEdicionUsuario").trigger('reset');
     $("#idFormModalEdicionUsuario .active").removeClass("active");
-
+    $("#txtGuardarUsuario").val("false");
     $.ajax({
         url: "../usuarioServlet?accion=OBTENER",
         type: 'POST',
@@ -111,7 +123,13 @@ function editarUsuarioById(id)
                     $("#lblFemenino").addClass("active");
                     $("#lblFemenino").children().attr("checked", "checked");
                 }
+                $('#txtFechaNacimiento').datepicker('destroy');
+                $('#txtFechaNacimiento').datepicker({
+                    language: "es",
+                    endDate: "hoy",
+                    autoclose: true
 
+                });
 
                 $("#modalEdicionUsuario").modal('show');
             } else

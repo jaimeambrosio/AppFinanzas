@@ -196,6 +196,7 @@ public class usuarioServlet extends HttpServlet {
 
         JSONObject jsonResult = new JSONObject();
         Mensaje mensaje = new Mensaje(true, Mensaje.INFORMACION);
+        boolean guardar = false;
         try {
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             FileItemFactory factory = new DiskFileItemFactory();
@@ -235,13 +236,21 @@ public class usuarioServlet extends HttpServlet {
                     usuario.setIdUSUARIO(Integer.valueOf(file.getString()));
                 } else if (file.getFieldName().equals("txtEstado")) {
                     usuario.setEliminado(Boolean.valueOf(file.getString()));
+                } else if (file.getFieldName().equals("txtGuardarUsuario")) {
+                    guardar = Boolean.valueOf(file.getString());
                 }
             }
-            usuarioDao.Actualizar(usuario);
+            if (guardar) {
+                usuario.setIdUSUARIO(null);
+                usuarioDao.Insertar(usuario);
+            } else {
+                usuarioDao.Actualizar(usuario);
+            }
+
             if (modificarUsuarioSession) {
                 request.getSession().setAttribute("usuarioLogeado", usuario);
             }
-            mensaje.setMensaje("Se actualizo correctamente.");
+            mensaje.setMensaje("Se registro correctamente.");
 
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -314,10 +323,10 @@ public class usuarioServlet extends HttpServlet {
         Usuario u = new Usuario();
         try {
             String idUsu = request.getParameter("idUsuario");
-             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             UsuarioDao usuarioDao = new UsuarioDao();
             u = usuarioDao.Obtener(new Integer(idUsu));
-            
+
             jsonUsu.put("nombres", u.getNombres());
             jsonUsu.put("apellidos", u.getApellidos());
             jsonUsu.put("fechaNacimineto", format.format(u.getFechaNacimiento()));

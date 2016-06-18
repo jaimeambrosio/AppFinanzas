@@ -31,6 +31,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Tipofondo.findAll", query = "SELECT t FROM Tipofondo t")})
 public class Tipofondo implements Serializable {
 
+    @Column(name = "mayorA")
+    private Integer mayorA;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTIPOFONDO")
     private List<Simulacionhito> simulacionhitoList;
 
@@ -128,6 +131,14 @@ public class Tipofondo implements Serializable {
 
     public void setSimulacionhitoList(List<Simulacionhito> simulacionhitoList) {
         this.simulacionhitoList = simulacionhitoList;
+    }
+
+    public Integer getMayorA() {
+        return mayorA;
+    }
+
+    public void setMayorA(Integer mayorA) {
+        this.mayorA = mayorA;
     }
     
 }

@@ -14,6 +14,7 @@
         <div class="modal-content">
             <form  id="idFormModalEdicionUsuario" enctype="multipart/form-data" >
                  <input  type="hidden" id="txtIdUsuario" name="txtIdUsuario" value=""  >
+                 <input  type="hidden" id="txtGuardarUsuario" name="txtGuardarUsuario" value=""  >
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title"   >

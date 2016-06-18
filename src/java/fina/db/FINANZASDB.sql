@@ -58,7 +58,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `FINANZASDB`.`AFP` (
   `idAFP` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(45) NULL,
-  `descripcion` VARCHAR(45) NULL,
+  `descripcion` VARCHAR(200) NULL,
   PRIMARY KEY (`idAFP`))
 ENGINE = InnoDB;
 
@@ -82,6 +82,7 @@ CREATE TABLE IF NOT EXISTS `FINANZASDB`.`TIPOFONDO` (
   `titulo` VARCHAR(45) NULL,
   `detalle` VARCHAR(500) NULL,
   `isActivo` TINYINT(1) NULL,
+  `mayorA` INT NULL,
   PRIMARY KEY (`idTIPOFONDO`))
 ENGINE = InnoDB;
 
@@ -233,5 +234,38 @@ START TRANSACTION;
 USE `FINANZASDB`;
 INSERT INTO `FINANZASDB`.`USUARIO` (`idUSUARIO`, `nombres`, `apellidos`, `username`, `contrasenia`, `fechaNacimiento`, `sexo`, `foto`, `dni`, `eliminado`, `idTipoUsuario`, `nombreFoto`) VALUES (DEFAULT, 'admin', 'superadmin', 'admin', 'admin', '1995-8-07', 1, NULL, '76963852', 0, 1, NULL);
 
-COMMIT;
 
+INSERT INTO `finanzasdb`.`afp`
+(`idAFP`,
+`titulo`,
+`descripcion`)
+VALUES
+(DEFAULT,'AFP HABITAT','AFP Habitat es una administradora de fondos de pensiones chilena, creada en 1981 y una de las mayores del Perú por número de cotizantes'),
+(DEFAULT,'AFP INTEGRA','AFP Integra administra un fondo de pensiones que asciende a más de 47 mil millones de nuevos soles y posee una cartera de más de dos millones de afiliados.'),
+(DEFAULT,'AFP PRIMA',' Cuenta con más de un millón de afiliados y administra un fondo de más de 37 mil millones de nuevos soles. Es respaldada por el Grupo Crédito.'),
+(DEFAULT,'PROFUTURO AFP','La corporación se conforma en el Perú por: Profuturo AFP, Scotiabank, Crediscotia, Scotia Fondos y Scotia Bolsa.');
+
+
+INSERT INTO `finanzasdb`.`tipofondo`
+(`idTIPOFONDO`,
+`titulo`,
+`detalle`,
+`isActivo`,
+`mayorA`)
+VALUES
+(0,'Protección de capital','Posee un nivel de riesgo muy bajo, recomendable para personas de una edad igual o mayor a 65 años, y hasta que opten por una pensión de jubilación, y/o para afiliados con una muy baja tolerancia al riesgo y a la volatilidad del mercado. Para las personas mayores de 65 años, el cambio al Fondo 0 es obligatorio. Solo podrán cambiarse al Fondo 1 o Fondo 2 mediante carta firmada.',true,65),
+(1,'Preservación de capital','Posee un nivel de riesgo bajo, recomendable para personas próximas a jubilarse o personas que no tengan tolerancia al riesgo, pues su Fondo es menos sensible ante los movimientos de la economía. Para las personas mayores de 60 años, el cambio al Fondo 1 es obligatorio. Solo podrán cambiarse al Fondo 2 realizando una declaración a través de una carta firmada y entregada a la AFP.',true,50),
+(2,'Mixto o Balanceado','Posee un nivel de riesgo moderado, recomendable para personas de mediana edad, cuya fecha de jubilación aún es lejana.Su rendimiento podría ser superior al del Fondo 1 en el largo plazo.',true,30),
+(3,'Apreciación de capital','Posee un nivel de riesgo alto, con un tiempo de inversión más largo. Recomendable para personas con capacidad económica sólida, tolerantes al riesgo y también para personas jóvenes, cuya fecha de jubilación es lejana. Su rendimiento podría ser superior al de los Fondos 1 y/o 2 en el largo plazo.',true,17);
+
+
+INSERT INTO `finanzasdb`.`tipocomision`
+(`idTIPOCOMISION`,
+`titulo`,
+`descripcion`)
+VALUES
+(0,'FLUJO','Se aplica sobre el flujo, es decir sobre el sueldo declarado.'),
+(1,'MIXTA','Es una comisión que se aplica tanto sobre el saldo como al flujo(sueldo).');
+
+
+COMMIT;
