@@ -5,6 +5,8 @@
  */
 package fina.pruebas;
 
+import fina.usuario.dao.UsuarioDao;
+import fina.usuario.entity.Usuario;
 import java.io.InputStream;
 import java.util.Base64;
 import java.util.logging.Level;
@@ -22,9 +24,10 @@ public class Pruebas1 {
     public static void main(String[] args) {
 
         try {
-            System.out.println(Boolean.valueOf("true"));
+            UsuarioDao dao = new UsuarioDao();
+            System.out.println("");
+            System.out.println(dao.Obtener(10));
 
-            
         } catch (Exception ex) {
             Logger.getLogger(Pruebas1.class.getName()).log(Level.SEVERE, null, ex);
         }

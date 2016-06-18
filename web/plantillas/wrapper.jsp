@@ -104,6 +104,9 @@
                         <li>
                             <a href="#" data-link="paneles/p-usuarios.jsp" data-constructor="p_usuarios();" id="pUsuarios" ><span class="glyphicon glyphicon-list" ></span> Usuarios</a>
                         </li>
+                        <li>
+                            <a href="#" data-link="paneles/p-tipofondoxafp.jsp" data-constructor="" id="pTipoFondoXAfp" ><span class="glyphicon glyphicon-oil" ></span> Tipo de fondo por AFP</a>
+                        </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
