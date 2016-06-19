@@ -5,10 +5,14 @@
  */
 package fina.pruebas;
 
+import fina.afp.dao.AfpDao;
+import fina.afp.entity.Tipofondo;
 import fina.usuario.dao.UsuarioDao;
 import fina.usuario.entity.Usuario;
+import fina.util.Formato;
 import java.io.InputStream;
 import java.util.Base64;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -24,10 +28,9 @@ public class Pruebas1 {
     public static void main(String[] args) {
 
         try {
-            UsuarioDao dao = new UsuarioDao();
-            System.out.println("");
-            System.out.println(dao.Obtener(10));
-
+            AfpDao afpDao=new  AfpDao();
+             List<Tipofondo> listTipofondo = afpDao.listarTipofondo();
+             System.out.println(listTipofondo.toString());
         } catch (Exception ex) {
             Logger.getLogger(Pruebas1.class.getName()).log(Level.SEVERE, null, ex);
         }

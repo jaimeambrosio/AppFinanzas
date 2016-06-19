@@ -88,4 +88,11 @@ public class Mensaje {
         this.detalle = detalle;
     }
 
+    public void establecerError(Exception e) {
+        hayMensaje = true;
+        tipo = ERROR;
+        mensaje = "Error al procesar la solicitud en el servidor.";
+        detalle = e.toString();
+    }
+
 }

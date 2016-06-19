@@ -6,14 +6,22 @@
 package fina.afp.dao;
 
 import fina.afp.entity.Afp;
+import fina.afp.entity.Tipofondo;
 import fina.dao.BaseDao;
 import java.util.List;
+import javax.persistence.EntityManager;
 
 /**
  *
  * @author Jaime Ambrosio
  */
-public class AfpDao implements BaseDao<Afp, Integer>{
+public class AfpDao implements BaseDao<Afp, Integer> {
+
+    private EntityManager em = null;
+
+    public AfpDao() {
+        em = ConexionJPA.getEntityManager();
+    }
 
     @Override
     public void Insertar(Afp entity) throws Exception {
@@ -37,7 +45,11 @@ public class AfpDao implements BaseDao<Afp, Integer>{
 
     @Override
     public List<Afp> listar() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.createQuery("FROM Afp A").getResultList();
     }
-    
+
+    public List<Tipofondo> listarTipofondo() {
+        return em.createQuery("FROM Tipofondo tf ORDER BY tf.idTIPOFONDO").getResultList();
+    }
+
 }
