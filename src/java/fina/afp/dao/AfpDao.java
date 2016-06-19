@@ -7,6 +7,8 @@ package fina.afp.dao;
 
 import fina.afp.entity.Afp;
 import fina.afp.entity.Tipofondo;
+import fina.afp.entity.Tipofondoxafp;
+import fina.afp.entity.TipofondoxafpPK;
 import fina.dao.BaseDao;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -50,6 +52,14 @@ public class AfpDao implements BaseDao<Afp, Integer> {
 
     public List<Tipofondo> listarTipofondo() {
         return em.createQuery("FROM Tipofondo tf ORDER BY tf.idTIPOFONDO").getResultList();
+    }
+
+    public Tipofondoxafp listarTipoFondoXAfp(TipofondoxafpPK pK) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<Tipofondoxafp> listarTipoFondoXAfp() {
+        return em.createQuery("FROM Tipofondoxafp ta").getResultList();
     }
 
 }

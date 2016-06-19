@@ -12,6 +12,8 @@
     <div class="panel-body">
         <input type="text"  id="txtPrueba">
         <button onclick="prueba2();">sdddd</button>
+        <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip on left">
+            Tooltip on left</button>
     </div>
 </div> 
 <script src="/AppFinanzas/js/paneles/p-prueba.js" type="text/javascript"></script>

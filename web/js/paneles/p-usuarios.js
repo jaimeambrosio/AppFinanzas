@@ -7,7 +7,6 @@ function p_usuarios()
         language: "es",
         endDate: "hoy",
         autoclose: true
-
     });
 
     $('#idFormModalEdicionUsuario').ajaxForm({
@@ -32,7 +31,7 @@ function p_usuarios()
             NProgress.done();
         }
     });
-
+    buscarUsuarios();
 }
 
 function buscarUsuarios()
@@ -85,7 +84,7 @@ function nuevoUsuario()
 
 }
 
-function editarUsuarioById(id)
+function openEditarUsuarioById(id)
 {
     $("#modalEdicionUsuario").modal('show');
     $("#idFormModalEdicionUsuario").trigger('reset');

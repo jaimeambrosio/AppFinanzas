@@ -21,7 +21,7 @@ public class Formato {
         simbolo.setDecimalSeparator('.');
         simbolo.setGroupingSeparator(',');
         String p = cantDecimales <= 0 ? "" : ceros.substring(0, cantDecimales + 1);
-        DecimalFormat formato = new DecimalFormat("###,###" + p, simbolo);
+        DecimalFormat formato = new DecimalFormat("###,##0" + p, simbolo);
 
         return formato.format(n);
     }
@@ -30,7 +30,7 @@ public class Formato {
         DecimalFormatSymbols simbolo = new DecimalFormatSymbols();
         simbolo.setDecimalSeparator('.');
         simbolo.setGroupingSeparator(',');
-        DecimalFormat formato = new DecimalFormat("###,###.00", simbolo);
+        DecimalFormat formato = new DecimalFormat("###,##0.00", simbolo);
 
         return formato.format(n);
     }

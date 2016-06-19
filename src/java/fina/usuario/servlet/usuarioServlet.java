@@ -224,8 +224,10 @@ public class usuarioServlet extends HttpServlet {
                         usuario.setNombreFoto(file.getName());
                     } else {
                         Usuario actual = usuarioDao.Obtener(usuario.getIdUSUARIO());
-                        usuario.setFoto(actual.getFoto());
-                        usuario.setNombreFoto(actual.getNombreFoto());
+                        if (actual != null) {
+                            usuario.setFoto(actual.getFoto());
+                            usuario.setNombreFoto(actual.getNombreFoto());
+                        }
                     }
                 } else if (file.getFieldName().equals("txtDNI")) {
                     usuario.setDni(file.getString().trim());
@@ -233,7 +235,7 @@ public class usuarioServlet extends HttpServlet {
                     Tipousuario tipou = usuarioDao.getTipousuarioById(file.getString().trim());
                     usuario.setIdTipoUsuario(tipou);
                 } else if (file.getFieldName().equals("txtIdUsuario")) {
-                    usuario.setIdUSUARIO(Integer.valueOf(file.getString()));
+                    usuario.setIdUSUARIO(Integer.valueOf(file.getString().isEmpty() ? "-1" : file.getString()));
                 } else if (file.getFieldName().equals("txtEstado")) {
                     usuario.setEliminado(Boolean.valueOf(file.getString()));
                 } else if (file.getFieldName().equals("txtGuardarUsuario")) {
@@ -253,9 +255,7 @@ public class usuarioServlet extends HttpServlet {
             mensaje.setMensaje("Se registro correctamente.");
 
         } catch (Exception ex) {
-            ex.printStackTrace();
-            mensaje.setTipo(Mensaje.ERROR);
-            mensaje.setDetalle(ex.toString());
+            mensaje.establecerError(ex);
         }
         try {
             JSONObject jsonMensaje = new JSONObject(mensaje);
@@ -292,7 +292,7 @@ public class usuarioServlet extends HttpServlet {
                 sb.append("<td>").append(u.getDni()).append("</td>");
                 sb.append("<td>").append(u.getEliminado() ? "ELIMINADO" : "NO ELIMINADO").append("</td>");
                 sb.append("<td>")
-                        .append("<a href='#' onclick='editarUsuarioById(")
+                        .append("<a href='#' onclick='openEditarUsuarioById(")
                         .append(u.getIdUSUARIO())
                         .append(");' title=\"Editar\"><span class='glyphicon glyphicon-edit' aria-hidden='true'></span></a>")
                         .append("</td>");

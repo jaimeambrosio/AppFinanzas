@@ -28,9 +28,7 @@ public class Pruebas1 {
     public static void main(String[] args) {
 
         try {
-            AfpDao afpDao=new  AfpDao();
-             List<Tipofondo> listTipofondo = afpDao.listarTipofondo();
-             System.out.println(listTipofondo.toString());
+            System.out.println(Formato.formatoDecimal(0.0));
         } catch (Exception ex) {
             Logger.getLogger(Pruebas1.class.getName()).log(Level.SEVERE, null, ex);
         }

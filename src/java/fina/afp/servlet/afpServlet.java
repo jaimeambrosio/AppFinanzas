@@ -8,7 +8,10 @@ package fina.afp.servlet;
 import fina.afp.dao.AfpDao;
 import fina.afp.entity.Afp;
 import fina.afp.entity.Tipofondo;
+import fina.afp.entity.Tipofondoxafp;
+import fina.afp.entity.TipofondoxafpPK;
 import fina.entity.Mensaje;
+import fina.util.Formato;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -42,6 +45,10 @@ public class afpServlet extends HttpServlet {
         switch (accion) {
             case "TBRENTABILIDAD": {
                 mostrarRentabilidadesPorAfp(request, response);
+                break;
+            }
+            case "ACTRENTSUG": {
+                actualizarRentSug(request, response);
                 break;
             }
         }
@@ -97,20 +104,61 @@ public class afpServlet extends HttpServlet {
         JSONObject jsonResult = new JSONObject();
         Mensaje mensaje = new Mensaje(false, Mensaje.INFORMACION);
         AfpDao afpDao = new AfpDao();
+        StringBuilder sb = new StringBuilder();
         try {
+
+            sb.append("<thead>");
+            sb.append("<tr><th>AFP \\ Tipo fondo</th>");
+
             List<Tipofondo> listTipofondo = afpDao.listarTipofondo();
             List<Afp> listAfp = afpDao.listar();
-
+            List<Tipofondoxafp> listTipofondoxafp = afpDao.listarTipoFondoXAfp();
+            for (Tipofondo tipofondo : listTipofondo) {
+                sb.append("<th>")
+                        .append("Fondo ")
+                        .append(tipofondo.getIdTIPOFONDO())
+                        .append("</th>");
+            }
+            sb.append("</tr></thead><tbody>");
+            for (Afp afp : listAfp) {
+                sb.append("<tr><td>").append(afp.getTitulo()).append("</td>");
+                for (Tipofondo tipofondo : listTipofondo) {
+                    sb.append("<td><div class=\"input-group\">");
+                    if (listTipofondoxafp.isEmpty()) {
+                        sb.append("<input afp='").append(afp.getIdAFP()).append("' fondo='").append(tipofondo.getIdTIPOFONDO()).append("' class=\"form-control\" value='")
+                                .append(Formato.formatoDecimal(0.0)).append("' >");
+                    } else {
+                        for (Tipofondoxafp tipofondoxafp : listTipofondoxafp) {
+                            if (tipofondo.getIdTIPOFONDO() == tipofondoxafp.getTipofondoxafpPK().getIdTIPOFONDO()
+                                    && afp.getIdAFP() == tipofondoxafp.getTipofondoxafpPK().getIdAFP()) {
+                                String valor = Formato.formatoDecimal(tipofondoxafp.getRentabilidadSugerida());
+                                sb.append("<input afp='").append(afp.getIdAFP()).append("' fondo='").append(tipofondo.getIdTIPOFONDO()).append("' class=\"form-control\" value='").append(valor).append("' >");
+                            } else {
+                               sb.append("<input afp='").append(afp.getIdAFP()).append("' fondo='").append(tipofondo.getIdTIPOFONDO()).append("' class=\"form-control\" value='")
+                                       .append(Formato.formatoDecimal(0.0)).append("' >");
+                            }
+                        }
+                    }
+                    sb.append("<div class=\"input-group-addon\">%</div></div></td>");
+                }
+                sb.append("</tr>");
+            }
+            sb.append("</tbody>");
         } catch (Exception e) {
             mensaje.establecerError(e);
         }
         try {
             JSONObject jsonMensaje = new JSONObject(mensaje);
             jsonResult.put("msj", jsonMensaje);
+            jsonResult.put("tbl", sb.toString());
             enviarDatos(response, jsonResult.toString());
         } catch (Exception ex) {
 
         }
+    }
+
+    private void actualizarRentSug(HttpServletRequest request, HttpServletResponse response) {
+        
     }
 
 }

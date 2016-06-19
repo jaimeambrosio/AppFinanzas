@@ -52,3 +52,35 @@ $('#idFormMiPerfil').ajaxForm({
             NProgress.done();
         }
     });
+    
+     $.ajax({
+        url: "../afpServlet?accion=TBRENTABILIDAD",
+        type: 'POST',
+        data: {
+        },
+        beforeSend: function (xhr) {
+            NProgress.start();
+        },
+        success: function (data) {
+            data = JSON.parse(data);
+            if (data.msj.hayMensaje != true) {
+               // tblTipoFondoXAfp.fnClearTable();
+                tblTipoFondoXAfp.destroy();
+                $("#tblTipoFondoXAfp").html(data.tbl);
+                tblTipoFondoXAfp = $('#tblTipoFondoXAfp').DataTable({
+                    
+                });
+               // $("#tblTipoFondoXAfp thead").empty();
+            } else
+            {
+                mostrarModalMensaje(data.msj.mensaje, data.msj.detalle, data.msj.tipo);
+            }
+            NProgress.done();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            mostrarModalMensaje('No se pudo invocar al servidor, probablemente tengas un problema con tu conexion a internet.',
+                    jqXHR.responseText,
+                    "ERROR");
+            NProgress.done();
+        }
+    });
