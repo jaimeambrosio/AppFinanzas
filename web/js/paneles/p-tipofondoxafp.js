@@ -65,6 +65,7 @@ function actualizarRentabilidades()
         url: "../afpServlet?accion=ACTRENTSUG",
         type: 'POST',
         data: {
+            valores: JSON.stringify(datos)
         },
         beforeSend: function (xhr) {
             NProgress.start();
@@ -76,7 +77,7 @@ function actualizarRentabilidades()
             } else
             {
                 mostrarModalMensaje(data.msj.mensaje, data.msj.detalle, data.msj.tipo);
-                
+                listarTiposFondoXAFP();
             }
             NProgress.done();
         },

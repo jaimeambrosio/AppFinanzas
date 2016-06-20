@@ -14,12 +14,14 @@ import fina.entity.Mensaje;
 import fina.util.Formato;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -116,7 +118,7 @@ public class afpServlet extends HttpServlet {
             for (Tipofondo tipofondo : listTipofondo) {
                 sb.append("<th>")
                         .append("Fondo ")
-                        .append(tipofondo.getIdTIPOFONDO())
+                        .append(tipofondo.getIdTIPOFONDO() - 1)
                         .append("</th>");
             }
             sb.append("</tr></thead><tbody>");
@@ -134,8 +136,8 @@ public class afpServlet extends HttpServlet {
                                 String valor = Formato.formatoDecimal(tipofondoxafp.getRentabilidadSugerida());
                                 sb.append("<input afp='").append(afp.getIdAFP()).append("' fondo='").append(tipofondo.getIdTIPOFONDO()).append("' class=\"form-control\" value='").append(valor).append("' >");
                             } else {
-                               sb.append("<input afp='").append(afp.getIdAFP()).append("' fondo='").append(tipofondo.getIdTIPOFONDO()).append("' class=\"form-control\" value='")
-                                       .append(Formato.formatoDecimal(0.0)).append("' >");
+                                //sb.append("<input afp='").append(afp.getIdAFP()).append("' fondo='").append(tipofondo.getIdTIPOFONDO()).append("' class=\"form-control\" value='")
+                                //      .append(Formato.formatoDecimal(0.0)).append("' >");
                             }
                         }
                     }
@@ -158,7 +160,34 @@ public class afpServlet extends HttpServlet {
     }
 
     private void actualizarRentSug(HttpServletRequest request, HttpServletResponse response) {
-        
+        JSONObject jsonResult = new JSONObject();
+        Mensaje mensaje = new Mensaje(false, Mensaje.INFORMACION);
+        AfpDao afpDao = new AfpDao();
+        try {
+            String valores = request.getParameter("valores");
+            JSONArray jsonArray = new JSONArray(valores);
+            List<Tipofondoxafp> listTipoFondoXAfp = new ArrayList<>();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String afp = jsonObject.getString("afp");
+                String fondo = jsonObject.getString("fondo");
+                String valor = jsonObject.getString("valor");
+                Tipofondoxafp t = new Tipofondoxafp(Integer.valueOf(fondo), Integer.valueOf(afp));
+                t.setRentabilidadSugerida(Double.valueOf(valor));
+                listTipoFondoXAfp.add(t);
+            }
+            afpDao.Actualizar(listTipoFondoXAfp);
+
+        } catch (Exception e) {
+            mensaje.establecerError(e);
+        }
+        try {
+            JSONObject jsonMensaje = new JSONObject(mensaje);
+            jsonResult.put("msj", jsonMensaje);
+            enviarDatos(response, jsonResult.toString());
+        } catch (Exception ex) {
+
+        }
     }
 
 }

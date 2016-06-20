@@ -32,7 +32,9 @@ public class AfpDao implements BaseDao<Afp, Integer> {
 
     @Override
     public void Actualizar(Afp entity) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        em.getTransaction().begin();
+        em.merge(entity);
+        em.getTransaction().commit();
     }
 
     @Override
@@ -60,6 +62,14 @@ public class AfpDao implements BaseDao<Afp, Integer> {
 
     public List<Tipofondoxafp> listarTipoFondoXAfp() {
         return em.createQuery("FROM Tipofondoxafp ta").getResultList();
+    }
+
+    public void Actualizar(List<Tipofondoxafp> listTipoFondoXAfp) {
+        em.getTransaction().begin();
+        for (Tipofondoxafp tipofondoxafp : listTipoFondoXAfp) {
+             em.merge(tipofondoxafp);
+        }
+        em.getTransaction().commit();
     }
 
 }
