@@ -107,6 +107,9 @@
                         <li>
                             <a href="#" data-link="paneles/p-tipofondoxafp.jsp" data-constructor="p_tipofondoxafp();" id="pTipoFondoXAfp" ><span class="glyphicon glyphicon-oil" ></span> Tipo de fondo por AFP</a>
                         </li>
+                        <li>
+                            <a href="#" data-link="paneles/p-tipocomisionxafp.jsp" data-constructor="p_tipocomisionxafp();" id="pTipoComisionXAfp" ><span class="glyphicon glyphicon-oil" ></span> Tipo comision por AFP</a>
+                        </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>

@@ -1,7 +1,7 @@
 <%-- 
-    Document   : p-tipofondoxafp
-    Created on : 18/06/2016, 10:35:20 PM
-    Author     : Jaime Ambrosio
+    Document   : p-tipocomisionxafp
+    Created on : Jun 20, 2016, 8:00:37 PM
+    Author     : alumnos
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="panel panel-primary">
@@ -11,22 +11,25 @@
     <div class="panel-body">
         <div class="row" >
             <div class="col-sm-12" >
-                <button onclick="listarTiposFondoXAFP();" class="btn btn-primary" > Refrescar</button>
+                <button onclick="listarTiposComisionXafp();" class="btn btn-primary" > Refrescar</button>
             </div>
         </div>
         <br>
         <br>
         <div class="row" >    
             <div class="col-sm-12" >
-                <table id="tblTipoFondoXAfp"   class="display nowrap" cellspacing="0" width="100%">
+                <table id="tblTipoComisionXAfp"   class="display nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th  >Nombres</th>
+                            <th>Apellidos</th>
+
                         </tr>
                     </thead>
                     <tbody  >
                         <tr>
                             <td><input></td>
+                            <td><input class="form-control" value="123" ></td>
                         </tr>
                     </tbody>
                 </table>
@@ -36,10 +39,10 @@
             <div class="col-sm-4" ></div>
             <div class="col-sm-4" ></div>
             <div class="col-sm-4" >
-                  <button onclick="actualizarRentabilidades();" class="btn btn-primary" > Actualizar valores</button>
+                  <button onclick="" class="btn btn-primary" > Actualizar valores</button>
             </div>
         </div>
     </div>
 </div>
 <br>
-<script src="/AppFinanzas/js/paneles/p-tipofondoxafp.js" type="text/javascript"></script>
+<script src="/AppFinanzas/js/paneles/p-tipocomisionxafp.js" type="text/javascript"></script>

@@ -7,6 +7,8 @@ package fina.afp.servlet;
 
 import fina.afp.dao.AfpDao;
 import fina.afp.entity.Afp;
+import fina.afp.entity.Tipocomision;
+import fina.afp.entity.Tipocomisionxafp;
 import fina.afp.entity.Tipofondo;
 import fina.afp.entity.Tipofondoxafp;
 import fina.afp.entity.TipofondoxafpPK;
@@ -51,6 +53,14 @@ public class afpServlet extends HttpServlet {
             }
             case "ACTRENTSUG": {
                 actualizarRentSug(request, response);
+                break;
+            }
+            case "aaa": {
+                actualizarComisiones(request, response);
+                break;
+            }
+            case "TBCOMISIONES": {
+                mostrarComisionesXAfp(request, response);
                 break;
             }
         }
@@ -136,8 +146,6 @@ public class afpServlet extends HttpServlet {
                                 String valor = Formato.formatoDecimal(tipofondoxafp.getRentabilidadSugerida());
                                 sb.append("<input afp='").append(afp.getIdAFP()).append("' fondo='").append(tipofondo.getIdTIPOFONDO()).append("' class=\"form-control\" value='").append(valor).append("' >");
                             } else {
-                                //sb.append("<input afp='").append(afp.getIdAFP()).append("' fondo='").append(tipofondo.getIdTIPOFONDO()).append("' class=\"form-control\" value='")
-                                //      .append(Formato.formatoDecimal(0.0)).append("' >");
                             }
                         }
                     }
@@ -184,6 +192,61 @@ public class afpServlet extends HttpServlet {
         try {
             JSONObject jsonMensaje = new JSONObject(mensaje);
             jsonResult.put("msj", jsonMensaje);
+            enviarDatos(response, jsonResult.toString());
+        } catch (Exception ex) {
+
+        }
+    }
+
+    private void actualizarComisiones(HttpServletRequest request, HttpServletResponse response) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void mostrarComisionesXAfp(HttpServletRequest request, HttpServletResponse response) {
+        JSONObject jsonResult = new JSONObject();
+        Mensaje mensaje = new Mensaje(false, Mensaje.INFORMACION);
+        AfpDao afpDao = new AfpDao();
+        StringBuilder sb = new StringBuilder();
+        try {
+            List<Tipocomision> listTipocomision = afpDao.listarTipocomision();
+            List<Afp> listAfp = afpDao.listar();
+            List<Tipocomisionxafp> listTipocomisionxafp = afpDao.listarTipocomisionxafp();
+            sb.append(" <thead><tr>");
+            sb.append("<th rowspan=\"2\">AFP \\ Tipo Comsion </th>");
+            sb.append("<th rowspan=\"2\">").append("COMISION ").append(listTipocomision.get(0).getTitulo()).append("</th>");
+            sb.append("<th colspan=\"2\">").append("COMISION ").append(listTipocomision.get(1).getTitulo()).append("</th></tr>");
+
+            sb.append("<tr> <th>Sobre Flujo</th> <th>Sobre Saldo</th></tr>");
+            sb.append("</thead>");
+            sb.append(" <tbody>");
+            for (Afp afp : listAfp) {
+                sb.append("<tr><td>").append(afp.getTitulo()).append("</td>");
+                boolean flag = false;
+                for (Tipocomision tipocomision : listTipocomision) {
+
+                    if (listTipocomisionxafp.isEmpty()) {
+                        sb.append("<td>");
+                        sb.append("<div class=\"input-group\">"+
+                                "<input saldo='true' afp='").append(afp.getIdAFP()).append("' comision='").append(tipocomision.getIdTIPOCOMISION()).append("' class=\"form-control\" value='")
+                                .append(Formato.formatoDecimal(0.0)).append("' ></div>");
+                        sb.append("</td>");
+                    } else {
+                        for (Tipocomisionxafp tipocomisionxafp : listTipocomisionxafp) {
+
+                        }
+                    }
+                }
+
+            }
+            sb.append("</tbody>");
+        } catch (Exception e) {
+            mensaje.establecerError(e);
+        }
+
+        try {
+            JSONObject jsonMensaje = new JSONObject(mensaje);
+            jsonResult.put("msj", jsonMensaje);
+            jsonResult.put("tbl", sb.toString());
             enviarDatos(response, jsonResult.toString());
         } catch (Exception ex) {
 

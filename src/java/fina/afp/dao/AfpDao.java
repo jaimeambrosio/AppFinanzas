@@ -6,6 +6,8 @@
 package fina.afp.dao;
 
 import fina.afp.entity.Afp;
+import fina.afp.entity.Tipocomision;
+import fina.afp.entity.Tipocomisionxafp;
 import fina.afp.entity.Tipofondo;
 import fina.afp.entity.Tipofondoxafp;
 import fina.afp.entity.TipofondoxafpPK;
@@ -70,6 +72,14 @@ public class AfpDao implements BaseDao<Afp, Integer> {
              em.merge(tipofondoxafp);
         }
         em.getTransaction().commit();
+    }
+
+    public List<Tipocomision> listarTipocomision() {
+         return em.createQuery("FROM Tipocomision tc ORDER BY tc.idTIPOCOMISION").getResultList();
+    }
+
+    public List<Tipocomisionxafp> listarTipocomisionxafp() {
+        return em.createQuery("FROM Tipocomisionxafp tca").getResultList();
     }
 
 }
