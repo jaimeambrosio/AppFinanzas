@@ -68,7 +68,7 @@ function actualizarValoresComisionXafp()
             } else
             {
                 mostrarModalMensaje(data.msj.mensaje, data.msj.detalle, data.msj.tipo);
-                listarTiposFondoXAFP();
+                listarTiposComisionXafp();
             }
             NProgress.done();
         },

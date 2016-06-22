@@ -66,7 +66,7 @@ public class AfpDao implements BaseDao<Afp, Integer> {
         return em.createQuery("FROM Tipofondoxafp ta").getResultList();
     }
 
-    public void Actualizar(List<Tipofondoxafp> listTipoFondoXAfp) {
+    public void ActualizarFondoXAfp(List<Tipofondoxafp> listTipoFondoXAfp) {
         em.getTransaction().begin();
         for (Tipofondoxafp tipofondoxafp : listTipoFondoXAfp) {
              em.merge(tipofondoxafp);
@@ -80,6 +80,14 @@ public class AfpDao implements BaseDao<Afp, Integer> {
 
     public List<Tipocomisionxafp> listarTipocomisionxafp() {
         return em.createQuery("FROM Tipocomisionxafp tca").getResultList();
+    }
+
+    public void ActualizarComisionesXafp(List<Tipocomisionxafp> listTipocomisionxafp) {
+        em.getTransaction().begin();
+        for (Tipocomisionxafp tipocomisionxafp : listTipocomisionxafp) {
+            em.merge(tipocomisionxafp);
+        }
+        em.getTransaction().commit();
     }
 
 }

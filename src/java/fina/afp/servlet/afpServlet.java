@@ -179,12 +179,12 @@ public class afpServlet extends HttpServlet {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String afp = jsonObject.getString("afp");
                 String fondo = jsonObject.getString("fondo");
-                String valor = jsonObject.getString("valor");
+                String valor = jsonObject.getString("valor").replaceAll(",", "");;
                 Tipofondoxafp t = new Tipofondoxafp(Integer.valueOf(fondo), Integer.valueOf(afp));
                 t.setRentabilidadSugerida(Double.valueOf(valor));
                 listTipoFondoXAfp.add(t);
             }
-            afpDao.Actualizar(listTipoFondoXAfp);
+            afpDao.ActualizarFondoXAfp(listTipoFondoXAfp);
 
         } catch (Exception e) {
             mensaje.establecerError(e);
@@ -199,7 +199,35 @@ public class afpServlet extends HttpServlet {
     }
 
     private void actualizarComisiones(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JSONObject jsonResult = new JSONObject();
+        Mensaje mensaje = new Mensaje(false, Mensaje.INFORMACION);
+        AfpDao afpDao = new AfpDao();
+        try {
+            String valores = request.getParameter("valores");
+            JSONArray jsonArray = new JSONArray(valores);
+            List<Tipocomisionxafp> listTipocomisionxafp = new ArrayList<>();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String afp = jsonObject.getString("afp");
+                String comision = jsonObject.getString("comision");
+                String comisionSaldo = jsonObject.getString("comisionSaldo").replaceAll(",", "");
+                String comisionFlujo = jsonObject.getString("comisionFlujo").replaceAll(",", "");
+                Tipocomisionxafp tipocomisionxafp = new Tipocomisionxafp(Integer.valueOf(comision), Integer.valueOf(afp));
+                tipocomisionxafp.setComisionFlujo(Double.valueOf(comisionFlujo));
+                tipocomisionxafp.setComisionSaldo(Double.valueOf(comisionSaldo));
+                listTipocomisionxafp.add(tipocomisionxafp);
+            }
+            afpDao.ActualizarComisionesXafp(listTipocomisionxafp);
+        } catch (Exception e) {
+            mensaje.establecerError(e);
+        }
+        try {
+            JSONObject jsonMensaje = new JSONObject(mensaje);
+            jsonResult.put("msj", jsonMensaje);
+            enviarDatos(response, jsonResult.toString());
+        } catch (Exception ex) {
+
+        }
     }
 
     private void mostrarComisionesXAfp(HttpServletRequest request, HttpServletResponse response) {
@@ -211,7 +239,7 @@ public class afpServlet extends HttpServlet {
             List<Tipocomision> listTipocomision = afpDao.listarTipocomision();
             List<Afp> listAfp = afpDao.listar();
             List<Tipocomisionxafp> listTipocomisionxafp = afpDao.listarTipocomisionxafp();
-            sb.append(" <thead>"); 
+            sb.append(" <thead>");
             sb.append("<tr><th >AFP \\ Tipo Comsion </th>");
             sb.append("<th >").append("COMISION ").append(listTipocomision.get(0).getTitulo()).append("</th>");
             sb.append("<th >").append("COMISION ").append(listTipocomision.get(1).getTitulo()).append("</th></tr>");
@@ -222,10 +250,10 @@ public class afpServlet extends HttpServlet {
                 sb.append("<tr><td>").append(afp.getTitulo()).append("</td>");
                 String readonly = "readonly";
                 for (Tipocomision tipocomision : listTipocomision) {
-
+                    sb.append("<td>");
+                    sb.append("<div class=\"input-group\">");
                     if (listTipocomisionxafp.isEmpty()) {
-                        sb.append("<td>");
-                        sb.append("<div class=\"input-group\">");
+
                         sb.append("<input is='saldo' afp='").append(afp.getIdAFP()).append("' comision='")
                                 .append(tipocomision.getIdTIPOCOMISION())
                                 .append("' class=\"form-control\" value='")
@@ -238,12 +266,28 @@ public class afpServlet extends HttpServlet {
                                 .append("' class=\"form-control\" value='")
                                 .append(Formato.formatoDecimal(0.0)).append("' >")
                                 .append("<div class=\"input-group-addon\">% Flujo</div>");
-                        sb.append("</div></td>");
-                    } else {
-                        for (Tipocomisionxafp tipocomisionxafp : listTipocomisionxafp) {
 
+                    } else {
+                        for (Tipocomisionxafp tcxa : listTipocomisionxafp) {
+                            if (tcxa.getTipocomisionxafpPK().getIdAFP() == afp.getIdAFP()
+                                    && tcxa.getTipocomisionxafpPK().getIdTIPOCOMISION() == tipocomision.getIdTIPOCOMISION()) {
+
+                                sb.append("<input is='saldo' afp='").append(afp.getIdAFP()).append("' comision='")
+                                        .append(tipocomision.getIdTIPOCOMISION())
+                                        .append("' class=\"form-control\" value='")
+                                        .append(Formato.formatoDecimal(tcxa.getComisionSaldo()))
+                                        .append("' ").append(readonly).append(" >")
+                                        .append("<div class=\"input-group-addon\">% Saldo</div>");
+                                readonly = "";
+                                sb.append("<input is='flujo' afp='").append(afp.getIdAFP()).append("' comision='")
+                                        .append(tipocomision.getIdTIPOCOMISION())
+                                        .append("' class=\"form-control\" value='")
+                                        .append(Formato.formatoDecimal(tcxa.getComisionFlujo())).append("' >")
+                                        .append("<div class=\"input-group-addon\">% Flujo</div>");
+                            }
                         }
                     }
+                    sb.append("</div></td>");
                 }
 
             }
