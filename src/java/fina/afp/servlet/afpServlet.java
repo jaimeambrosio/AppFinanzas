@@ -55,7 +55,7 @@ public class afpServlet extends HttpServlet {
                 actualizarRentSug(request, response);
                 break;
             }
-            case "aaa": {
+            case "ACTCOMXAFP": {
                 actualizarComisiones(request, response);
                 break;
             }
@@ -211,25 +211,34 @@ public class afpServlet extends HttpServlet {
             List<Tipocomision> listTipocomision = afpDao.listarTipocomision();
             List<Afp> listAfp = afpDao.listar();
             List<Tipocomisionxafp> listTipocomisionxafp = afpDao.listarTipocomisionxafp();
-            sb.append(" <thead><tr>");
-            sb.append("<th rowspan=\"2\">AFP \\ Tipo Comsion </th>");
-            sb.append("<th rowspan=\"2\">").append("COMISION ").append(listTipocomision.get(0).getTitulo()).append("</th>");
-            sb.append("<th colspan=\"2\">").append("COMISION ").append(listTipocomision.get(1).getTitulo()).append("</th></tr>");
+            sb.append(" <thead>"); 
+            sb.append("<tr><th >AFP \\ Tipo Comsion </th>");
+            sb.append("<th >").append("COMISION ").append(listTipocomision.get(0).getTitulo()).append("</th>");
+            sb.append("<th >").append("COMISION ").append(listTipocomision.get(1).getTitulo()).append("</th></tr>");
 
-            sb.append("<tr> <th>Sobre Flujo</th> <th>Sobre Saldo</th></tr>");
             sb.append("</thead>");
             sb.append(" <tbody>");
             for (Afp afp : listAfp) {
                 sb.append("<tr><td>").append(afp.getTitulo()).append("</td>");
-                boolean flag = false;
+                String readonly = "readonly";
                 for (Tipocomision tipocomision : listTipocomision) {
 
                     if (listTipocomisionxafp.isEmpty()) {
                         sb.append("<td>");
-                        sb.append("<div class=\"input-group\">"
-                                + "<input saldo='true' afp='").append(afp.getIdAFP()).append("' comision='").append(tipocomision.getIdTIPOCOMISION()).append("' class=\"form-control\" value='")
-                                .append(Formato.formatoDecimal(0.0)).append("' ></div>");
-                        sb.append("</td>");
+                        sb.append("<div class=\"input-group\">");
+                        sb.append("<input is='saldo' afp='").append(afp.getIdAFP()).append("' comision='")
+                                .append(tipocomision.getIdTIPOCOMISION())
+                                .append("' class=\"form-control\" value='")
+                                .append(Formato.formatoDecimal(0.0))
+                                .append("' ").append(readonly).append(" >")
+                                .append("<div class=\"input-group-addon\">% Saldo</div>");
+                        readonly = "";
+                        sb.append("<input is='flujo' afp='").append(afp.getIdAFP()).append("' comision='")
+                                .append(tipocomision.getIdTIPOCOMISION())
+                                .append("' class=\"form-control\" value='")
+                                .append(Formato.formatoDecimal(0.0)).append("' >")
+                                .append("<div class=\"input-group-addon\">% Flujo</div>");
+                        sb.append("</div></td>");
                     } else {
                         for (Tipocomisionxafp tipocomisionxafp : listTipocomisionxafp) {
 

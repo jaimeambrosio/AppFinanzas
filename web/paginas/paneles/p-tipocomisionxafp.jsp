@@ -21,15 +21,16 @@
                 <table id="tblTipoComisionXAfp"   class="display nowrap" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th  >Nombres</th>
-                            <th>Apellidos</th>
-
+                            <th >AFP \ Tipo Comsion </th>
+                            <th >COMISION FLUJO</th>
+                            <th >COMISION MIXTA</th>
                         </tr>
                     </thead>
                     <tbody  >
                         <tr>
-                            <td><input></td>
-                            <td><input class="form-control" value="123" ></td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>...</td>
                         </tr>
                     </tbody>
                 </table>
@@ -39,7 +40,7 @@
             <div class="col-sm-4" ></div>
             <div class="col-sm-4" ></div>
             <div class="col-sm-4" >
-                  <button onclick="" class="btn btn-primary" > Actualizar valores</button>
+                <button onclick="actualizarValoresComisionXafp();" class="btn btn-primary" > Actualizar valores</button>
             </div>
         </div>
     </div>

@@ -20,13 +20,22 @@
             <div class="col-sm-12" >
                 <table id="tblTipoFondoXAfp"   class="display nowrap" cellspacing="0" width="100%">
                     <thead>
-                        <tr>
-                            <th></th>
-                        </tr>
+                            <tr>
+                                <th>AFP \\ Tipo fondo</th>
+                                <th>Fondo 0</th>
+                                <th>Fondo 1</th>
+                                <th>Fondo 2</th>
+                                <th>Fondo 3</th>
+                            </tr>
+                        
                     </thead>
                     <tbody  >
                         <tr>
-                            <td><input></td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>...</td>
+                            <td>...</td>
                         </tr>
                     </tbody>
                 </table>
