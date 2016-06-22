@@ -226,8 +226,8 @@ public class afpServlet extends HttpServlet {
 
                     if (listTipocomisionxafp.isEmpty()) {
                         sb.append("<td>");
-                        sb.append("<div class=\"input-group\">"+
-                                "<input saldo='true' afp='").append(afp.getIdAFP()).append("' comision='").append(tipocomision.getIdTIPOCOMISION()).append("' class=\"form-control\" value='")
+                        sb.append("<div class=\"input-group\">"
+                                + "<input saldo='true' afp='").append(afp.getIdAFP()).append("' comision='").append(tipocomision.getIdTIPOCOMISION()).append("' class=\"form-control\" value='")
                                 .append(Formato.formatoDecimal(0.0)).append("' ></div>");
                         sb.append("</td>");
                     } else {

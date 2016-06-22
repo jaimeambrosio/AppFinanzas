@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-       
+
         <%@include file="plantillas/styles.jsp" %>
         <title>Sistema financiero - AFP - Ingreso al sistema</title>
     </head>
@@ -60,7 +60,14 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-
+                    <div class="input-group" style="display: none">                    
+                        <input  id="id" class="form-control" >
+                        <div class="input-group-addon">% Saldo</div>
+                        
+                    </div>
+                    <br>
+                    <br>
+                    <br>
                 </div>
                 <div>
                     <%@include  file="plantillas/modals/mensajes.jsp" %>
