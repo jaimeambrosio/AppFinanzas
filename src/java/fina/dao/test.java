@@ -5,7 +5,6 @@
  */
 package fina.dao;
 
-import fina.afp.dao.ConexionJPA;
 import fina.usuario.dao.UsuarioDao;
 import fina.usuario.entity.Usuario;
 import javax.persistence.EntityManager;

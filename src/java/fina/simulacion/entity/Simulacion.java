@@ -8,6 +8,7 @@ package fina.simulacion.entity;
 import fina.usuario.entity.Usuario;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,11 +18,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -42,11 +44,13 @@ public class Simulacion implements Serializable {
     @Column(name = "fechaCreacion")
     @Temporal(TemporalType.DATE)
     private Date fechaCreacion;
+    @Column(name = "alias")
+    private String alias;
     @JoinColumn(name = "idUSUARIO", referencedColumnName = "idUSUARIO")
     @ManyToOne(optional = false)
     private Usuario idUSUARIO;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "simulacion")
-    private Simulacionhito simulacionhito;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSIMULACION")
+    private List<Simulacionhito> simulacionhitoList;
 
     public Simulacion() {
     }
@@ -71,6 +75,14 @@ public class Simulacion implements Serializable {
         this.fechaCreacion = fechaCreacion;
     }
 
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
     public Usuario getIdUSUARIO() {
         return idUSUARIO;
     }
@@ -79,12 +91,13 @@ public class Simulacion implements Serializable {
         this.idUSUARIO = idUSUARIO;
     }
 
-    public Simulacionhito getSimulacionhito() {
-        return simulacionhito;
+    @XmlTransient
+    public List<Simulacionhito> getSimulacionhitoList() {
+        return simulacionhitoList;
     }
 
-    public void setSimulacionhito(Simulacionhito simulacionhito) {
-        this.simulacionhito = simulacionhito;
+    public void setSimulacionhitoList(List<Simulacionhito> simulacionhitoList) {
+        this.simulacionhitoList = simulacionhitoList;
     }
 
     @Override

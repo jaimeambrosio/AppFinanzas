@@ -49,22 +49,7 @@
                     <a href="#"><span class="glyphicon glyphicon-hourglass" id="pSimuladorAfp" ></span> Simulador AFP<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">Panels and Wells</a>
-                        </li>
-                        <li>
-                            <a href="#">Buttons</a>
-                        </li>
-                        <li>
-                            <a href="#">Notifications</a>
-                        </li>
-                        <li>
-                            <a href="#">Typography</a>
-                        </li>
-                        <li>
-                            <a href="#"> Icons</a>
-                        </li>
-                        <li>
-                            <a href="#">Grid</a>
+                            <a href="#" data-link="paneles/p-simular.jsp" data-constructor="p_simular();">Simular</a>
                         </li>
                     </ul>
                 </li>

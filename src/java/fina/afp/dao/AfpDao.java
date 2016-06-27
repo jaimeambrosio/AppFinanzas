@@ -5,6 +5,7 @@
  */
 package fina.afp.dao;
 
+import fina.dao.ConexionJPA;
 import fina.afp.entity.Afp;
 import fina.afp.entity.Tipocomision;
 import fina.afp.entity.Tipocomisionxafp;

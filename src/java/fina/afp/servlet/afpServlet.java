@@ -11,7 +11,6 @@ import fina.afp.entity.Tipocomision;
 import fina.afp.entity.Tipocomisionxafp;
 import fina.afp.entity.Tipofondo;
 import fina.afp.entity.Tipofondoxafp;
-import fina.afp.entity.TipofondoxafpPK;
 import fina.entity.Mensaje;
 import fina.util.Formato;
 import java.io.IOException;

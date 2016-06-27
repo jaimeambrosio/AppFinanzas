@@ -5,7 +5,7 @@
  */
 package fina.usuario.dao;
 
-import fina.afp.dao.ConexionJPA;
+import fina.dao.ConexionJPA;
 import fina.dao.BaseDao;
 import fina.usuario.entity.Tipousuario;
 import fina.usuario.entity.Usuario;

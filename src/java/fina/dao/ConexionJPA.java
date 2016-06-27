@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fina.afp.dao;
+package fina.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

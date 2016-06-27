@@ -208,13 +208,6 @@ public class Usuario implements Serializable {
         this.simulacionList = simulacionList;
     }
 
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
 
     public String getNombreFoto() {
         return nombreFoto;
@@ -243,6 +236,14 @@ public class Usuario implements Serializable {
             return base + Base64.getEncoder().encodeToString(bytes);
         }
         return base + Base64.getEncoder().encodeToString(foto);
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
 
 }

@@ -13,12 +13,13 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,10 +37,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Simulacionhito implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @Column(name = "idSIMULACION")
-    private Integer idSIMULACION;
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
@@ -52,32 +49,29 @@ public class Simulacionhito implements Serializable {
     private Double rentabilidad;
     @Column(name = "densidad")
     private Double densidad;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idSimulacionHito")
+    private Integer idSimulacionHito;
     @JoinColumn(name = "idAFP", referencedColumnName = "idAFP")
     @ManyToOne(optional = false)
     private Afp idAFP;
-    @JoinColumn(name = "idSIMULACION", referencedColumnName = "idSIMULACION", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Simulacion simulacion;
     @JoinColumn(name = "idTIPOCOMISION", referencedColumnName = "idTIPOCOMISION")
     @ManyToOne(optional = false)
     private Tipocomision idTIPOCOMISION;
     @JoinColumn(name = "idTIPOFONDO", referencedColumnName = "idTIPOFONDO")
     @ManyToOne(optional = false)
     private Tipofondo idTIPOFONDO;
+    @JoinColumn(name = "idSIMULACION", referencedColumnName = "idSIMULACION")
+    @ManyToOne(optional = false)
+    private Simulacion idSIMULACION;
 
     public Simulacionhito() {
     }
 
-    public Simulacionhito(Integer idSIMULACION) {
-        this.idSIMULACION = idSIMULACION;
-    }
-
-    public Integer getIdSIMULACION() {
-        return idSIMULACION;
-    }
-
-    public void setIdSIMULACION(Integer idSIMULACION) {
-        this.idSIMULACION = idSIMULACION;
+    public Simulacionhito(Integer idSimulacionHito) {
+        this.idSimulacionHito = idSimulacionHito;
     }
 
     public Date getFecha() {
@@ -120,20 +114,20 @@ public class Simulacionhito implements Serializable {
         this.densidad = densidad;
     }
 
+    public Integer getIdSimulacionHito() {
+        return idSimulacionHito;
+    }
+
+    public void setIdSimulacionHito(Integer idSimulacionHito) {
+        this.idSimulacionHito = idSimulacionHito;
+    }
+
     public Afp getIdAFP() {
         return idAFP;
     }
 
     public void setIdAFP(Afp idAFP) {
         this.idAFP = idAFP;
-    }
-
-    public Simulacion getSimulacion() {
-        return simulacion;
-    }
-
-    public void setSimulacion(Simulacion simulacion) {
-        this.simulacion = simulacion;
     }
 
     public Tipocomision getIdTIPOCOMISION() {
@@ -152,10 +146,18 @@ public class Simulacionhito implements Serializable {
         this.idTIPOFONDO = idTIPOFONDO;
     }
 
+    public Simulacion getIdSIMULACION() {
+        return idSIMULACION;
+    }
+
+    public void setIdSIMULACION(Simulacion idSIMULACION) {
+        this.idSIMULACION = idSIMULACION;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idSIMULACION != null ? idSIMULACION.hashCode() : 0);
+        hash += (idSimulacionHito != null ? idSimulacionHito.hashCode() : 0);
         return hash;
     }
 
@@ -166,7 +168,7 @@ public class Simulacionhito implements Serializable {
             return false;
         }
         Simulacionhito other = (Simulacionhito) object;
-        if ((this.idSIMULACION == null && other.idSIMULACION != null) || (this.idSIMULACION != null && !this.idSIMULACION.equals(other.idSIMULACION))) {
+        if ((this.idSimulacionHito == null && other.idSimulacionHito != null) || (this.idSimulacionHito != null && !this.idSimulacionHito.equals(other.idSimulacionHito))) {
             return false;
         }
         return true;
@@ -174,7 +176,7 @@ public class Simulacionhito implements Serializable {
 
     @Override
     public String toString() {
-        return "fina.simulacion.entity.Simulacionhito[ idSIMULACION=" + idSIMULACION + " ]";
+        return "fina.simulacion.entity.Simulacionhito[ idSimulacionHito=" + idSimulacionHito + " ]";
     }
     
 }

@@ -18,5 +18,4 @@
 <script src="/AppFinanzas/libs/form-master/jquery.form.js" type="text/javascript"></script>
 <script src="/AppFinanzas/libs/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
 
-
 <script src="/AppFinanzas/js/funcionesComunes.js" type="text/javascript"></script>

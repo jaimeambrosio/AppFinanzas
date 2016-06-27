@@ -63,7 +63,7 @@
                     <div class="input-group" style="display: none">                    
                         <input  id="id" class="form-control" >
                         <div class="input-group-addon">% Saldo</div>
-                        
+
                     </div>
                     <br>
                     <br>
