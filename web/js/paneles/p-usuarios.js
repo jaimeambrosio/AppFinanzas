@@ -127,7 +127,6 @@ function openEditarUsuarioById(id)
                     language: "es",
                     endDate: "hoy",
                     autoclose: true
-
                 });
 
                 $("#modalEdicionUsuario").modal('show');

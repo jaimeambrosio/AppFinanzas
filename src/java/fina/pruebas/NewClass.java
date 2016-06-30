@@ -19,7 +19,7 @@ public class NewClass {
         Double aportatacion = 0.09;
         Double rentabilidad = 0.005497;
         Double saldo = 0.0;
-        Double saldoInicial = 0.0;
+        Double saldoInicial = 1200.0;
 
         Integer[] diasDelMes = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         Calendar ini = new GregorianCalendar(2016, Calendar.JUNE, 30);
@@ -29,7 +29,7 @@ public class NewClass {
 
         while (ini.getTimeInMillis() < fin.getTimeInMillis()) {
             saldo = saldoInicial + saldo + (saldo * rentabilidad) + (sueldo * aportatacion);
-
+            saldoInicial = 0.0;
             ++mes;
             if (mes >= 12) {
                 mes = 0;
