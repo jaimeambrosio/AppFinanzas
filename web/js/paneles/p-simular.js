@@ -27,6 +27,14 @@ function nuevaSimulacion()
     $("#modalEdicionSimulacion").modal("show");
 
 }
+
+function simulacionesAlmacenadas()
+{
+    setTimeout(function(){$("#idSectionTimeline").show('slow');},1000);
+    $("#idSectionTimeline").hide('slow');
+    
+}
+
 function changeMostrarRentSug()
 {
     var idAfp = $("#cbxAfp").val();
@@ -61,6 +69,7 @@ function changeMostrarRentSug()
         });
     }
 }
+
 function changeUsarRentSug()
 {
     if ($("#chRentSug").is(":checked")) {

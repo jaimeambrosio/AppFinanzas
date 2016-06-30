@@ -64,7 +64,12 @@
                     Nueva Simulación
                 </button>
             </div>
-            <div class="col-sm-6" ><button class="btn btn-primary" onclick=""  ></button></div>
+            <div class="col-sm-6" >                
+                <button class="btn btn-primary" onclick="simulacionesAlmacenadas();"  >
+                    <span class="glyphicon glyphicon-list-alt" ></span>
+                    Simulaciones almacenadas
+                </button>
+            </div>
         </div>
         <br>
         <div class="panel panel-default">
