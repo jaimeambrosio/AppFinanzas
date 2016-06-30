@@ -70,13 +70,13 @@ public class AfpDao implements BaseDao<Afp, Integer> {
     public void ActualizarFondoXAfp(List<Tipofondoxafp> listTipoFondoXAfp) {
         em.getTransaction().begin();
         for (Tipofondoxafp tipofondoxafp : listTipoFondoXAfp) {
-             em.merge(tipofondoxafp);
+            em.merge(tipofondoxafp);
         }
         em.getTransaction().commit();
     }
 
     public List<Tipocomision> listarTipocomision() {
-         return em.createQuery("FROM Tipocomision tc ORDER BY tc.idTIPOCOMISION").getResultList();
+        return em.createQuery("FROM Tipocomision tc ORDER BY tc.idTIPOCOMISION").getResultList();
     }
 
     public List<Tipocomisionxafp> listarTipocomisionxafp() {
@@ -89,6 +89,12 @@ public class AfpDao implements BaseDao<Afp, Integer> {
             em.merge(tipocomisionxafp);
         }
         em.getTransaction().commit();
+    }
+
+    public Double getRentabilidad(Integer idAfp, Integer idTipoFondo) {
+        TipofondoxafpPK pK = new TipofondoxafpPK(idTipoFondo, idAfp);
+        Tipofondoxafp tf = em.find(Tipofondoxafp.class, pK);
+        return tf.getRentabilidadSugerida();
     }
 
 }

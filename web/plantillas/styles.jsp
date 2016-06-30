@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link href="/AppFinanzas/libs/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+<link href="/AppFinanzas/libs/bootstrap/css/bootstrap-theme.css" rel="stylesheet" type="text/css"/>
 <link href="/AppFinanzas/libs/metisMenu/metisMenu.css" rel="stylesheet" type="text/css"/>
 <link href="/AppFinanzas/libs/sb-admin/css/sb-admin.css" rel="stylesheet" type="text/css"/>
 <link href="/AppFinanzas/libs/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>

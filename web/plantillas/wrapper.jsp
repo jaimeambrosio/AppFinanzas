@@ -4,11 +4,24 @@
     Author     : Jaime Ambrosio
 --%>
 
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="fina.usuario.entity.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    SimpleDateFormat format = new SimpleDateFormat("MM/yyyy");
+     Calendar calendar = new GregorianCalendar();
     Usuario usuarioLogeado = (Usuario) request.getSession().getAttribute("usuarioLogeado");
+    calendar.setTime(usuarioLogeado.getFechaNacimiento());
+    calendar.add(Calendar.YEAR, 18);
 %>
+<input type="hidden" id="hddFechaNacimiento" value="<%=format.format(usuarioLogeado.getFechaNacimiento())%>" >
+
+<input type="hidden" id="hddFechaIniAportacion" value="<%=format.format(calendar.getTime())%>" >
+<% calendar.add(Calendar.YEAR, 47); %>
+<input type="hidden" id="hddFechaFinAportacion" value="<%=format.format(calendar.getTime())%>" >
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 
     <div class="navbar-header">
@@ -29,7 +42,7 @@
     <ul class="nav navbar-top-links navbar-right">
 
         <li class="dropdown"></li>
-        
+
     </ul>
     <!-- /.navbar-top-links -->
 
@@ -49,7 +62,7 @@
                     <a href="#"><span class="glyphicon glyphicon-hourglass" id="pSimuladorAfp" ></span> Simulador AFP<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#" data-link="paneles/p-simular.jsp" data-constructor="p_simular();">Simular</a>
+                            <a href="#" data-link="paneles/p-simular.jsp" data-constructor="p_simular();"><span class="glyphicon glyphicon-tint" ></span> Simular</a>
                         </li>
                     </ul>
                 </li>
@@ -85,7 +98,7 @@
                 <li> 
                     <a href="#" id=""><span class="glyphicon glyphicon-list-alt"  ></span> Mantenimiento<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        
+
                         <li>
                             <a href="#" data-link="paneles/p-usuarios.jsp" data-constructor="p_usuarios();" id="pUsuarios" ><span class="glyphicon glyphicon-list" ></span> Usuarios</a>
                         </li>
@@ -105,7 +118,7 @@
                         <li>
                             <a href="#" data-link="paneles/p-miperfil.jsp" data-constructor="p_miperfil();" id="pMiPerfil" ><span class="glyphicon glyphicon-user" ></span> Mi perfil</a>
                         </li>
-                        
+
                         <li>
                             <a href="../usuarioServlet?accion=CERRARSESION"><span class="glyphicon glyphicon-off" ></span> Cerrar sesion</a>
                         </li>

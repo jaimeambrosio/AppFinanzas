@@ -36,6 +36,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Simulacionhito.findAll", query = "SELECT s FROM Simulacionhito s")})
 public class Simulacionhito implements Serializable {
 
+    @Column(name = "descripcion")
+    private String descripcion;
+
     private static final long serialVersionUID = 1L;
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
@@ -177,6 +180,14 @@ public class Simulacionhito implements Serializable {
     @Override
     public String toString() {
         return "fina.simulacion.entity.Simulacionhito[ idSimulacionHito=" + idSimulacionHito + " ]";
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
     
 }
