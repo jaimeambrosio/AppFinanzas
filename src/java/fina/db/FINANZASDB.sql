@@ -184,6 +184,7 @@ CREATE TABLE IF NOT EXISTS `FINANZASDB`.`SIMULACIONHITO` (
   `saldoFinal` DOUBLE NULL,
   `rentabilidad` DOUBLE NULL,
   `densidad` DOUBLE NULL,
+  `descripcion` VARCHAR(500) NULL,
   `idSimulacionHito` INT NOT NULL AUTO_INCREMENT,
   `idSIMULACION` INT NOT NULL,
   INDEX `fk_AFP_has_SIMULACION_AFP1_idx` (`idAFP` ASC),
@@ -256,7 +257,7 @@ INSERT INTO `finanzasdb`.`tipofondo`
 `isActivo`,
 `mayorA`)
 VALUES
-(1,'Protección de capital','Posee un nivel de riesgo muy bajo, recomendable para personas de una edad igual o mayor a 65 años, y hasta que opten por una pensión de jubilación, y/o para afiliados con una muy baja tolerancia al riesgo y a la volatilidad del mercado. Para las personas mayores de 65 años, el cambio al Fondo 0 es obligatorio. Solo podrán cambiarse al Fondo 1 o Fondo 2 mediante carta firmada.',true,65),
+(1,'Protección de capital','Posee un nivel de riesgo muy bajo, recomendable para personas de una edad igual o mayor a 65 años. Para las personas mayores de 65 años, el cambio al Fondo 0 es obligatorio. Solo podrán cambiarse al Fondo 1 o Fondo 2 mediante carta firmada.',false,65),
 (2,'Preservación de capital','Posee un nivel de riesgo bajo, recomendable para personas próximas a jubilarse o personas que no tengan tolerancia al riesgo, pues su Fondo es menos sensible ante los movimientos de la economía. Para las personas mayores de 60 años, el cambio al Fondo 1 es obligatorio. Solo podrán cambiarse al Fondo 2 realizando una declaración a través de una carta firmada y entregada a la AFP.',true,50),
 (3,'Mixto o Balanceado','Posee un nivel de riesgo moderado, recomendable para personas de mediana edad, cuya fecha de jubilación aún es lejana.Su rendimiento podría ser superior al del Fondo 1 en el largo plazo.',true,30),
 (4,'Apreciación de capital','Posee un nivel de riesgo alto, con un tiempo de inversión más largo. Recomendable para personas con capacidad económica sólida, tolerantes al riesgo y también para personas jóvenes, cuya fecha de jubilación es lejana. Su rendimiento podría ser superior al de los Fondos 1 y/o 2 en el largo plazo.',true,17);

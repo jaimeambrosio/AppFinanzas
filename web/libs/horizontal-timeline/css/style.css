@@ -3,34 +3,32 @@
 Primary style
 
 -------------------------------- */
-*, *::after, *::before {
-  box-sizing: border-box;
-}
 
-html {
+
+#idSectionTimeline {
   font-size: 62.5%;
 }
 
-body {
+#idSectionTimeline {
   font-size: 1.6rem;
   font-family: "Fira Sans", sans-serif;
-  color: #383838;
-  background-color: #f8f8f8;
+  
 }
 
-a {
-  color: #7b9d6f;
-  text-decoration: none;
-}
+
 
 /* -------------------------------- 
-
+ 
 Main Components 
 
 -------------------------------- */
 .cd-horizontal-timeline {
   opacity: 0;
-  margin: 2em auto;
+  margin-bottom: 6em;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: auto;
+  
   -webkit-transition: opacity 0.2s;
   -moz-transition: opacity 0.2s;
   transition: opacity 0.2s;
@@ -43,11 +41,11 @@ Main Components
 .cd-horizontal-timeline.loaded {
   /* show the timeline after events position has been set (using JavaScript) */
   opacity: 1;
-}
+} 
 .cd-horizontal-timeline .timeline {
   position: relative;
   height: 100px;
-  width: 90%;
+  width: 100%;
   max-width: 800px;
   margin: 0 auto;
 }
@@ -57,25 +55,7 @@ Main Components
   margin: 0 40px;
   overflow: hidden;
 }
-.cd-horizontal-timeline .events-wrapper::after, .cd-horizontal-timeline .events-wrapper::before {
-  /* these are used to create a shadow effect at the sides of the timeline */
-  content: '';
-  position: absolute;
-  z-index: 2;
-  top: 0;
-  height: 100%;
-  width: 20px;
-}
-.cd-horizontal-timeline .events-wrapper::before {
-  left: 0;
-  background-image: -webkit-linear-gradient( left , #f8f8f8, rgba(248, 248, 248, 0));
-  background-image: linear-gradient(to right, #f8f8f8, rgba(248, 248, 248, 0));
-}
-.cd-horizontal-timeline .events-wrapper::after {
-  right: 0;
-  background-image: -webkit-linear-gradient( right , #f8f8f8, rgba(248, 248, 248, 0));
-  background-image: linear-gradient(to left, #f8f8f8, rgba(248, 248, 248, 0));
-}
+
 .cd-horizontal-timeline .events {
   /* this is the grey line/timeline */
   position: absolute;
@@ -88,6 +68,7 @@ Main Components
   -webkit-transition: -webkit-transform 0.4s;
   -moz-transition: -moz-transform 0.4s;
   transition: transform 0.4s;
+  min-width: 2000px;
 }
 .cd-horizontal-timeline .filling-line {
   /* this is used to create the green line filling the timeline */
@@ -164,7 +145,10 @@ Main Components
 }
 @media only screen and (min-width: 1100px) {
   .cd-horizontal-timeline {
-    margin: 6em auto;
+    margin-bottom: 6em;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: auto;
   }
   .cd-horizontal-timeline::before {
     /* never visible - this is used in jQuery to check the current MQ */

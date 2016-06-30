@@ -43,7 +43,6 @@ function formatoMontoChange(idInput)
     $(idInput).change(function () {
         var input = $(this);
         var string = numeral(input.val()).format('0,0.00');
-        input.css("text-align","right");
         input.val(string);
     });
 }

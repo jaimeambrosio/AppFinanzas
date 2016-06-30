@@ -6,6 +6,7 @@
 package fina.pruebas;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -25,6 +26,7 @@ public class Pruebas {
         Double saldoInicial = 0.0;
         Calendar ini = new GregorianCalendar(2016, Calendar.MAY, 30);
         Calendar fin = new GregorianCalendar(2016 + 21, Calendar.MAY, 30);
+        
         int cont = 0;
         while (ini.getTimeInMillis() < fin.getTimeInMillis()) {
             
