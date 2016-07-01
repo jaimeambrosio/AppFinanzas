@@ -48,7 +48,7 @@ public class AfpDao implements BaseDao<Afp, Integer> {
 
     @Override
     public Afp Obtener(Integer id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.find(Afp.class, id);
     }
 
     @Override

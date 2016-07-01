@@ -88,7 +88,7 @@
                                     </label>
                                 </div>
                                 <div class="input-group">
-                                    <input readonly="readonly" class="form-control" id="txtRentabilidadProbable" name="txtRentabilidadProbable" type="number" max="10" min="0" required="" >
+                                    <input readonly="readonly" class="form-control" id="txtRentabilidadProbable" name="txtRentabilidadProbable" type="number" min="0" required="" >
                                     <div class="input-group-addon">%</div>
                                 </div>
                             </div>

@@ -116,7 +116,7 @@ public class simulacionServlet extends HttpServlet {
         JSONObject jsonMensaje = new JSONObject(mensaje);
         try {
             jsonResult.put("msj", jsonMensaje);
-            jsonResult.put("rentabilidad", Formato.formatoDecimal(rentabilidad));
+            jsonResult.put("rentabilidad", Formato.formatoDecimal(rentabilidad*100));
             enviarDatos(response, jsonResult.toString());
 
         } catch (Exception ex) {
@@ -176,7 +176,7 @@ public class simulacionServlet extends HttpServlet {
             hitoa.setIdAFP(afpDao.Obtener(Integer.valueOf(cbxAfp)));
             hitoa.setIdSIMULACION(simulacion);
             hitoa.setIdTIPOFONDO(afpDao.ObtenerTipoFondo(Integer.valueOf(rbTipoFondo)));
-            hitoa.setRentabilidad(Double.valueOf(txtRentabilidadProbable));
+            hitoa.setRentabilidad(Double.valueOf(txtRentabilidadProbable)/100);
             hitoa.setTasaAportacionMesual(Double.valueOf(txtAportacionMensual));
             hitoa.setSaldoFinal(0.0);
 
@@ -186,8 +186,8 @@ public class simulacionServlet extends HttpServlet {
 
             Simulacionhito hitob = new Simulacionhito();
             hitob.setFecha(fecha65.getTime());
-            hitoa.setIdSIMULACION(simulacion);
-            hitoa.setSaldoFinal(0.0);
+            hitob.setIdSIMULACION(simulacion);
+            hitob.setSaldoFinal(0.0);
 
             List<Simulacionhito> listSimulacionhito = new ArrayList<>();
             listSimulacionhito.add(hitoa);

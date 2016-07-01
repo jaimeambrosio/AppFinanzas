@@ -12,10 +12,14 @@
         <div class="well">
             <h4>Notas</h4>
             <ol>
-                <li>La comision sobre flujo es mensual(TEM)</li>
-                <li>La comision sobre saldo es anual(TEA)</li>
-                <li>Fuente <a target="_blank" href="http://www.sbs.gob.pe/app/spp/empleadores/comisiones_spp/Paginas/comision_prima.aspx" >
-                        http://www.sbs.gob.pe/app/spp/empleadores/comisiones_spp/Paginas/comision_prima.aspx
+                <li>Las rentabilidades son sugeridas basandose en el utlimo año(TREA).</li>
+                <li>Fuente 
+                    <a target="_blank" href="http://semanaeconomica.com/article/mercados-y-finanzas/previsional/177048-afp-fondos-de-pensiones-cerraron-el-2015-con-rentabilidad-de-4-6/" >
+                        http://semanaeconomica.com/article/mercados-y-finanzas/
+                    </a>
+                   y <br> 
+                    <a target="_blank" href="https://www.afphabitat.com.pe/" >
+                        https://www.afphabitat.com.pe/
                     </a>
                 </li>
             </ol>
