@@ -5,6 +5,7 @@
  */
 package fina.simulacion.dao;
 
+import fina.afp.entity.Tipofondoxafp;
 import fina.dao.BaseDao;
 import fina.dao.ConexionJPA;
 import fina.simulacion.entity.Simulacion;
@@ -52,7 +53,11 @@ public class SimulacionDao implements BaseDao<Simulacion, Integer> {
     }
 
     public void InsertarHitos(List<Simulacionhito> listSimulacionhito) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        em.getTransaction().begin();
+        for (Simulacionhito simulacionhito : listSimulacionhito) {
+            em.merge(simulacionhito);
+        }
+        em.getTransaction().commit();
     }
 
 }

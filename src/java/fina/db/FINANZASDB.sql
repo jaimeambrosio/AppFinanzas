@@ -159,7 +159,7 @@ ENGINE = InnoDB;
 -- Table `FINANZASDB`.`SIMULACION`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `FINANZASDB`.`SIMULACION` (
-  `idSIMULACION` INT NOT NULL,
+  `idSIMULACION` INT NOT NULL AUTO_INCREMENT,
   `fechaCreacion` DATE NULL,
   `idUSUARIO` INT NOT NULL,
   `alias` VARCHAR(200) NULL,
