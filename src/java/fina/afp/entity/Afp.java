@@ -33,6 +33,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Afp.findAll", query = "SELECT a FROM Afp a")})
 public class Afp implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "afp")
+    private List<Tipocomisionxafp> tipocomisionxafpList;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAFP")
     private List<Simulacionhito> simulacionhitoList;
 
@@ -110,6 +113,15 @@ public class Afp implements Serializable {
 
     public void setSimulacionhitoList(List<Simulacionhito> simulacionhitoList) {
         this.simulacionhitoList = simulacionhitoList;
+    }
+
+    @XmlTransient
+    public List<Tipocomisionxafp> getTipocomisionxafpList() {
+        return tipocomisionxafpList;
+    }
+
+    public void setTipocomisionxafpList(List<Tipocomisionxafp> tipocomisionxafpList) {
+        this.tipocomisionxafpList = tipocomisionxafpList;
     }
     
 }

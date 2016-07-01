@@ -23,6 +23,8 @@
                         Nueva simulación
                     </h4>
                 </div>
+                <input type="hidden" id="hddAliasSimulacion" >
+                <input type="hidden" id="hddIdSimulacion" name="hddIdSimulacion" >
                 <div class="modal-body">
                     <div class="row" >
                         <div class="col-sm-6" >
@@ -71,9 +73,9 @@
                     <div class="row" >
                         <div class="col-sm-6" >
                             <div class="form-group">
-                                <label class="required" >Aportación mensual </label>
+                                <label class="required" >Aportación mensual(%) </label>
                                 <div class="input-group">
-                                    <input class="form-control" id="txtAportacionMensual" name="txtAportacionMensual" type="number" min="10" required="" >
+                                    <input class="form-control" id="txtAportacionMensual" name="txtAportacionMensual"  min="10" required="" >
                                     <div class="input-group-addon">%</div>
                                 </div>
                             </div>
@@ -88,7 +90,7 @@
                                     </label>
                                 </div>
                                 <div class="input-group">
-                                    <input readonly="readonly" class="form-control" id="txtRentabilidadProbable" name="txtRentabilidadProbable" type="number" min="0" required="" >
+                                    <input readonly="readonly" class="form-control" id="txtRentabilidadProbable" name="txtRentabilidadProbable"  min="0" required="" >
                                     <div class="input-group-addon">%</div>
                                 </div>
                             </div>
@@ -96,12 +98,19 @@
                     </div>                    
                     <div class="row" >
                         <div class="col-sm-6" >
+                            <div class="form-group">
+                                <label class="required" >Mi sueldo </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">S/.</div>
+                                    <input class="form-control" id="txtSueldoInicial" name="txtSueldoInicial"  required="" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" >
                             <label  >Descripción </label>
                             <textarea id="txtDescripcionHito" name="txtDescripcionHito"  class="form-control" rows="2"></textarea>
                         </div>  
-                        <div class="col-sm-6" >
 
-                        </div>
 
                     </div>   
                     <br>

@@ -31,10 +31,8 @@ public class Tipocomisionxafp implements Serializable {
     @EmbeddedId
     protected TipocomisionxafpPK tipocomisionxafpPK;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "comisionSaldo")
-    private Double comisionSaldo;
-    @Column(name = "comisionFlujo")
-    private Double comisionFlujo;
+    @Column(name = "comision")
+    private Double comision;
     @JoinColumn(name = "idAFP", referencedColumnName = "idAFP", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Afp afp;
@@ -61,20 +59,12 @@ public class Tipocomisionxafp implements Serializable {
         this.tipocomisionxafpPK = tipocomisionxafpPK;
     }
 
-    public Double getComisionSaldo() {
-        return comisionSaldo;
+    public Double getComision() {
+        return comision;
     }
 
-    public void setComisionSaldo(Double comisionSaldo) {
-        this.comisionSaldo = comisionSaldo;
-    }
-
-    public Double getComisionFlujo() {
-        return comisionFlujo;
-    }
-
-    public void setComisionFlujo(Double comisionFlujo) {
-        this.comisionFlujo = comisionFlujo;
+    public void setComision(Double comision) {
+        this.comision = comision;
     }
 
     public Afp getAfp() {

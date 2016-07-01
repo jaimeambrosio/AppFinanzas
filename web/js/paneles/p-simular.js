@@ -1,9 +1,11 @@
 
+var tblListaSimulaciones;
 function p_simular() //contructor
 {
     $('[data-toggle="tooltip"]').tooltip();
     formatoMontoChange("#txtAportacionMensual");
     formatoMontoChange("#txtRentabilidadProbable");
+    formatoMontoChange("#txtSueldoInicial");
     $("#formEdicionSimulacion").validate();
 
     $('#formEdicionSimulacion').ajaxForm({
@@ -16,6 +18,23 @@ function p_simular() //contructor
             data = JSON.parse(data);
             if (data.msj.hayMensaje == true) {
                 mostrarModalMensaje(data.msj.mensaje, data.msj.detalle, data.msj.tipo);
+            } else
+            {
+                $("#sectionTimeLine").load("paneles/sectionTimeLine.jsp", {}, function () {
+
+                    $("#idSectionTimelineHeader").html(data.header);
+                    $("#idSectionTimelineBody").html(data.body);
+                    $("#idSectionTimelineBody table").each(function () {
+                        $(this).DataTable({});
+                    });
+                    construirLineaTiempo();
+                    $("#modalEdicionSimulacion").modal('hide');
+                    $("#idSectionTimeline").show('slow');
+                    $("#hddAliasSimulacion").val(data.alias);
+                    $("#hddIdSimulacion").val(data.idSimulacion);
+
+                });
+
             }
             NProgress.done();
         },
@@ -27,7 +46,30 @@ function p_simular() //contructor
         }
     });
 
-    construirLineaTiempo();
+
+}
+
+function nuevoHito()
+{
+
+    var alias = $("#hddIdSimulacion").val();
+    $("#modalEdicionSimulacionTitle").html('<span class="glyphicon glyphicon-plus-sign"></span>  Nuevo hito');
+    $('#txtFechaDesde').datepicker('destroy');
+    $('#txtFechaDesde').datepicker({
+        language: "es",
+        endDate: $("#hddFechaFinAportacion").val(),
+        startDate: $("#hddFechaIniAportacion").val(),
+        autoclose: true,
+        format: "mm/yyyy",
+        startView: "months",
+        minViewMode: "months"
+    });
+    $("#formEdicionSimulacion").validate().resetForm();
+    $("#formEdicionSimulacion input").removeClass("error");
+    $("#formEdicionSimulacion #accion").val("NUEVOHITO");
+    $("#txtAlias").val(alias);
+    $("#txtAlias").attr("disabled", true);
+    $("#modalEdicionSimulacion").modal("show");
 }
 
 function nuevaSimulacion()
@@ -45,6 +87,7 @@ function nuevaSimulacion()
     });
     $("#formEdicionSimulacion").validate().resetForm();
     $("#formEdicionSimulacion input").removeClass("error");
+    $("#txtAlias").attr("disabled", false);
     $("#formEdicionSimulacion #accion").val("NUEVASIM");
     $("#modalEdicionSimulacion").modal("show");
 
@@ -52,10 +95,18 @@ function nuevaSimulacion()
 
 function simulacionesAlmacenadas()
 {
-    setTimeout(function () {
-        $("#idSectionTimeline").show('slow');
-    }, 1000);
-    $("#idSectionTimeline").hide('slow');
+     NProgress.start();
+    $("#divModalListaSimulaciones").load("modals/modalListaSimulaciones.jsp", {}, function () {
+        if (tblListaSimulaciones != undefined)
+            tblListaSimulaciones.destroy();
+
+        tblListaSimulaciones = $('#tblListaSimulaciones').DataTable({
+        });
+        $("#modalListaSimulaciones").modal('show');
+         NProgress.done();
+    });
+
+    
 
 }
 
@@ -105,7 +156,7 @@ function changeUsarRentSug()
 function construirLineaTiempo()
 {
     var timelines = $('.cd-horizontal-timeline'),
-            eventsMinDistance = 60;
+            eventsMinDistance = 100;
 
     (timelines.length > 0) && initTimeline(timelines);
 

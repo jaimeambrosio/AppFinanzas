@@ -12,6 +12,7 @@ import fina.simulacion.entity.Simulacion;
 import fina.simulacion.entity.Simulacionhito;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -44,12 +45,12 @@ public class SimulacionDao implements BaseDao<Simulacion, Integer> {
 
     @Override
     public Simulacion Obtener(Integer id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.find(Simulacion.class, id);
     }
 
     @Override
     public List<Simulacion> listar() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em.createQuery("FROM Simulacion U").getResultList();
     }
 
     public void InsertarHitos(List<Simulacionhito> listSimulacionhito) {
@@ -58,6 +59,12 @@ public class SimulacionDao implements BaseDao<Simulacion, Integer> {
             em.merge(simulacionhito);
         }
         em.getTransaction().commit();
+    }
+
+    public List<Simulacionhito> listarSimulacionhito(Simulacion simulacion) {
+        Query query = em.createQuery("SELECT sh FROM Simulacionhito sh WHERE sh.idSIMULACION = :idSIMULACION ORDER BY sh.fecha ASC");
+        query.setParameter("idSIMULACION", simulacion);
+        return query.getResultList();
     }
 
 }

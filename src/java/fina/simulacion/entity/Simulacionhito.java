@@ -43,6 +43,8 @@ public class Simulacionhito implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "tasaAportacionMesual")
     private Double tasaAportacionMesual;
+    @Column(name = "sueldo")
+    private Double sueldo;
     @Column(name = "saldoFinal")
     private Double saldoFinal;
     @Column(name = "rentabilidad")
@@ -88,6 +90,14 @@ public class Simulacionhito implements Serializable {
 
     public void setTasaAportacionMesual(Double tasaAportacionMesual) {
         this.tasaAportacionMesual = tasaAportacionMesual;
+    }
+
+    public Double getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(Double sueldo) {
+        this.sueldo = sueldo;
     }
 
     public Double getSaldoFinal() {

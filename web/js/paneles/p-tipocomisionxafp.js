@@ -1,9 +1,8 @@
-var tblTipoComisionXAfp ;
+var tblTipoComisionXAfp;
 function p_tipocomisionxafp()
 {
-     tblTipoComisionXAfp = $('#tblTipoComisionXAfp').DataTable({
-        
-     });
+    tblTipoComisionXAfp = $('#tblTipoComisionXAfp').DataTable({
+    });
     //console.log(tblTipoFondoXAfp);
     listarTiposComisionXafp();
 }
@@ -25,7 +24,6 @@ function listarTiposComisionXafp()
                 tblTipoComisionXAfp.destroy();
                 $("#tblTipoComisionXAfp").html(data.tbl);
                 tblTipoComisionXAfp = $('#tblTipoComisionXAfp').DataTable({
-             
                 });
                 formatoMontoChange("#tblTipoComisionXAfp input");
             } else
@@ -47,14 +45,14 @@ function actualizarValoresComisionXafp()
 {
     var array = new Array();
 
-    $("#tblTipoComisionXAfp .input-group").each(function(i,ele){
-         array[i]=new  Object();
-         array[i].afp = $("input[is=saldo]",ele).attr("afp");
-         array[i].comision = $("input[is=saldo]",ele).attr("comision");
-         array[i].comisionSaldo = $("input[is=saldo]",ele).val();
-         array[i].comisionFlujo = $("input[is=flujo]",ele).val();
+    $("#tblTipoComisionXAfp input").each(function (i, ele) {
+        array[i] = new Object();
+        array[i].afp = $(this).attr("afp");
+        array[i].idTipocomision = $(this).attr("comision");
+        array[i].comision = $(this).val();
+        console.log(ele);
     });
-    
+
     $.ajax({
         url: "../afpServlet?accion=ACTCOMXAFP",
         type: 'POST',
@@ -67,7 +65,7 @@ function actualizarValoresComisionXafp()
         success: function (data) {
             data = JSON.parse(data);
             if (data.msj.hayMensaje != true) {
-                
+
             } else
             {
                 mostrarModalMensaje(data.msj.mensaje, data.msj.detalle, data.msj.tipo);
@@ -82,5 +80,5 @@ function actualizarValoresComisionXafp()
             NProgress.done();
         }
     });
-    
+
 }

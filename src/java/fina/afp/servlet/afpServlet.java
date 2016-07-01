@@ -142,7 +142,7 @@ public class afpServlet extends HttpServlet {
                         for (Tipofondoxafp tipofondoxafp : listTipofondoxafp) {
                             if (tipofondo.getIdTIPOFONDO() == tipofondoxafp.getTipofondoxafpPK().getIdTIPOFONDO()
                                     && afp.getIdAFP() == tipofondoxafp.getTipofondoxafpPK().getIdAFP()) {
-                                String valor = Formato.formatoDecimal(tipofondoxafp.getRentabilidadSugerida()*100);
+                                String valor = Formato.formatoDecimal(tipofondoxafp.getRentabilidadSugerida() * 100);
                                 sb.append("<input afp='").append(afp.getIdAFP()).append("' fondo='").append(tipofondo.getIdTIPOFONDO()).append("' class=\"form-control\" value='").append(valor).append("' >");
                             } else {
                             }
@@ -180,7 +180,7 @@ public class afpServlet extends HttpServlet {
                 String fondo = jsonObject.getString("fondo");
                 String valor = jsonObject.getString("valor").replaceAll(",", "");;
                 Tipofondoxafp t = new Tipofondoxafp(Integer.valueOf(fondo), Integer.valueOf(afp));
-                t.setRentabilidadSugerida(Double.valueOf(valor)/100);
+                t.setRentabilidadSugerida(Double.valueOf(valor) / 100);
                 listTipoFondoXAfp.add(t);
             }
             afpDao.ActualizarFondoXAfp(listTipoFondoXAfp);
@@ -208,12 +208,10 @@ public class afpServlet extends HttpServlet {
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String afp = jsonObject.getString("afp");
-                String comision = jsonObject.getString("comision");
-                String comisionSaldo = jsonObject.getString("comisionSaldo").replaceAll(",", "");
-                String comisionFlujo = jsonObject.getString("comisionFlujo").replaceAll(",", "");
-                Tipocomisionxafp tipocomisionxafp = new Tipocomisionxafp(Integer.valueOf(comision), Integer.valueOf(afp));
-                tipocomisionxafp.setComisionFlujo(Double.valueOf(comisionFlujo)/100);
-                tipocomisionxafp.setComisionSaldo(Double.valueOf(comisionSaldo)/100);
+                String idTipocomision = jsonObject.getString("idTipocomision");
+                String comision = jsonObject.getString("comision").replaceAll(",", "");
+                Tipocomisionxafp tipocomisionxafp = new Tipocomisionxafp(Integer.valueOf(idTipocomision), Integer.valueOf(afp));
+                tipocomisionxafp.setComision(Double.valueOf(comision)/100);
                 listTipocomisionxafp.add(tipocomisionxafp);
             }
             afpDao.ActualizarComisionesXafp(listTipocomisionxafp);
@@ -247,41 +245,27 @@ public class afpServlet extends HttpServlet {
             sb.append(" <tbody>");
             for (Afp afp : listAfp) {
                 sb.append("<tr><td>").append(afp.getTitulo()).append("</td>");
-                String readonly = "";
+
                 for (Tipocomision tipocomision : listTipocomision) {
                     sb.append("<td>");
                     sb.append("<div class=\"input-group\">");
                     if (listTipocomisionxafp.isEmpty()) {
 
-                        sb.append("<input is='saldo' afp='").append(afp.getIdAFP()).append("' comision='")
-                                .append(tipocomision.getIdTIPOCOMISION())
-                                .append("' class=\"form-control\" value='")
-                                .append(Formato.formatoDecimal(0.0))
-                                .append("' ").append(readonly).append(" >")
-                                .append("<div class=\"input-group-addon\">% Saldo</div>");
-                        readonly = "";
-                        sb.append("<input is='flujo' afp='").append(afp.getIdAFP()).append("' comision='")
+                        sb.append("<input  afp='").append(afp.getIdAFP()).append("' comision='")
                                 .append(tipocomision.getIdTIPOCOMISION())
                                 .append("' class=\"form-control\" value='")
                                 .append(Formato.formatoDecimal(0.0)).append("' >")
-                                .append("<div class=\"input-group-addon\">% Flujo</div>");
+                                .append("<div class=\"input-group-addon\">%</div>");
 
                     } else {
                         for (Tipocomisionxafp tcxa : listTipocomisionxafp) {
                             if (tcxa.getTipocomisionxafpPK().getIdAFP() == afp.getIdAFP()
                                     && tcxa.getTipocomisionxafpPK().getIdTIPOCOMISION() == tipocomision.getIdTIPOCOMISION()) {
 
-                                sb.append("<input is='saldo' afp='").append(afp.getIdAFP()).append("' comision='")
+                                sb.append("<input afp='").append(afp.getIdAFP()).append("' comision='")
                                         .append(tipocomision.getIdTIPOCOMISION())
                                         .append("' class=\"form-control\" value='")
-                                        .append(Formato.formatoDecimal(tcxa.getComisionSaldo()*100))
-                                        .append("' ").append(readonly).append(" >")
-                                        .append("<div class=\"input-group-addon\">% Saldo</div>");
-                                readonly = "";
-                                sb.append("<input is='flujo' afp='").append(afp.getIdAFP()).append("' comision='")
-                                        .append(tipocomision.getIdTIPOCOMISION())
-                                        .append("' class=\"form-control\" value='")
-                                        .append(Formato.formatoDecimal(tcxa.getComisionFlujo()*100)).append("' >")
+                                        .append(Formato.formatoDecimal(tcxa.getComision() * 100)).append("' >")
                                         .append("<div class=\"input-group-addon\">% Flujo</div>");
                             }
                         }
