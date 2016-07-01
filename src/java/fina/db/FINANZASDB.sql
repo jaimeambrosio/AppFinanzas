@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `FINANZASDB`.`USUARIO` (
   `username` VARCHAR(45) NOT NULL,
   `contrasenia` VARCHAR(45) NOT NULL,
   `fechaNacimiento` DATE NULL,
-  `sexo` TINYINT(1) NULL,
+  `sexo` TINYINT(1) DEFAULT 1,
   `foto` MEDIUMBLOB NULL,
   `dni` CHAR(8) NULL,
   `eliminado` TINYINT(1) NULL,

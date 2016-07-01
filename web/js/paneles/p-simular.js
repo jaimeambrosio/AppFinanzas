@@ -5,7 +5,7 @@ function p_simular() //contructor
     $('[data-toggle="tooltip"]').tooltip();
     formatoMontoChange("#txtAportacionMensual");
     formatoMontoChange("#txtRentabilidadProbable");
-    formatoMontoChange("#txtSueldoInicial");
+    // formatoMontoChange("#txtSueldoInicial");
     $("#formEdicionSimulacion").validate();
 
     $('#formEdicionSimulacion').ajaxForm({
@@ -49,10 +49,54 @@ function p_simular() //contructor
 
 }
 
+function abrirSimulacion(idSimulacion)
+{
+    $.ajax({
+        url: "../simulacionServlet?accion=ABRIRSIM",
+        type: 'POST',
+        data: {
+            idSimulacion: idSimulacion
+        },
+        beforeSend: function (xhr) {
+            NProgress.start();
+        },
+        success: function (data) {
+            data = JSON.parse(data);
+            console.log(data);
+            if (data.msj.hayMensaje != true) {
+                $("#sectionTimeLine").load("paneles/sectionTimeLine.jsp", {}, function () {
+
+                    $("#idSectionTimelineHeader").html(data.header);
+                    $("#idSectionTimelineBody").html(data.body);
+                    $("#idSectionTimelineBody table").each(function () {
+                        $(this).DataTable({});
+                    });
+                    construirLineaTiempo();
+                    $("#modalListaSimulaciones").modal('hide');
+                    $("#idSectionTimeline").show('slow');
+                    $("#hddAliasSimulacion").val(data.alias);
+                    $("#hddIdSimulacion").val(data.idSimulacion);
+
+                });
+            } else
+            {
+                mostrarModalMensaje(data.msj.mensaje, data.msj.detalle, data.msj.tipo);
+            }
+            NProgress.done();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            mostrarModalMensaje('No se pudo invocar al servidor, probablemente tengas un problema con tu conexion a internet.',
+                    jqXHR.responseText,
+                    "ERROR");
+            NProgress.done();
+        }
+    });
+}
+
 function nuevoHito()
 {
 
-    var alias = $("#hddIdSimulacion").val();
+    var alias = $("#hddAliasSimulacion").val();
     $("#modalEdicionSimulacionTitle").html('<span class="glyphicon glyphicon-plus-sign"></span>  Nuevo hito');
     $('#txtFechaDesde').datepicker('destroy');
     $('#txtFechaDesde').datepicker({
@@ -95,7 +139,7 @@ function nuevaSimulacion()
 
 function simulacionesAlmacenadas()
 {
-     NProgress.start();
+    NProgress.start();
     $("#divModalListaSimulaciones").load("modals/modalListaSimulaciones.jsp", {}, function () {
         if (tblListaSimulaciones != undefined)
             tblListaSimulaciones.destroy();
@@ -103,10 +147,10 @@ function simulacionesAlmacenadas()
         tblListaSimulaciones = $('#tblListaSimulaciones').DataTable({
         });
         $("#modalListaSimulaciones").modal('show');
-         NProgress.done();
+        NProgress.done();
     });
 
-    
+
 
 }
 

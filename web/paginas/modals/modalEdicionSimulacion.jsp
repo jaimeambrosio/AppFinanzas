@@ -102,7 +102,7 @@
                                 <label class="required" >Mi sueldo </label>
                                 <div class="input-group">
                                     <div class="input-group-addon">S/.</div>
-                                    <input class="form-control" id="txtSueldoInicial" name="txtSueldoInicial"  required="" >
+                                    <input class="form-control" id="txtSueldoInicial" name="txtSueldoInicial"  required="" min="850" >
                                 </div>
                             </div>
                         </div>

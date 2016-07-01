@@ -32,3 +32,15 @@ $().ready(function () {
     });
     NProgress.done();
 });
+
+
+function registrarmeInicio()
+{
+    $('#txtFechaNacimiento').datepicker({
+        language: "es",
+        endDate: "hoy",
+        autoclose: true
+    });
+    $("#tipoUsuario").attr("readonly",true);
+    $("#modalEdicionUsuario").modal('show');
+}

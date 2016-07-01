@@ -12,7 +12,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     SimpleDateFormat format = new SimpleDateFormat("MM/yyyy");
-     Calendar calendar = new GregorianCalendar();
+    Calendar calendar = new GregorianCalendar();
     Usuario usuarioLogeado = (Usuario) request.getSession().getAttribute("usuarioLogeado");
     calendar.setTime(usuarioLogeado.getFechaNacimiento());
     calendar.add(Calendar.YEAR, 18);
@@ -20,7 +20,7 @@
 <input type="hidden" id="hddFechaNacimiento" value="<%=format.format(usuarioLogeado.getFechaNacimiento())%>" >
 
 <input type="hidden" id="hddFechaIniAportacion" value="<%=format.format(calendar.getTime())%>" >
-<% calendar.add(Calendar.YEAR, 47); %>
+<% calendar.add(Calendar.YEAR, 47);%>
 <input type="hidden" id="hddFechaFinAportacion" value="<%=format.format(calendar.getTime())%>" >
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 
@@ -66,35 +66,7 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#"><span class="glyphicon glyphicon-refresh"  id="mConversiones" ></span> Conversiones<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="#">Second Level Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Second Level Item</a>
-                        </li>
-                        <li>
-                            <a href="#">Third Level <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-third-level -->
-                        </li>
-                    </ul>
-                </li>
+                <% if(usuarioLogeado.getIdTipoUsuario().getIdTipoUsuario() == 1){ %>
                 <li> 
                     <a href="#" id=""><span class="glyphicon glyphicon-list-alt"  ></span> Mantenimiento<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -103,14 +75,15 @@
                             <a href="#" data-link="paneles/p-usuarios.jsp" data-constructor="p_usuarios();" id="pUsuarios" ><span class="glyphicon glyphicon-list" ></span> Usuarios</a>
                         </li>
                         <li>
-                            <a href="#" data-link="paneles/p-tipofondoxafp.jsp" data-constructor="p_tipofondoxafp();" id="pTipoFondoXAfp" ><span class="glyphicon glyphicon-oil" ></span> Tipo de fondo por AFP</a>
+                            <a href="#" data-link="paneles/p-tipofondoxafp.jsp" data-pass="1" data-constructor="p_tipofondoxafp();" id="pTipoFondoXAfp" ><span class="glyphicon glyphicon-oil" ></span> Tipo de fondo por AFP</a>
                         </li>
                         <li>
-                            <a href="#" data-link="paneles/p-tipocomisionxafp.jsp" data-constructor="p_tipocomisionxafp();" id="pTipoComisionXAfp" ><span class="glyphicon glyphicon-tint" ></span> Tipo comision por AFP</a>
+                            <a href="#" data-link="paneles/p-tipocomisionxafp.jsp" data-pass="1" data-constructor="p_tipocomisionxafp();" id="pTipoComisionXAfp" ><span class="glyphicon glyphicon-tint" ></span> Tipo comision por AFP</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+                <%}%>
                 <!--MI CUENTA-->
                 <li> 
                     <a href="#" id="miCuenta"><span class="glyphicon glyphicon-cog"  ></span> Mi cuenta<span class="fa arrow"></span></a>
@@ -122,10 +95,10 @@
                         <li>
                             <a href="../usuarioServlet?accion=CERRARSESION"><span class="glyphicon glyphicon-off" ></span> Cerrar sesion</a>
                         </li>
-                        <li>
+                        <li style="display: none" >
                             <a href="#"  onclick="prueba();"  ><span class="glyphicon glyphicon-off" ></span> Prueba modal</a>
                         </li>
-                        <li>
+                        <li style="display: none" >
                             <a href="#" data-link="paneles/p-prueba.jsp" data-constructor="p_prueba();" data-pass="1" ><span class="glyphicon glyphicon-off" ></span> Prueba</a>
                         </li>
                     </ul>

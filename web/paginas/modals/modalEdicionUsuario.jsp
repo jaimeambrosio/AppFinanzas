@@ -47,7 +47,7 @@
                         <div class="col-sm-6" >
                             <div class="form-group">
                                 <label class="required" >Usuario</label>
-                                <input  class="form-control" id="txtUsuario" name="txtUsuario" required="" >
+                                <input  class="form-control" id="txtUsuario" name="txtUsuario" required="" minlength="5" >
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                         <div class="col-sm-6" >
                             <div class="form-group">
                                 <label class="required" >Contraseña</label>
-                                <input  class="form-control" type="password" id="txtContrasenia" name="txtContrasenia" required="" >
+                                <input  class="form-control" type="password" id="txtContrasenia" name="txtContrasenia" minlength="5" required="" >
                             </div>
                         </div>
                         <div class="col-sm-6" >
@@ -84,7 +84,7 @@
                         <div class="col-sm-6" >
                             <div class="form-group">
                                 <label >DNI </label>
-                                <input  class="form-control" type="text" id="txtDNI" name="txtDNI"   >
+                                <input  class="form-control" type="text" id="txtDNI" name="txtDNI" minlength="8"  >
                             </div>
                         </div>
                         <div class="col-sm-6" >

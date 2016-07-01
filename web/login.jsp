@@ -52,7 +52,7 @@
                                     <button type="submit" class="btn btn-primary">Ingresar al sistema</button>
                                     <br>
                                     <br>
-                                    <a href="#">Soy nuevo en el sistema </a>
+                                    <a href="#" onclick="registrarmeInicio();" >Soy nuevo en el sistema </a>
                                 </div>
 
                             </form>    
@@ -71,6 +71,7 @@
                 </div>
                 <div>
                     <%@include  file="plantillas/modals/mensajes.jsp" %>
+                    <%@include file="paginas/modals/modalEdicionUsuario.jsp" %>
                 </div>
             </div>
         </div>

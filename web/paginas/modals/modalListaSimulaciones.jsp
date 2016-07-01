@@ -37,7 +37,10 @@
                         <tr>
                             <td><%=s.getAlias()%></td>
                             <td><%=s.getFechaCreacion()%></td>
-                            <td>...</td>
+                            <td><a href="#" onclick="abrirSimulacion(<%=s.getIdSIMULACION()%>);" > 
+                                    <span class="glyphicon glyphicon-plus-sign" ></span>
+                                </a>
+                            </td>
                         </tr>
                         <%}%>
                     </tbody>

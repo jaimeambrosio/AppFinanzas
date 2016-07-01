@@ -6,7 +6,9 @@
 package fina.usuario.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +16,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -27,6 +31,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Tipousuario.findAll", query = "SELECT t FROM Tipousuario t")})
 public class Tipousuario implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoUsuario")
+    private List<Usuario> usuarioList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -93,6 +100,15 @@ public class Tipousuario implements Serializable {
     @Override
     public String toString() {
         return "fina.usuario.entity.Tipousuario[ idTipoUsuario=" + idTipoUsuario + " ]";
+    }
+
+    @XmlTransient
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
+    }
+
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
     
 }

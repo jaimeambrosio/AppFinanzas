@@ -5,17 +5,9 @@
  */
 package fina.usuario.entity;
 
-import fina.simulacion.entity.Simulacion;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
-import java.util.Base64;
 import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,12 +18,10 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -43,14 +33,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")})
 public class Usuario implements Serializable {
-
-    @Lob
-    @Column(name = "foto")
-    private byte[] foto;
-    @Column(name = "nombreFoto")
-    private String nombreFoto;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUSUARIO")
-    private List<Simulacion> simulacionList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -73,10 +55,15 @@ public class Usuario implements Serializable {
     private Date fechaNacimiento;
     @Column(name = "sexo")
     private Boolean sexo;
+    @Lob
+    @Column(name = "foto")
+    private byte[] foto;
     @Column(name = "dni")
     private String dni;
     @Column(name = "eliminado")
     private Boolean eliminado;
+    @Column(name = "nombreFoto")
+    private String nombreFoto;
     @JoinColumn(name = "idTipoUsuario", referencedColumnName = "idTipoUsuario")
     @ManyToOne(optional = false)
     private Tipousuario idTipoUsuario;
@@ -150,6 +137,14 @@ public class Usuario implements Serializable {
         this.sexo = sexo;
     }
 
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
+
     public String getDni() {
         return dni;
     }
@@ -164,6 +159,14 @@ public class Usuario implements Serializable {
 
     public void setEliminado(Boolean eliminado) {
         this.eliminado = eliminado;
+    }
+
+    public String getNombreFoto() {
+        return nombreFoto;
+    }
+
+    public void setNombreFoto(String nombreFoto) {
+        this.nombreFoto = nombreFoto;
     }
 
     public Tipousuario getIdTipoUsuario() {
@@ -198,52 +201,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "fina.usuario.entity.Usuario[ idUSUARIO=" + idUSUARIO + " ]";
     }
-
-    @XmlTransient
-    public List<Simulacion> getSimulacionList() {
-        return simulacionList;
-    }
-
-    public void setSimulacionList(List<Simulacion> simulacionList) {
-        this.simulacionList = simulacionList;
-    }
-
-
-    public String getNombreFoto() {
-        return nombreFoto;
-    }
-
-    public void setNombreFoto(String nombreFoto) {
-        this.nombreFoto = nombreFoto;
-    }
-
-    public String getFotoBase64() {
-        String base = "data:image/*;base64,";
-        if (foto == null) {
-            byte[] bytes = null;
-            try {
-                InputStream inputStream = null;
-                if (sexo) { //hombre
-                    inputStream = getClass().getResourceAsStream("/fina/img/user-man.png");
-                } else {
-                    inputStream = getClass().getResourceAsStream("/fina/img/user-woman.png");
-                }
-                bytes = new byte[inputStream.available()];
-                inputStream.read(bytes);
-            } catch (IOException ex) {
-                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            return base + Base64.getEncoder().encodeToString(bytes);
-        }
-        return base + Base64.getEncoder().encodeToString(foto);
-    }
-
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
-    }
-
+    
 }

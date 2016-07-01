@@ -66,6 +66,11 @@ public class simulacionServlet extends HttpServlet {
                 crearNuevoHito(request, response);
                 break;
             }
+
+            case "ABRIRSIM": {
+                abrirSimulacion(request, response);
+                break;
+            }
         }
     }
 
@@ -252,7 +257,7 @@ public class simulacionServlet extends HttpServlet {
         Double[] d = new Double[2];
         for (Tipocomisionxafp tipocomisionxafp : listTipocomisionxafp) {
             if (tipocomisionxafp.getTipocomisionxafpPK().getIdAFP() == idAfp) {
-                if (tipocomisionxafp.getTipocomisionxafpPK().getIdTIPOCOMISION()== 1) {
+                if (tipocomisionxafp.getTipocomisionxafpPK().getIdTIPOCOMISION() == 1) {
                     d[0] = tipocomisionxafp.getComision();
                 } else {
                     d[1] = tipocomisionxafp.getComision();
@@ -320,7 +325,7 @@ public class simulacionServlet extends HttpServlet {
             saldoXFlujo = saldoXFlujo + (saldoXFlujo * rentabilidad) + (sueldo * tasaAportacion);
 
             /*SALDO*/
-            Double comisionSm=aMensual(comisionS);
+            Double comisionSm = aMensual(comisionS);
             coTotalSal = coTotalSal + comisionSm * saldoXSaldo;
             saldoXSaldo = saldoXSaldo + (saldoXSaldo * rentabilidad) + (sueldo * tasaAportacion) - saldoXSaldo * comisionSm;
 
@@ -394,7 +399,7 @@ public class simulacionServlet extends HttpServlet {
         Simulacion simulacion = new Simulacion();
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/yyyy");
-           
+
             String hddIdSimulacion = request.getParameter("hddIdSimulacion").trim();
             String cbxAfp = request.getParameter("cbxAfp").trim();
             String txtFechaDesde = request.getParameter("txtFechaDesde").trim();
@@ -445,6 +450,42 @@ public class simulacionServlet extends HttpServlet {
 
         } catch (Exception ex) {
         }
+    }
+
+    private void abrirSimulacion(HttpServletRequest request, HttpServletResponse response) {
+        JSONObject jsonResult = new JSONObject();
+        Mensaje mensaje = new Mensaje(false, Mensaje.INFORMACION);
+        AfpDao afpDao = new AfpDao();
+        SimulacionDao simulacionDao = new SimulacionDao();
+        String[] result = new String[2];
+        Simulacion simulacion = new Simulacion();
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/yyyy");
+
+            String hddIdSimulacion = request.getParameter("idSimulacion").trim();
+
+            simulacion = simulacionDao.Obtener(Integer.valueOf(hddIdSimulacion));
+
+            List<Simulacionhito> listSimulacionhito = simulacionDao.listarSimulacionhito(simulacion);
+            List<HitoDatos> listHitoDatos = getlistHitoDatos(listSimulacionhito);
+            result = fillHtmlFromHitosDatos(listHitoDatos);
+
+        } catch (Exception e) {
+            mensaje.establecerError(e);
+        }
+        JSONObject jsonMensaje = new JSONObject(mensaje);
+        try {
+            jsonResult.put("msj", jsonMensaje);
+            jsonResult.put("header", result[0]);
+            jsonResult.put("body", result[1]);
+            jsonResult.put("alias", simulacion.getAlias());
+            jsonResult.put("idSimulacion", simulacion.getIdSIMULACION());
+
+            enviarDatos(response, jsonResult.toString());
+
+        } catch (Exception ex) {
+        }
+
     }
 
 }
