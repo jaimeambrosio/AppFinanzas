@@ -1,7 +1,9 @@
 var tblTipoComisionXAfp ;
 function p_tipocomisionxafp()
 {
-     tblTipoComisionXAfp = $('#tblTipoComisionXAfp').DataTable({});
+     tblTipoComisionXAfp = $('#tblTipoComisionXAfp').DataTable({
+        
+     });
     //console.log(tblTipoFondoXAfp);
     listarTiposComisionXafp();
 }
@@ -23,6 +25,7 @@ function listarTiposComisionXafp()
                 tblTipoComisionXAfp.destroy();
                 $("#tblTipoComisionXAfp").html(data.tbl);
                 tblTipoComisionXAfp = $('#tblTipoComisionXAfp').DataTable({
+             
                 });
                 formatoMontoChange("#tblTipoComisionXAfp input");
             } else

@@ -183,7 +183,6 @@ CREATE TABLE IF NOT EXISTS `FINANZASDB`.`SIMULACIONHITO` (
   `tasaAportacionMesual` DOUBLE NULL,
   `saldoFinal` DOUBLE NULL,
   `rentabilidad` DOUBLE NULL,
-  `densidad` DOUBLE NULL,
   `descripcion` VARCHAR(500) NULL,
   `idSimulacionHito` INT NOT NULL AUTO_INCREMENT,
   `idSIMULACION` INT NOT NULL,

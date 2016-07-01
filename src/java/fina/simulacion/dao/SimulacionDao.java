@@ -6,18 +6,28 @@
 package fina.simulacion.dao;
 
 import fina.dao.BaseDao;
+import fina.dao.ConexionJPA;
 import fina.simulacion.entity.Simulacion;
 import java.util.List;
+import javax.persistence.EntityManager;
 
 /**
  *
  * @author Jaime Ambrosio
  */
-public class SimulacionDao implements BaseDao<Simulacion, Integer>{
+public class SimulacionDao implements BaseDao<Simulacion, Integer> {
+
+    private EntityManager em = null;
+
+    public SimulacionDao() {
+        em = ConexionJPA.getEntityManager();
+    }
 
     @Override
     public void Insertar(Simulacion entity) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        em.getTransaction().begin();
+        em.persist(entity);
+        em.getTransaction().commit();
     }
 
     @Override
@@ -39,5 +49,5 @@ public class SimulacionDao implements BaseDao<Simulacion, Integer>{
     public List<Simulacion> listar() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

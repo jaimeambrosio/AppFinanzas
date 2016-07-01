@@ -1,10 +1,32 @@
 
-function p_simular()
+function p_simular() //contructor
 {
     $('[data-toggle="tooltip"]').tooltip();
     formatoMontoChange("#txtAportacionMensual");
     formatoMontoChange("#txtRentabilidadProbable");
     $("#formEdicionSimulacion").validate();
+
+    $('#formEdicionSimulacion').ajaxForm({
+        url: "../simulacionServlet",
+        type: "post",
+        beforeSend: function (jqXHR, settings) {
+            NProgress.start();
+        },
+        success: function (data) {
+            data = JSON.parse(data);
+            if (data.msj.hayMensaje == true) {
+                mostrarModalMensaje(data.msj.mensaje, data.msj.detalle, data.msj.tipo);
+            }
+            NProgress.done();
+        },
+        error: function (e) {
+            mostrarModalMensaje('No se pudo enviar los datos, probablemente tengas un problema con tu conexion a internet.',
+                    e.statusText,
+                    "ERROR");
+            NProgress.done();
+        }
+    });
+
     construirLineaTiempo();
 }
 
@@ -23,16 +45,18 @@ function nuevaSimulacion()
     });
     $("#formEdicionSimulacion").validate().resetForm();
     $("#formEdicionSimulacion input").removeClass("error");
-    $("#formEdicionSimulacion #accion").val("NUEVOHITO");
+    $("#formEdicionSimulacion #accion").val("NUEVASIM");
     $("#modalEdicionSimulacion").modal("show");
 
 }
 
 function simulacionesAlmacenadas()
 {
-    setTimeout(function(){$("#idSectionTimeline").show('slow');},1000);
+    setTimeout(function () {
+        $("#idSectionTimeline").show('slow');
+    }, 1000);
     $("#idSectionTimeline").hide('slow');
-    
+
 }
 
 function changeMostrarRentSug()
@@ -44,8 +68,8 @@ function changeMostrarRentSug()
             url: "../simulacionServlet?accion=GETRENT",
             type: 'POST',
             data: {
-                idAfp:idAfp,
-                idTipoFondo:idTipoFondo
+                idAfp: idAfp,
+                idTipoFondo: idTipoFondo
             },
             beforeSend: function (xhr) {
                 NProgress.start();
