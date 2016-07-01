@@ -36,9 +36,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Simulacionhito.findAll", query = "SELECT s FROM Simulacionhito s")})
 public class Simulacionhito implements Serializable {
 
-    @Column(name = "descripcion")
-    private String descripcion;
-
     private static final long serialVersionUID = 1L;
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
@@ -50,21 +47,21 @@ public class Simulacionhito implements Serializable {
     private Double saldoFinal;
     @Column(name = "rentabilidad")
     private Double rentabilidad;
-    @Column(name = "densidad")
-    private Double densidad;
+    @Column(name = "descripcion")
+    private String descripcion;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idSimulacionHito")
     private Integer idSimulacionHito;
     @JoinColumn(name = "idAFP", referencedColumnName = "idAFP")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Afp idAFP;
     @JoinColumn(name = "idTIPOCOMISION", referencedColumnName = "idTIPOCOMISION")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Tipocomision idTIPOCOMISION;
     @JoinColumn(name = "idTIPOFONDO", referencedColumnName = "idTIPOFONDO")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Tipofondo idTIPOFONDO;
     @JoinColumn(name = "idSIMULACION", referencedColumnName = "idSIMULACION")
     @ManyToOne(optional = false)
@@ -109,12 +106,12 @@ public class Simulacionhito implements Serializable {
         this.rentabilidad = rentabilidad;
     }
 
-    public Double getDensidad() {
-        return densidad;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDensidad(Double densidad) {
-        this.densidad = densidad;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Integer getIdSimulacionHito() {
@@ -180,14 +177,6 @@ public class Simulacionhito implements Serializable {
     @Override
     public String toString() {
         return "fina.simulacion.entity.Simulacionhito[ idSimulacionHito=" + idSimulacionHito + " ]";
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
     
 }

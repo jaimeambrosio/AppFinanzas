@@ -13,6 +13,7 @@ import fina.afp.entity.Tipofondo;
 import fina.afp.entity.Tipofondoxafp;
 import fina.afp.entity.TipofondoxafpPK;
 import fina.dao.BaseDao;
+import fina.usuario.entity.Usuario;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -95,6 +96,10 @@ public class AfpDao implements BaseDao<Afp, Integer> {
         TipofondoxafpPK pK = new TipofondoxafpPK(idTipoFondo, idAfp);
         Tipofondoxafp tf = em.find(Tipofondoxafp.class, pK);
         return tf.getRentabilidadSugerida();
+    }
+
+    public Tipofondo ObtenerTipoFondo(Integer idTipoFondo) {
+        return em.find(Tipofondo.class, idTipoFondo);
     }
 
 }

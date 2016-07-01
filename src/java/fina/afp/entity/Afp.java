@@ -46,12 +46,6 @@ public class Afp implements Serializable {
     private String titulo;
     @Column(name = "descripcion")
     private String descripcion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "afp")
-    private List<Tipofondoxafp> tipofondoxafpList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAFP")
-    private List<Licitacion> licitacionList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "afp")
-    private List<Tipocomisionxafp> tipocomisionxafpList;
 
     public Afp() {
     }
@@ -82,33 +76,6 @@ public class Afp implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    @XmlTransient
-    public List<Tipofondoxafp> getTipofondoxafpList() {
-        return tipofondoxafpList;
-    }
-
-    public void setTipofondoxafpList(List<Tipofondoxafp> tipofondoxafpList) {
-        this.tipofondoxafpList = tipofondoxafpList;
-    }
-
-    @XmlTransient
-    public List<Licitacion> getLicitacionList() {
-        return licitacionList;
-    }
-
-    public void setLicitacionList(List<Licitacion> licitacionList) {
-        this.licitacionList = licitacionList;
-    }
-
-    @XmlTransient
-    public List<Tipocomisionxafp> getTipocomisionxafpList() {
-        return tipocomisionxafpList;
-    }
-
-    public void setTipocomisionxafpList(List<Tipocomisionxafp> tipocomisionxafpList) {
-        this.tipocomisionxafpList = tipocomisionxafpList;
     }
 
     @Override

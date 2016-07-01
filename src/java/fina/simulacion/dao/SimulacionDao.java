@@ -8,6 +8,7 @@ package fina.simulacion.dao;
 import fina.dao.BaseDao;
 import fina.dao.ConexionJPA;
 import fina.simulacion.entity.Simulacion;
+import fina.simulacion.entity.Simulacionhito;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -47,6 +48,10 @@ public class SimulacionDao implements BaseDao<Simulacion, Integer> {
 
     @Override
     public List<Simulacion> listar() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void InsertarHitos(List<Simulacionhito> listSimulacionhito) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

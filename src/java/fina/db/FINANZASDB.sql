@@ -137,6 +137,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `FINANZASDB`.`LICITACION`
 -- -----------------------------------------------------
+/*
 CREATE TABLE IF NOT EXISTS `FINANZASDB`.`LICITACION` (
   `idLICITACION` INT NOT NULL,
   `fechaDesde` DATE NULL,
@@ -153,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `FINANZASDB`.`LICITACION` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
+*/
 -- -----------------------------------------------------
 -- Table `FINANZASDB`.`SIMULACION`
 -- -----------------------------------------------------
@@ -176,9 +177,9 @@ ENGINE = InnoDB;
 -- Table `FINANZASDB`.`SIMULACIONHITO`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `FINANZASDB`.`SIMULACIONHITO` (
-  `idAFP` INT NOT NULL,
-  `idTIPOFONDO` INT NOT NULL,
-  `idTIPOCOMISION` INT NOT NULL,
+  `idAFP` INT  NULL,
+  `idTIPOFONDO` INT  NULL,
+  `idTIPOCOMISION` INT  NULL,
   `fecha` DATE NULL,
   `tasaAportacionMesual` DOUBLE NULL,
   `saldoFinal` DOUBLE NULL,
@@ -270,6 +271,8 @@ VALUES
 (1,'FLUJO','Se aplica sobre el flujo, es decir sobre el sueldo declarado.'),
 (2,'MIXTA','Es una comisión que se aplica tanto sobre el saldo como al flujo(sueldo).');
 
+
+INSERT INTO `tipocomisionxafp` VALUES (1,1,0,0.0147),(1,2,0,0.0155),(1,3,0,0.016),(1,4,0,0.0169),(2,1,0.0125,0.0038),(2,2,0.012,0.0123),(2,3,0.0125,0.011899999999999999),(2,4,0.012,0.0146);
 
 COMMIT;
 
