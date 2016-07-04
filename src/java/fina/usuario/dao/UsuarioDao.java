@@ -62,7 +62,7 @@ public class UsuarioDao implements BaseDao<Usuario, Integer> {
         Query query = em.createQuery("SELECT u FROM Usuario u WHERE u.username = :username AND u.contrasenia = :contrasenia");
         query.setParameter("username", username);
         query.setParameter("contrasenia", contrasenia);
-        return !query.getResultList().isEmpty() ? (Usuario) query.getSingleResult() : null;
+        return !query.getResultList().isEmpty() ? (Usuario) query.getResultList().get(0) : null;
     }
 
     public Tipousuario getTipousuarioById(String id) {

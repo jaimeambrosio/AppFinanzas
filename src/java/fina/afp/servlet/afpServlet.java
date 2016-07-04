@@ -266,7 +266,7 @@ public class afpServlet extends HttpServlet {
                                         .append(tipocomision.getIdTIPOCOMISION())
                                         .append("' class=\"form-control\" value='")
                                         .append(Formato.formatoDecimal(tcxa.getComision() * 100)).append("' >")
-                                        .append("<div class=\"input-group-addon\">% Flujo</div>");
+                                        .append("<div class=\"input-group-addon\">%</div>");
                             }
                         }
                     }

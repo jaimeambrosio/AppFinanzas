@@ -242,6 +242,9 @@ public class usuarioServlet extends HttpServlet {
                     guardar = Boolean.valueOf(file.getString());
                 }
             }
+            if (usuario.getSexo() == null) {
+                usuario.setSexo(true);
+            }
             if (guardar) {
                 usuario.setIdUSUARIO(null);
                 usuarioDao.Insertar(usuario);
@@ -283,6 +286,9 @@ public class usuarioServlet extends HttpServlet {
             List<Usuario> list = usuarioDao.listar();
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             for (Usuario u : list) {
+                if (u.getSexo() == null) {
+                    u.setSexo(Boolean.TRUE);
+                }
                 sb.append("<tr>");
                 sb.append("<td>").append(u.getNombres()).append("</td>");
                 sb.append("<td>").append(u.getApellidos()).append("</td>");
