@@ -7,7 +7,6 @@ package fina.simulacion.servlet;
 
 import fina.afp.dao.AfpDao;
 import fina.afp.entity.Tipocomisionxafp;
-import fina.afp.entity.Tipofondoxafp;
 import fina.entity.Mensaje;
 import fina.simulacion.dao.SimulacionDao;
 import fina.simulacion.entity.HitoDatos;
@@ -17,7 +16,6 @@ import fina.usuario.entity.Usuario;
 import fina.util.Formato;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
