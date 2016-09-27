@@ -126,7 +126,10 @@ public class usuarioServlet extends HttpServlet {
             UsuarioDao usuarioDao = new UsuarioDao();
             Usuario usu = usuarioDao.validarIngreso(usuario, pass);
             if (usu != null) {
-                request.getSession().setAttribute("usuarioLogeado", usu);
+
+                HttpSession session = request.getSession(true);
+                session.setMaxInactiveInterval(60 * 60 * 2);
+                session.setAttribute("usuarioLogeado", usu);
                 mensaje.setHayMensaje(false);
                 //response.sendRedirect("paginas/inicio.jsp");
             } else {

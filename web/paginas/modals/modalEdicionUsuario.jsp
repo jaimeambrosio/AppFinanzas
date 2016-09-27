@@ -92,13 +92,18 @@
                                 <label class="required" >Tipo de usuario</label>
                                 <select   class="form-control" required="" id="tipoUsuario" name="tipoUsuario"  >  
                                     <%
-                                        UsuarioDao usuarioDao = new UsuarioDao();
-                                        List<Tipousuario> listtipo = usuarioDao.listarTipousuario();
+                                        try {
+                                            UsuarioDao usuarioDao = new UsuarioDao();
+                                            List<Tipousuario> listtipo = usuarioDao.listarTipousuario();
                                     %>
                                     <%  for (Tipousuario ti : listtipo) {%>
 
                                     <option value="<%=ti.getIdTipoUsuario()%>"  ><%=ti.getTitulo()%></option>
-                                    <%}%>
+                                    <%}
+                                        } catch (Exception ex) {
+                                            
+                                        }
+                                    %>
                                 </select>
                             </div>
                         </div>

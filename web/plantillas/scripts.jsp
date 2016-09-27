@@ -17,5 +17,6 @@
 <script src="/AppFinanzas/libs/jquery-validation/messages_es_PE.min.js" type="text/javascript"></script>
 <script src="/AppFinanzas/libs/form-master/jquery.form.js" type="text/javascript"></script>
 <script src="/AppFinanzas/libs/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="/AppFinanzas/libs/datatables/dataTables.responsive.min.js" type="text/javascript"></script>
 
 <script src="/AppFinanzas/js/funcionesComunes.js" type="text/javascript"></script>

@@ -17,7 +17,7 @@ public class Mensaje {
 
     public Mensaje() {
         hayMensaje = true;
-        tipo = this.INFORMACION;
+        tipo = Mensaje.INFORMACION;
         mensaje = "Error al procesar la solicitud en el servidor.";
         detalle = "";
     }

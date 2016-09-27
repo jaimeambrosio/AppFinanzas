@@ -1,7 +1,7 @@
 var tblPanelUsuarios;
 function p_usuarios()
 {
-    tblPanelUsuarios = $('#tblPanelUsuarios').dataTable({});
+    tblPanelUsuarios = $('#tblPanelUsuarios').DataTable({responsive: true });
     $("#idFormModalEdicionUsuario").validate();
     $('#txtFechaNacimiento').datepicker({
         language: "es",
@@ -48,10 +48,11 @@ function buscarUsuarios()
             data = JSON.parse(data);
             console.log(data);
             if (data.msj.hayMensaje != true) {
-                tblPanelUsuarios.fnClearTable();
-                tblPanelUsuarios.fnDestroy();
+               // tblPanelUsuarios.fnClearTable();
+               // tblPanelUsuarios.fnDestroy();
+                tblPanelUsuarios.destroy();
                 $("#tblPanelUsuarios tbody").html(data.tbody);
-                tblPanelUsuarios = $('#tblPanelUsuarios').dataTable({});
+                tblPanelUsuarios = $('#tblPanelUsuarios').DataTable({responsive: true });
             } else
             {
                 mostrarModalMensaje(data.msj.mensaje, data.msj.detalle, data.msj.tipo);
