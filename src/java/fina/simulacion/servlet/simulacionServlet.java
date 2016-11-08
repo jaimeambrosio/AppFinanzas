@@ -197,7 +197,7 @@ public class simulacionServlet extends HttpServlet {
 
             Calendar fecha = new GregorianCalendar();
             fecha.setTime(dateFormat.parse(txtFechaDesde));
-            fecha.set(Calendar.DAY_OF_YEAR, getDias(fecha));
+            fecha.add(Calendar.DAY_OF_YEAR, getDias(fecha));
 
             simulacion.setAlias(txtAlias);
             simulacion.setFechaCreacion(new Date());

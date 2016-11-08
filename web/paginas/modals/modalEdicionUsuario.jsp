@@ -90,7 +90,7 @@
                         <div class="col-sm-6" >
                             <div class="form-group">
                                 <label class="required" >Tipo de usuario</label>
-                                <select   class="form-control" required="" id="tipoUsuario" name="tipoUsuario"  >  
+                                <select   class="form-control" required="true" id="tipoUsuario" name="tipoUsuario"  >  
                                     <%
                                         try {
                                             UsuarioDao usuarioDao = new UsuarioDao();
